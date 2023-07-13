@@ -1,0 +1,25 @@
+.tradingview-widget-container {
+    position: relative;
+    padding-bottom: 100%; 
+    height: 0;
+    overflow-y:scroll;
+    overflow-x: auto;
+  }
+  
+  .tradingview-widget-container__widget {
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+/* 
+  @media only screen and (max-width: 576px){
+    .tradingview-widget-container-main{
+        width: 90%;
+    }
+    .tradingview-widget-container{
+        width: 90%;
+        overflow-x: scroll;
+    }
+  } */

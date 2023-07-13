@@ -1,0 +1,40 @@
+.useid-password-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 90vh;
+    /* background-color:rgb(240,239,240); */
+    background: url('/src/img/reg-bg1.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.userid-password-container{
+    width: 45%;
+    height: 45%;
+    border-radius: 20px;
+    padding: 15px;
+    /* background: #fff; */
+    overflow: scroll;
+    background: transparent;
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, .5);
+}
+.userid-password-container h4 {
+    text-align: center;
+    font-family: Calibri;
+    font-weight: 600;
+    color: #fff;
+}
+
+.userid-password-container p {
+    text-align: center;
+    font-family: Calibri;
+    color: #fff;
+}
+.userid-and-password{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}

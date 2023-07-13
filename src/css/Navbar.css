@@ -1,0 +1,32 @@
+.navbar-brand h3 {
+    color: rgb(54, 8, 54);
+    font-weight: bold;
+   
+}
+.navbar{
+    position: sticky;
+    top: 0px;
+
+}
+.modal-title {
+    font-weight: bold;
+    color: purple;
+}
+
+form label {
+    font-weight: bold;
+}
+
+.nav-item button {
+    width: 100px;
+}
+
+.navbar-box {
+    box-shadow: 1px 2px yellow;
+}
+
+@media only screen and (min-width:768px){
+    .small-sidebar{
+        display: none;
+    }
+}

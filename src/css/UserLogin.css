@@ -1,0 +1,113 @@
+.userLogin-page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 90vh;
+    /* background-color:rgb(240,239,240); */
+    background: url('/src/img/backgroundImage.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    animation: animationBg 5s linear infinite;
+}
+
+@keyframes animationBg {
+    100%{
+        filter: hue-rotate(360deg);
+    }
+}
+.userLogin-body{
+    width: 35%;
+    height: 65%;
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 20px;
+    padding: 15px;
+    /* background: #fff; */
+    background: transparent;
+    overflow: scroll;
+    padding: 0 25px 0 25px;
+    font-family: Calibri;
+    backdrop-filter: blur(15px);
+
+}
+.userLogin-body::-webkit-scrollbar{
+    display: none;
+}
+.userLogin-body p {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    /* color: rgb(151, 150, 149); */
+    color: #fff;
+}
+.userLogin-body h6{
+    text-align: center;
+    margin-top: -8px;
+    font-size: 16px;
+    font-weight: 600;
+    /* color: rgb(151, 150, 149); */
+    color: #fff;
+}
+.userid-section label{
+    /* color: blueviolet; */
+    color: #fff;
+    font-weight: 700;
+}
+.password-section label{
+    /* color: blueviolet; */
+    color: #fff;
+    font-weight: 700;
+}
+
+.readme{
+    color: #fff;
+}
+.signin-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.signin-button Button{
+    margin-top: 20px;
+    background:#5e72e4;
+}
+.login-with-otp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.custom-placeholder-userid ::placeholder{
+    color:#5e72e4;
+}
+.custom-placeholder-password ::placeholder {
+    color:#5e72e4; /* Replace with your desired color */
+  }
+  .home-signup  {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .home a, .signup a{
+    color: #fff;
+  }
+
+  /* media query */
+  @media only screen and (min-width: 769px) and (max-width:1024px){
+    .userLogin-body{
+        width: 50%
+    }    
+}
+  @media only screen and (min-width: 576px) and (max-width:768px){
+    .userLogin-body{
+        width: 60%
+    }    
+}
+  @media only screen and (max-width: 576px){
+    .userLogin-body{
+        width: 90%;
+        height: 60%;
+    }
+  }

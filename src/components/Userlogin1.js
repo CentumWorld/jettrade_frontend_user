@@ -57,6 +57,9 @@ const handleRememberMeChange = (event) => {
             password: user.password
         })
             .then((response) => {
+                console.log(response.data, "jjjjjjjj")
+                if (response.data.status) {
+
                 dispatch({ type: "USER", payload: true });
                 localStorage.setItem('login', true);
                 user.userid = '';
@@ -70,7 +73,9 @@ const handleRememberMeChange = (event) => {
                 localStorage.setItem('userType',response.data.userLogin.userType);
                 
                 navigate('/userdashboard');
-
+            } else {
+              message.warning(response.data.message);
+            }
             }).catch((error) => {
                 console.log('Not login');
                 if (error.response.status === 422) {
@@ -84,6 +89,11 @@ const handleRememberMeChange = (event) => {
                 if (error.response.status === 404) {
                    
                     message.warning("Invalid Credential!");
+                   
+                }
+                if (error.response.status === 403) {
+                   
+                    message.warning("Your account has been blocked!");
                    
                 }
             })

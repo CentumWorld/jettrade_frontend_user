@@ -167,7 +167,7 @@ const UseridAndPasswordSave = () => {
 
         const pdfRef = useRef();
 
-
+       
 
 
         // ==================================================
@@ -195,6 +195,7 @@ const UseridAndPasswordSave = () => {
                             <PDFViewer ref={pdfRef} style={{ display: 'none' }}>
                                 {pdfContent}
                             </PDFViewer>
+                            <Button onClick={goPayment}>Payment</Button>
                         </div>
                     </div>
 

@@ -237,7 +237,7 @@ function UserRegistration() {
         );
         message.success("Registration successful");
         console.log(res.data,'224');
-        localStorage.setItem("mypassword", res.data.password);
+        localStorage.setItem("password", res.data.password);
         localStorage.setItem("token", res.data.token);
   
         dispatch({ type: "USER", payload: true });

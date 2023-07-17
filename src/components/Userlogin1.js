@@ -28,7 +28,10 @@ const handleRememberMeChange = (event) => {
 
     useEffect(() => {
         const storeUserID = localStorage.getItem('userid');
+        console.log(storeUserID, "ytgygy")
         const storedPassword = localStorage.getItem('password');
+        console.log(storedPassword, "uygygjugyu")
+
         const storedRememberMe = localStorage.getItem('rememberMe');
     
         if (storedRememberMe === 'true') {

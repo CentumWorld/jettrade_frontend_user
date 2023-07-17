@@ -19,7 +19,7 @@ function Logout() {
             dispatch({ type: "USER", payload: false })
             localStorage.removeItem('token');
             localStorage.removeItem('user');
-            localStorage.removeItem('userid');
+            //localStorage.removeItem('userid');
             localStorage.removeItem('login');
             localStorage.removeItem('userType');
             localStorage.removeItem('refferal');

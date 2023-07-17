@@ -124,7 +124,7 @@ const UseridAndPasswordSave = () => {
     const [password, setPassword] = useState('');
 
     useEffect(() => {
-        setUserId(localStorage.getItem('myuserid'))
+        setUserId(localStorage.getItem('userid'))
         setPassword(localStorage.getItem('mypassword'))
     }, [])
     const goPayment = () => {

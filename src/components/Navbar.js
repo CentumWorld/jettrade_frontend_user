@@ -9,6 +9,9 @@ import UserForgetPassword from './UserForgetPassword';
 import Button from 'react-bootstrap/Button';
 import { Dropdown, Menu } from 'antd';
 
+import logo from './../img/logo.png';
+
+
 // ==================================================
 
 
@@ -154,7 +157,10 @@ function Navbar() {
         <>
             <nav className="navbar navbar-box navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
-                    <div className="navbar-brand"><h3>JETTRADE FX</h3></div>
+
+                <div className="navbar-brand"><h3>JETTRADE FX <span><img src={logo} alt="" style={{width:'100px', height:'80px', marginLeft:"530px"}} /></span></h3>
+                    </div>
+                    {/* <div className="navbar-brand"><h3>JETTRADE FX</h3></div> */}
                     {/* ======================= */}
                     {/*<div className='small-sidebar'>
 

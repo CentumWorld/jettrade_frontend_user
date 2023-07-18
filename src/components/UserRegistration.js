@@ -205,8 +205,6 @@ function UserRegistration() {
         const res = await axios.post("/user/registration", formData);
         message.success("Registration successful");
         console.log(res.data,'224');
-        localStorage.setItem("myuserid", res.data.userid);
-        localStorage.setItem("mypassword", res.data.password);
         localStorage.setItem("token", res.data.token);
   
         dispatch({ type: "USER", payload: true });
@@ -218,6 +216,8 @@ function UserRegistration() {
   
         localStorage.setItem("user", res.data._id);
         localStorage.setItem("userid", res.data.userid);
+        localStorage.setItem("password", res.data.password);
+
         localStorage.setItem("refferal", res.data.refferal_id);
          localStorage.setItem("userfname", res.data.fname);
         localStorage.setItem("userType", res.data.userType);

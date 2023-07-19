@@ -133,6 +133,7 @@ const DisplayCard = () => {
         }
         axios.post('/user/fetch-user-details-userside', data, config)
             .then((res) => {
+                console.log(res.data.result)
                 const formattedTradingWallet = res.data.result.tradingWallet.toLocaleString('en-IN', {
                     style: 'currency',
                     currency: 'INR'
@@ -348,7 +349,7 @@ const DisplayCard = () => {
                     </div>
                     <div className='d-flex'>
                         <h6>Status :</h6> &nbsp;&nbsp; <span style={{ color: subscriptionStatus.payment ? 'yellow' : 'red', fontWeight: 500, fontFamily: 'Calibri', fontSize: '16px' }}>
-                            {subscriptionStatus.payment ? 'Running' : 'Expired'}</span>
+                            {subscriptionStatus.payment ? 'Running' : 'Inactive'}</span>
                     </div>
                     <div className='d-flex'>
                         <h6>Expiry :</h6>&nbsp; &nbsp; <span style={{ color: 'yellow', fontWeight: 500, fontFamily: 'Calibri', fontSize: '16px' }}>{subscriptionStatus.expiry}</span>

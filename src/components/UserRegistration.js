@@ -25,8 +25,7 @@ import {
 import PhoneInput from "react-phone-input-2";
 
 import "react-phone-input-2/lib/bootstrap.css";
-import { UserContext } from '../App';
-
+import { UserContext } from "../App";
 
 const { TextArea } = Input;
 
@@ -58,6 +57,7 @@ function UserRegistration() {
     password: "",
     foregien_id: "",
   });
+  const [strength, setStrength] = useState(0);
 
   const [panError, setPanError] = useState(false);
   const [aadharError, setAadharError] = useState(false);
@@ -167,7 +167,8 @@ function UserRegistration() {
       setUserData({ ...userData, userid: "", password: "" });
       //setUserData({...userData, password:''})
     }
-  };const submit = async (e) => {
+  };
+  const submit = async (e) => {
     setSpin(true);
     e.preventDefault();
     console.log(userData, foregienCard);
@@ -179,7 +180,7 @@ function UserRegistration() {
     formData.append("address", userData.address);
     formData.append("gender", userData.gender);
     formData.append("dob", userData.dob);
-  
+
     formData.append("reffered_id", userData.invite_code);
     console.log(formData, "44");
     if (userData.userid === undefined && userData.password === undefined) {
@@ -199,31 +200,30 @@ function UserRegistration() {
       formData.append("Id_No", userData.foregien_id);
       formData.append("ID_Card", foregienCard.file1);
     }
-  
+
     if (countryCode === "91") {
       try {
         const res = await axios.post("/user/registration", formData);
         message.success("Registration successful");
-        console.log(res.data,'224');
+        console.log(res.data, "224");
         localStorage.setItem("token", res.data.token);
-  
+
         dispatch({ type: "USER", payload: true });
-  
+
         // localStorage.setItem("login", true);
         userData.userid = "";
         userData.password = "";
 
-  
         localStorage.setItem("user", res.data._id);
         localStorage.setItem("userid", res.data.userid);
         localStorage.setItem("password", res.data.password);
 
         localStorage.setItem("refferal", res.data.refferal_id);
-         localStorage.setItem("userfname", res.data.fname);
+        localStorage.setItem("userfname", res.data.fname);
         localStorage.setItem("userType", res.data.userType);
-  
+
         navigate("/userid-and-password-save");
-  
+
         setSpin(false);
       } catch (error) {
         message.warning(error.response.data.message);
@@ -236,23 +236,22 @@ function UserRegistration() {
           formData
         );
         message.success("Registration successful");
-        console.log(res.data,'224');
+        console.log(res.data, "224");
         localStorage.setItem("password", res.data.password);
         localStorage.setItem("token", res.data.token);
-  
+
         dispatch({ type: "USER", payload: true });
-  
+
         // localStorage.setItem("login", true);
         userData.userid = "";
         userData.password = "";
 
-  
         localStorage.setItem("user", res.data._id);
         localStorage.setItem("userid", res.data.userid);
         localStorage.setItem("refferal", res.data.refferal_id);
-         localStorage.setItem("userfname", res.data.fname);
+        localStorage.setItem("userfname", res.data.fname);
         localStorage.setItem("userType", res.data.userType);
-  
+
         navigate("/userid-and-password-save");
         console.log(res.data);
         setSpin(false);
@@ -262,7 +261,7 @@ function UserRegistration() {
       }
     }
   };
-  
+
   //date of birth
   const handleDateOfBirthChange = (date, dateString) => {
     setUserData((userData) => ({
@@ -294,7 +293,6 @@ function UserRegistration() {
     if (reffer) {
       setUserData({ ...userData, invite_code: id.inviteCode });
       setReferralId(reffer);
-      console.log("hii");
     }
   }, []);
 
@@ -306,6 +304,7 @@ function UserRegistration() {
     setUserData({ ...userData, phone: value });
   };
 
+  // valid email
   const validateEmail = (rule, value, callback) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!value || emailRegex.test(value)) {
@@ -314,13 +313,77 @@ function UserRegistration() {
       callback("Please enter a valid email");
     }
   };
-  
+
+  //valid strong password
+  const calculatePasswordStrength = (password) => {
+    // Define your password strength criteria
+    const length = password.length;
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasSpecialChar = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/.test(
+      password
+    );
+
+    // Assign a score based on the criteria
+    let score = 0;
+    if (length >= 8) score++;
+    if (hasUppercase) score++;
+    if (hasLowercase) score++;
+    if (hasNumber) score++;
+    if (hasSpecialChar) score++;
+
+    return score;
+  };
+
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value;
+    //setPassword(newPassword);
+    setUserData({ ...userData, password: newPassword });
+
+    const strength = calculatePasswordStrength(newPassword);
+    setStrength(strength);
+  };
+
+  const getStrengthLabel = (strength) => {
+    switch (strength) {
+      case 0:
+        return "Very Weak";
+      case 1:
+        return "Weak";
+      case 2:
+        return "Moderate";
+      case 3:
+        return "Strong";
+      case 4:
+        return "Very Strong";
+      default:
+        return "";
+    }
+  };
+
+  const getStrengthColor = (strength) => {
+    switch (strength) {
+      case 0:
+        return "red";
+      case 1:
+        return "orange";
+      case 2:
+        return "yellow";
+      case 3:
+        return "green";
+      case 4:
+        return "darkgreen";
+      default:
+        return "";
+    }
+  };
 
   return (
     <>
       <div className="registration-page">
         <div className="registration-body">
-          <h4>Welcome to JATTRADE FX</h4>
+          <h4>Welcome to JETTRADE FX</h4>
           <p>Sign up with credentials</p>
           <div className="form-content">
             <form>
@@ -595,9 +658,12 @@ function UserRegistration() {
                     //type="password"
                     value={userData.password}
                     name="password"
-                    onChange={userInputs}
+                    onChange={handlePasswordChange}
                     style={{ marginBottom: "10px" }}
                   />
+                  <p style={{ color: getStrengthColor(strength) }}>
+                    {getStrengthLabel(strength)}
+                  </p>
                 </div>
               ) : (
                 ""

@@ -1,9 +1,13 @@
 import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
-import Axios from 'axios';
+import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UserContext } from '../App';
+
+import baseUrl from '../../baseUrl';
+
+const apiurl = baseUrl.apiUrl
 
 function AdminLogin() {
     const { state, dispatch } = useContext(UserContext);
@@ -18,7 +22,7 @@ function AdminLogin() {
 
     const adminLogin = (e) => {
         e.preventDefault();
-        Axios.post("/admin/login", {
+        axios.post(`${apiurl}`+"/admin/login", {
             admin_id: admin.admin_id,
             password: admin.admin_password
         })

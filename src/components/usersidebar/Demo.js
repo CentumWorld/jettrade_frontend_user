@@ -1,10 +1,13 @@
 import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
-import Axios from 'axios';
+import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UserContext } from '../App';
 import UserRegistration from './UserRegistration';
+import baseUrl from '../../baseUrl';
+
+const apiurl = baseUrl.apiUrl
 
 function UserLogin() {
 
@@ -22,7 +25,7 @@ function UserLogin() {
 
     const userLogin = (e) => {
         e.preventDefault();
-        Axios.post("/user/login", {
+        axios.post(`${apiurl}`+"/user/login", {
             userid: user.userid,
             password: user.password
         })

@@ -10,6 +10,9 @@ import panCard from '../../img/sample-pan-card.jpg';
 import axios from 'axios';
 import { message, Spin } from 'antd';
 import { useNavigate  } from 'react-router-dom';
+import baseUrl from '../../baseUrl';
+
+const apiurl = baseUrl.apiUrl
 
 function ProfileVerification() {
     const navigate = useNavigate();
@@ -137,7 +140,7 @@ function ProfileVerification() {
                 Authorization: `Bearer ${token}`, // Set the 'Authorization' header with the token
             },
         }
-        axios.post('/user/fetch-user-details-userside', data, config)
+        axios.post(`${apiurl}`+'/user/fetch-user-details-userside', data, config)
             .then((result) => {
                 console.log(result.data.data);
                 if(result.data.data === 'token expired'){
@@ -171,7 +174,7 @@ function ProfileVerification() {
                 Authorization: `Bearer ${token}`, // Set the 'Authorization' header with the token
             },
         }
-        axios.post('/user/profileVerification', formData, config)
+        axios.post(`${apiurl}`+'/user/profileVerification', formData, config)
             .then(data => {
 
                 message.success('Documents uploaded successfully')
@@ -199,7 +202,7 @@ function ProfileVerification() {
                 Authorization: `Bearer ${token}`, // Set the 'Authorization' header with the token
             },
         }
-        axios.post('/user/users/other-country-profile-verification', formData, config)
+        axios.post(`${apiurl}`+'/user/users/other-country-profile-verification', formData, config)
             .then(data => {
 
                 message.success('Documents uploaded successfully')

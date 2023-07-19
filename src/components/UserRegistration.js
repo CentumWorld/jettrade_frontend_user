@@ -26,6 +26,9 @@ import PhoneInput from "react-phone-input-2";
 
 import "react-phone-input-2/lib/bootstrap.css";
 import { UserContext } from "../App";
+import baseUrl from '../baseUrl';
+
+const apiurl = baseUrl.apiUrl
 
 const { TextArea } = Input;
 
@@ -203,7 +206,7 @@ function UserRegistration() {
 
     if (countryCode === "91") {
       try {
-        const res = await axios.post("/user/registration", formData);
+        const res = await axios.post(`${apiurl}`+"/user/registration", formData);
         message.success("Registration successful");
         console.log(res.data, "224");
         localStorage.setItem("token", res.data.token);
@@ -231,7 +234,7 @@ function UserRegistration() {
       }
     } else {
       try {
-        const res = await axios.post(
+        const res = await axios.post(`${apiurl}`+
           "/user/users/other-country-user-registration",
           formData
         );

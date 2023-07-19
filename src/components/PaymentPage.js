@@ -153,6 +153,9 @@ import { useNavigate } from "react-router-dom";
 import CurrencyInput from "react-currency-input-field";
 import axios from "axios";
 import { Input, message } from "antd";
+import baseUrl from '../baseUrl';
+
+const apiurl = baseUrl.apiUrl
 
 function PaymentPage() {
   const [userid, setUserID] = useState(localStorage.getItem("userid")||"");
@@ -175,8 +178,7 @@ function PaymentPage() {
 
       handler: function (response) {
         console.log(response, "26");
-        axios
-          .post(
+        axios.post(`${apiurl}`+
             "/user/users/verify-payment",
             { response: response },
             {
@@ -205,8 +207,7 @@ function PaymentPage() {
       currency: "INR",
       payment_capture: 1,
     };
-    axios
-      .post("/user/users/user-create-payment", data, {
+    axios.post(`${apiurl}`+"/user/users/user-create-payment", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -228,8 +229,7 @@ function PaymentPage() {
     const data = {
       userid: localStorage.getItem("userid"),
     };
-    axios
-      .post("/user/users/payment-userid-verify", data, {
+    axios.post(`${apiurl}`+"/user/users/payment-userid-verify", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -255,8 +255,7 @@ function PaymentPage() {
     const data = {
       userid: userid,
     };
-    axios
-      .post("/user/users/change-user-payment-status", data, {
+    axios.post(`${apiurl}`+"/user/users/change-user-payment-status", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

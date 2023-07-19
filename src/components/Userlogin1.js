@@ -3,8 +3,11 @@ import '../css/UserLogin.css';
 import { Input, message,Button } from 'antd';
 import { UserOutlined, UnlockOutlined } from '@ant-design/icons';
 import { NavLink,useNavigate } from 'react-router-dom';
-import Axios  from 'axios';
+import axios  from 'axios';
 import { UserContext } from '../App';
+import baseUrl from '../baseUrl';
+
+const apiurl = baseUrl.apiUrl
 
 
 const Userlogin1 = () => {
@@ -55,7 +58,7 @@ const handleRememberMeChange = (event) => {
             localStorage.removeItem('password');
             localStorage.removeItem('rememberMe');
         }
-        Axios.post("/user/login", {
+        axios.post(`${apiurl}`+"/user/login", {
             userid: user.userid,
             password: user.password
         })

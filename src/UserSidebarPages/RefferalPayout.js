@@ -4,6 +4,9 @@ import axios from 'axios';
 import { Button, Input, message, Tabs, Table, Modal, Select } from 'antd'
 import { FaRupeeSign } from 'react-icons/fa';
 import moment from 'moment';
+import baseUrl from '../baseUrl';
+
+const apiurl = baseUrl.apiUrl
 
 const { TabPane } = Tabs;
 const { Option } = Select;
@@ -42,7 +45,7 @@ const RefferalPayout = () => {
             headers: { 'Authorization': `Bearer ${token}` }
         }
 
-        axios.post('/user/users/refferal-payout-request-user', data, config)
+        axios.post(`${apiurl}`+'/user/users/refferal-payout-request-user', data, config)
             .then((res) => {
                 message.success('Requested sent');
                 // fetchRefferalPayout();
@@ -68,7 +71,7 @@ const RefferalPayout = () => {
         const data = {
             userid: userid
         }
-        axios.post('/user/users/user-fetch-refferal-payout', data, config)
+        axios.post(`${apiurl}`+'/user/users/user-fetch-refferal-payout', data, config)
             .then((res) => {
                 const formattedAmount = res.data.wallet.toLocaleString('en-IN', {
                     style: 'currency',
@@ -89,7 +92,7 @@ const RefferalPayout = () => {
         let config = {
             headers: { 'Authorization': `Bearer ${token}` }
         }
-        axios.post('/user/users/user-fetch-refferal-payout-withdrawal-request', data, config)
+        axios.post(`${apiurl}`+'/user/users/user-fetch-refferal-payout-withdrawal-request', data, config)
             .then((res) => {
                 const length = res.data.userWithdrawalRequest.length;
                 const lastData = res.data.userWithdrawalRequest[length - 1];
@@ -121,7 +124,7 @@ const RefferalPayout = () => {
             headers: { 'Authorization': `Bearer ${token}` }
         }
 
-        axios.post('/user/users/fetch-approve-refferal-payout-user', data, config)
+        axios.post(`${apiurl}`+'/user/users/fetch-approve-refferal-payout-user', data, config)
             .then((res) => {
                 console.log(res.data);
                 setApprovedDetails(res.data.userWithdrawalApprove)

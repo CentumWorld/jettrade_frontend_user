@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
-import Axios from 'axios';
+import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UserContext } from '../App';
@@ -8,6 +8,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Input, message } from 'antd';
 import { UserOutlined,UnlockOutlined } from '@ant-design/icons';
+import baseUrl from '../baseUrl';
+
+const apiurl = baseUrl.apiUrl
+
+
 function AdminLogin(props) {
     const { state, dispatch } = useContext(UserContext);
     let navigate = useNavigate()
@@ -26,7 +31,7 @@ function AdminLogin(props) {
 
     const adminLogin = (e) => {
         e.preventDefault();
-        Axios.post("/admin/login", {
+        axios.post(`${apiurl}`+"/admin/login", {
             admin_id: admin.admin_id,
             password: admin.admin_password
         })

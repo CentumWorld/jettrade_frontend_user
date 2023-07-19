@@ -4,8 +4,11 @@ import Chat from '../UserSidebarPages/Chat'
 import '../UserSidebarPages/LiveChat.css'
 import { Input } from 'antd';
 import axios from 'axios';
+import baseUrl from '../baseUrl';
 
-const socket = io.connect('http://localhost:4000');
+const apiurl = baseUrl.apiUrl
+
+const socket = io.connect('http://103.149.68.19:8081');
 
 const LiveChat = () => {
     const userFname = localStorage.getItem('userfname');
@@ -37,7 +40,7 @@ const LiveChat = () => {
             headers: { 'Authorization': `Bearer ${token}` }
         }
 
-        axios.post('/user/users/fetch-chat-details-user', data, config)
+        axios.post(`${apiurl}`+'/user/users/fetch-chat-details-user', data, config)
             .then((result) => {
                 const length = result.data.userChatDetails.length;
                 if (length > 0) {

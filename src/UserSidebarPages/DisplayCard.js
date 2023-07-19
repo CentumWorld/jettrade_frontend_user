@@ -5,7 +5,9 @@ import axios from 'axios';
 import { FaRupeeSign } from 'react-icons/fa';
 import {BsWallet2} from 'react-icons/bs';
 import { Button, Modal, Dropdown, Menu,Select,Input,message } from 'antd';
+import baseUrl from '../baseUrl';
 
+const apiurl = baseUrl.apiUrl
 
 
 
@@ -131,7 +133,7 @@ const DisplayCard = () => {
                 Authorization: `Bearer ${token}`
             }
         }
-        axios.post('/user/fetch-user-details-userside', data, config)
+        axios.post(`${apiurl}`+'/user/fetch-user-details-userside', data, config)
             .then((res) => {
                 console.log(res.data.result)
                 const formattedTradingWallet = res.data.result.tradingWallet.toLocaleString('en-IN', {
@@ -179,7 +181,7 @@ const DisplayCard = () => {
                 Authorization: `Bearer ${token}`
             }
         }
-        axios.post('/user/users/user-total-withdrawal', data, config)
+        axios.post(`${apiurl}`+'/user/users/user-total-withdrawal', data, config)
             .then((res) => {
                 //console.log(res.data.walletAmount)
                 if (res.data.data === 0) {
@@ -217,7 +219,7 @@ const DisplayCard = () => {
                 Authorization: `Bearer ${token}`
             }
         }
-        axios.post('/user/users/user-my-team', data, config)
+        axios.post(`${apiurl}`+'/user/users/user-my-team', data, config)
             .then((res) => {
                 console.log(res.data.teamMembers)
                 setRefferalTeam(res.data.teamMembers);
@@ -246,7 +248,7 @@ const DisplayCard = () => {
 
             handler: function (response) {
                 console.log(response, "26")
-                axios.post('/user/users/verify-payment', { response: response })
+                axios.post(`${apiurl}`+'/user/users/verify-payment', { response: response })
                     .then(res => {
                          console.log(res.data, "37");
                         // message.success(res.data.message)
@@ -274,7 +276,7 @@ const DisplayCard = () => {
             currency: "INR",
             payment_capture: 1,
         }
-        axios.post('/user/users/user-create-payment', data)
+        axios.post(`${apiurl}`+'/user/users/user-create-payment', data)
             .then(res => {
                 console.log(res.data, "29")
                 handleOpenRazorpay(res.data.data)
@@ -298,7 +300,7 @@ const DisplayCard = () => {
                 Authorization: `Bearer ${token}`
             }
         }
-        axios.post('/user/users/user-update-wallet-after-adding',data,config)
+        axios.post(`${apiurl}`+'/user/users/user-update-wallet-after-adding',data,config)
         .then((res) => {
             message.success(res.data.message)
             setIsAddMoneyToWalletModalVisible(false);

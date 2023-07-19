@@ -206,7 +206,7 @@ function UserRegistration() {
 
     if (countryCode === "91") {
       try {
-        const res = await axios.post(`${apiurl}`+"/user/registration", formData);
+        const res = await axios.post("/user/registration", formData);
         message.success("Registration successful");
         console.log(res.data, "224");
         localStorage.setItem("token", res.data.token);

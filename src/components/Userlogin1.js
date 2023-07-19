@@ -60,7 +60,6 @@ const handleRememberMeChange = (event) => {
             password: user.password
         })
             .then((response) => {
-                console.log(response.data, "jjjjjjjj")
                 if (response.data.status) {
 
                 dispatch({ type: "USER", payload: true });

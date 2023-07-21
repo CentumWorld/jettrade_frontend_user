@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../css/Video.css"; 
+import "../css/Video.css";
+import Thumbnail from "./Thumbnail";
+import VideoPlayer from "./VideoPlayer";
 
 const Video = () => {
   const [videos, setVideos] = useState([]);
+  const [selectedVideo, setSelectedVideo] = useState(null); // State to track selected video URL
+  //   const [selectedVideo, setSelectedVideo] = useState(videos[0].videoUrl);
 
   useEffect(() => {
     getApiVideos();
@@ -23,29 +27,27 @@ const Video = () => {
       .catch((error) => console.error("Error fetching data:", error));
   };
 
+  const handleThumbnailClick = (videoUrl) => {
+    setSelectedVideo(videoUrl);
+  };
+
   return (
-    <div className="video-container">
-      <h1>Video List</h1>
-      {videos.length === 0 ? (
-        <p>Loading videos...</p>
-      ) : (
-        <ul className="video-list">
+    <>
+      <div className="video-framing">
+        <div className="video-player-container">
+          <VideoPlayer videoUrl={selectedVideo} />
+        </div>
+        <div className="thumbnail-list">
           {videos.map((video) => (
-            <li key={video._id} className="video-item">
-              <h2>{video.title}</h2>
-              {video.videoOne && (
-                <div className="video-player">
-                  <video controls>
-                    <source src={video.videoOne} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-              )}
-            </li>
+            <Thumbnail
+              key={video.id}
+              imageUrl={video.thumbnail}
+              onClick={() => handleThumbnailClick(video.videoOne)}
+            />
           ))}
-        </ul>
-      )}
-    </div>
+        </div>
+      </div>
+    </>
   );
 };
 

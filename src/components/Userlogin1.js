@@ -58,7 +58,7 @@ const handleRememberMeChange = (event) => {
             localStorage.removeItem('password');
             localStorage.removeItem('rememberMe');
         }
-        axios.post(`${apiurl}`+"/user/login", {
+        axios.post("/user/login", {
             userid: user.userid,
             password: user.password
         })
@@ -100,6 +100,9 @@ const handleRememberMeChange = (event) => {
                    
                     message.warning("Your account has been blocked!");
                    
+                }
+                if(error.response.status === 500){
+                    message.warning("Internal server error");
                 }
             })
             setShow(false);

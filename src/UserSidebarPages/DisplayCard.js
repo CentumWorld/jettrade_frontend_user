@@ -4,6 +4,7 @@ import "../css/DisplayCard.css";
 import axios from "axios";
 import { FaRupeeSign } from "react-icons/fa";
 import { BsWallet2 } from "react-icons/bs";
+import CountdownTimer from "./CountdownTimer";
 import {
   Button,
   Modal,
@@ -67,7 +68,7 @@ const DisplayCard = () => {
     plan: Number,
     formattedAmount: "",
   });
-  const [subscription, setSubscription] = useState("");
+  const [subscription, setSubscription] = useState(0);
   const [totalWithdrawal, setTotalWithdrawal] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [refferalTeam, setRefferalTeam] = useState([]);
@@ -77,6 +78,8 @@ const DisplayCard = () => {
   const [tradingWallet, setTradingWallet] = useState(0);
   const [dayCount, setDayCount] = useState(0);
   const [trialDate, setTrialDate] = useState(null);
+  const [userFreeExpire, setExpireDate] = useState(null);
+  const [blinking, setBlinking] = useState(true);
 
   useEffect(() => {
     setUserDetails({
@@ -86,6 +89,13 @@ const DisplayCard = () => {
     fetchUserDataForSubscription();
     fetchTotalWithdrawal();
     callApiToMyTeam();
+    const blinkInterval = setInterval(() => {
+      setBlinking((prevBlinking) => !prevBlinking);
+    }, 1000); // Adjust the blinking speed here (e.g., 1000ms = 1 second)
+
+    return () => {
+      clearInterval(blinkInterval);
+    };
   }, []);
   // modal for my team
   const showModal = () => {
@@ -145,7 +155,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}` + "/user/fetch-user-details-userside", data, config)
+      .post("/user/fetch-user-details-userside", data, config)
       .then((res) => {
         console.log(res.data.result);
         const formattedTradingWallet =
@@ -176,8 +186,8 @@ const DisplayCard = () => {
         ).toLocaleDateString();
         blockUser(trialFormateDate);
         setTrialDate(trialFormateDate);
-        //setDayCount(res.data.result.trialDayCount);
-
+        //setDayCount();
+        setDayCount(5 - res.data.result.trialDayCount);
         setSubscriptionStatus({
           userid: res.data.result.userid,
           payment: res.data.result.paymentStatus,
@@ -341,40 +351,181 @@ const DisplayCard = () => {
   };
 
   const blockUser = (trialFormateDate) => {
-    console.log(trialFormateDate);
-    //7/19/2023
-    const dbDate = new Date("2023-07-18"); // Example fetched date from the database
-    const dateString = trialFormateDate;
-    const dateParts = dateString.split("/");
+    if (subscription === 0 && subscriptionStatus.payment === false) {
+      // Example fetched date from the database
+      const dateString = trialFormateDate;
+      const dateParts = dateString.split("/");
 
-    const formattedDate = `${dateParts[2]}-${dateParts[0].padStart(
-      2,
-      "0"
-    )}-${dateParts[1].padStart(2, "0")}`;
-    console.log(formattedDate);
-    const dbDate1 = new Date(formattedDate);
-    const systemDate = new Date();
+      const formattedDate = `${dateParts[2]}-${dateParts[0].padStart(
+        2,
+        "0"
+      )}-${dateParts[1].padStart(2, "0")}`;
+      const dbDate1 = new Date(formattedDate);
 
-    const timeDiff = systemDate.getTime() - dbDate1.getTime();
-    const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-    console.log(daysDiff);
-    setDayCount(5 - daysDiff);
+      console.log(dbDate1);
+
+      const systemDate = new Date();
+      // ---------------------Testing purpose-----------------------------
+      const today = new Date();
+      const dayAfterTomorrow = new Date(dbDate1);
+      dayAfterTomorrow.setDate(dbDate1.getDate() + 5);
+      const year = dayAfterTomorrow.getFullYear();
+      const month = dayAfterTomorrow.getMonth() + 1;
+      const day = dayAfterTomorrow.getDate();
+      const formattedDate1 = `${year}-${month.toString().padStart(2, "0")}-${day
+        .toString()
+        .padStart(2, "0")}`;
+      const formattedDate2 = new Date(formattedDate1);
+      
+      const inputDate = new Date(formattedDate2);
+      const options = { year: "numeric", month: "short", day: "numeric" };
+      const expireOn = inputDate.toLocaleDateString(undefined, options);
+      setExpireDate(expireOn);
+      console.log(formattedDate2); // Output: "2023-07-22"
+      // ----------------------------------------------------------
+      console.log(systemDate);
+
+      const timeDiff = systemDate.getTime() - dbDate1.getTime();
+      const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+      console.log(daysDiff);
+      if (daysDiff < 5) {
+        const token = localStorage.getItem("token");
+        const data = {
+          userid: localStorage.getItem("userid"),
+          dayCount: daysDiff,
+        };
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        axios
+          .post("/user/users/update-day-count", data, config)
+          .then((res) => {
+            console.log(res.data.message);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        const token = localStorage.getItem("token");
+        const data = {
+          userid: localStorage.getItem("userid"),
+          expire: true,
+        };
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        axios
+          .post("/user/users/update-expire", data, config)
+          .then((res) => {
+            console.log(res.data.message);
+            navigate("/logout");
+          })
+          .error((error) => {
+            console.log(error);
+          });
+      }
+    }
+  };
+  // =========payment============
+  const handleOpenRazorpayForPaymebt = (data) => {
+    const options = {
+      key: "rzp_test_RvU9CuKT2BsDrz",
+      amount: Number(data.amount) * 100,
+      currency: data.currency,
+      name: "JETTRADE FX",
+      description: "Software and service charge",
+      order_id: data.id,
+
+      handler: function (response) {
+        console.log(response, "26");
+        axios.post("/user/users/verify-payment",
+            { response: response },
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            }
+          )
+          .then((res) => {
+            userPaymetSuccessStatus1();
+          })
+          .catch((err) => {
+            console.log(err);
+            message.warning("Payment Failed");
+          });
+      },
+    };
+    const razorpay = new window.Razorpay(options);
+    razorpay.open();
+  };
+
+  const doPayment = (amount) => {
+    console.log(amount);
+    const data = {
+      amount: amount,
+      order_id: "0d0254888555666",
+      currency: "INR",
+      payment_capture: 1,
+    };
+    axios.post("/user/users/user-create-payment", data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        handleOpenRazorpayForPaymebt(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const userPaymetSuccessStatus1 = () => {
+    const data = {
+      userid: localStorage.getItem('userid'),
+    };
+    axios.post("/user/users/change-user-payment-status", data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+
+        message.success(res.data.message);
+        fetchUserDataForSubscription();
+      })
+      .catch((error) => {
+        message.error(error.response.data.message);
+      });
   };
 
   return (
     <>
-      <Alert
-        message="You have only 5 days for free uses!"
-        description={`${dayCount} days left.`}
-        type="info"
-        showIcon
-        banner
-        style={{ fontWeight: 'bold' }}
-      />
+      {subscriptionStatus.payment === false && subscription === 0 ? (
+        
+        <Alert
+          message={`Your trading trial expires on ${userFreeExpire}`}
+          description={dayCount === 0 ? <CountdownTimer/> :`${dayCount} Days to go.`}
+          type="info"
+          showIcon
+          banner
+          action={
+            <Button className={`blink-button ${blinking ? 'blink' : ''}`} type="primary" onClick={() => doPayment(3500)}>
+              Pay Now
+            </Button>
+          }
+          style={{ fontWeight: "bold" }}
+        />
+      ) : (
+        ""
+      )}
       <div className="card1-container">
         <div className="card1">
           <div className="d-flex">
-            {dayCount}
             <h6>User ID </h6>&nbsp; : &nbsp;
             <span style={{ color: "yellow" }}>{userDetails.userid}</span>
           </div>

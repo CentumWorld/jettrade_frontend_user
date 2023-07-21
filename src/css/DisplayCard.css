@@ -59,3 +59,33 @@
     justify-content: center;
     align-items: center;
 }
+/* BlinkButton.css */
+.blink-button {
+    padding: 5px;
+    font-size: 16px;
+  }
+  
+  @keyframes blink-animation {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .blink {
+    animation: blink-animation 1s infinite;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  

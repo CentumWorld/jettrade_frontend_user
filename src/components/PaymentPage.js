@@ -255,7 +255,7 @@ function PaymentPage() {
     const data = {
       userid: userid,
     };
-    axios.post(`${apiurl}`+"/user/users/change-user-payment-status", data, {
+    axios.post("/user/users/change-user-payment-status", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

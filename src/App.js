@@ -48,6 +48,7 @@ import LiveChat from './UserSidebarPages/LiveChat';
 import UserFirstChartPage from './userpages/UserFirstChartPage';
 import DisplayCard from './UserSidebarPages/DisplayCard';
 import UseridAndPasswordSave from './components/UseridAndPasswordSave';
+import Video from './UserSidebarPages/Video';
 
 
 
@@ -150,6 +151,7 @@ function App() {
                 <Route path='invite' element={<InviteFriend />} />
                 <Route path='chat' element={<LiveChat />} />
                 <Route path='refferal-payout' element={<RefferalPayout />} />
+                <Route path='video' element={<Video/>}/>
 
                 {/* Opertaion Hostory */}
 

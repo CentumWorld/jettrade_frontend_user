@@ -8,6 +8,7 @@ import { RxCountdownTimer } from 'react-icons/rx'
 import { TfiMenuAlt, TfiGift } from 'react-icons/tfi'
 import { AiOutlineSetting, AiFillBank,AiOutlineAreaChart } from 'react-icons/ai'
 import { BsFillChatTextFill } from 'react-icons/bs'
+import {FiVideo} from 'react-icons/fi'
 import { NavLink } from 'react-router-dom';
 import UserSidebarMenu from './usersidebar/UserSidebarMenu';
 import { UserModal } from '../UserModel/UserModal';
@@ -182,6 +183,11 @@ const routes = [
         path: '/userdashboard/refferal-payout',
         name: "Refferal Payout",
         icon: <FaShare />,
+    },
+    {
+        path: '/userdashboard/video',
+        name: "Video",
+        icon: <FiVideo />,
     },
 
 ]

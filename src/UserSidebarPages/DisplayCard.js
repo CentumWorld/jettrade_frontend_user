@@ -215,7 +215,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}` + "/user/users/user-total-withdrawal", data, config)
+      .post("/user/users/user-total-withdrawal", data, config)
       .then((res) => {
         //console.log(res.data.walletAmount)
         if (res.data.data === 0) {
@@ -250,7 +250,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}` + "/user/users/user-my-team", data, config)
+      .post("/user/users/user-my-team", data, config)
       .then((res) => {
         console.log(res.data.teamMembers);
         setRefferalTeam(res.data.teamMembers);
@@ -280,7 +280,7 @@ const DisplayCard = () => {
       handler: function (response) {
         console.log(response, "26");
         axios
-          .post(`${apiurl}` + "/user/users/verify-payment", {
+          .post("/user/users/verify-payment", {
             response: response,
           })
           .then((res) => {
@@ -310,7 +310,7 @@ const DisplayCard = () => {
         payment_capture: 1,
       };
       axios
-        .post(`${apiurl}` + "/user/users/user-create-payment", data)
+        .post("/user/users/user-create-payment", data)
         .then((res) => {
           console.log(res.data, "29");
           handleOpenRazorpay(res.data.data);
@@ -334,8 +334,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(
-        `${apiurl}` + "/user/users/user-update-wallet-after-adding",
+      .post("/user/users/user-update-wallet-after-adding",
         data,
         config
       )

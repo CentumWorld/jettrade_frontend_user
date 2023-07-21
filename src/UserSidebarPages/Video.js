@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "../css/Video.css"; 
 
 const Video = () => {
   const [videos, setVideos] = useState([]);
@@ -23,20 +24,22 @@ const Video = () => {
   };
 
   return (
-    <div>
+    <div className="video-container">
       <h1>Video List</h1>
       {videos.length === 0 ? (
         <p>Loading videos...</p>
       ) : (
-        <ul>
+        <ul className="video-list">
           {videos.map((video) => (
-            <li key={video._id}>
+            <li key={video._id} className="video-item">
               <h2>{video.title}</h2>
               {video.videoOne && (
-                <video controls>
-                  <source src={video.videoOne} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                <div className="video-player">
+                  <video controls>
+                    <source src={video.videoOne} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
               )}
             </li>
           ))}

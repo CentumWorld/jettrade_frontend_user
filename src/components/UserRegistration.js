@@ -674,15 +674,16 @@ function UserRegistration() {
               {/* ----------------- */}
 
               <div className="submit-footer">
-                <Button type="primary" onClick={submit}>
+                <button type="submit" onClick={submit} className="register-Btn">
                   {spin ? <Spin style={{ color: "white" }} /> : "Register"}
-                </Button>
-                <Button
+                </button>
+                <button
                   style={{ backgroundColor: "green", color: "white" }}
                   onClick={home}
+                  className="home-Btn"
                 >
                   Home
-                </Button>
+                </button>
                 <p style={{ float: "right", color: "white" }}>
                   <NavLink to="/user-login" style={{ color: "white" }}>
                     Already registered Login

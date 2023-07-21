@@ -11,6 +11,42 @@
     /* animation: animationBg 5s linear infinite; */
 }
 
+.register-Btn{
+    background-color: blue;
+    padding: 3px;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+}
+
+.register-Btn:hover{
+    background-color: blue;
+    padding: 3px;
+    border: 1px solid cyan;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+}
+
+.home-Btn{
+    background-color: green;
+    padding: 3px;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+}
+
+.home-Btn:hover{
+    background-color: green;
+    padding: 3px;
+    border: 1px solid cyan;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+}
+
 /* @keyframes animationBg {
     100%{
         filter: hue-rotate(360deg);

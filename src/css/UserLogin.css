@@ -11,6 +11,14 @@
     animation: animationBg 5s linear infinite;
 }
 
+.login-btn{
+    border: none;
+    padding: 8px;
+    border-radius: 10px;
+    z-index: 10;
+    color: white;
+}
+
 @keyframes animationBg {
     100%{
         filter: hue-rotate(360deg);

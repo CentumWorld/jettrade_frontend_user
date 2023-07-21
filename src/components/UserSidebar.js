@@ -594,12 +594,12 @@ function UserSidebar(props) {
                         {isOpen && <p style={{ marginLeft: '3px', fontWeight: '600', marginRight: '10px', marginTop: '10px' }}>Subscription</p>}
                     </div>
 
-                    <div className='d-flex' style={{ cursor: 'pointer' }}>
+                    {/* <div className='d-flex' style={{ cursor: 'pointer' }}>
                         <MdNightsStay style={{ fontSize: '25px', marginLeft: '15px' }} />
                         {isOpen && <p style={{ marginLeft: '3px', fontWeight: '600', marginRight: '10px' }}>Theme</p>}
                         {isOpen && <Switch checked={toggleValue} onChange={handleToggleChange} />}
 
-                    </div>
+                    </div> */}
                 </motion.div>
 
 

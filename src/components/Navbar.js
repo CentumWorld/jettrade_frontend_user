@@ -158,39 +158,19 @@ function Navbar() {
             <nav className="navbar navbar-box navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
 
-                <div className="navbar-brand"><h3>JETTRADE FX <span><img src={logo} alt="" style={{width:'100px', height:'35px', marginLeft:"530px"}} /></span></h3>
+                <div className="navbar-brand">
+                    <div>
+                        <h3>JETTRADE FX </h3>
                     </div>
-                    {/* <div className="navbar-brand"><h3>JETTRADE FX</h3></div> */}
-                    {/* ======================= */}
-                    {/*<div className='small-sidebar'>
-
-                        <div>
-                            <IconButton
-                                edge="start"
-                                className={classes.menuButton}
-                                color="inherit"
-                                aria-label="menu"
-                                onClick={toggleDrawer(true)}
-                            >
-                                <FiSettings/>
-                            </IconButton>
-                            <Drawer
-                                anchor="left"
-                                open={isDrawerOpen}
-                                onClose={toggleDrawer(false)}
-                                classes={{ paper: classes.drawer }}
-                            >
-                                <div className={classes.drawerContent}>
-                                    
-                                    hii
-                                </div>
-                            </Drawer>
-                        </div>
-                    </div>*/}
-                    {/* ======================== */}
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
+                    <div>
+                        <img src={logo} alt="" style={{ width: '100px', height: '35px' }} />
+                    </div>
+                    <div>
+                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon" />
+                        </button>
+                    </div>
+                </div>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                             <RenderMenu />

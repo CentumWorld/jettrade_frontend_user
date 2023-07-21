@@ -29,7 +29,7 @@ const CountdownTimer = () => {
       {timeLeft <= 0 ? (
         <span>Countdown expired!</span>
       ) : (
-        <span>
+        <span style={{color:'orange'}}>
           {hours}h {minutes}m {seconds}s
         </span>
       )}

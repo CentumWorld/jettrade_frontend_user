@@ -81,7 +81,14 @@
     animation: blink-animation 1s infinite;
   }
   
-  
+  .custom-alert-container {
+   border-radius: 5px;
+   font-family: 'Calibri';
+   margin-bottom: 10px;
+  }
+  .custom-alert-container .ant-alert-description {
+    color: #cf4409; /* Change the color to your desired value */
+  }
   
   
   

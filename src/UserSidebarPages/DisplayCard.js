@@ -376,7 +376,7 @@ const DisplayCard = () => {
         .toString()
         .padStart(2, "0")}`;
       const formattedDate2 = new Date(formattedDate1);
-      
+
       const inputDate = new Date(formattedDate2);
       const options = { year: "numeric", month: "short", day: "numeric" };
       const expireOn = inputDate.toLocaleDateString(undefined, options);
@@ -442,7 +442,9 @@ const DisplayCard = () => {
 
       handler: function (response) {
         console.log(response, "26");
-        axios.post("/user/users/verify-payment",
+        axios
+          .post(
+            "/user/users/verify-payment",
             { response: response },
             {
               headers: {
@@ -471,7 +473,8 @@ const DisplayCard = () => {
       currency: "INR",
       payment_capture: 1,
     };
-    axios.post("/user/users/user-create-payment", data, {
+    axios
+      .post("/user/users/user-create-payment", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -486,15 +489,15 @@ const DisplayCard = () => {
 
   const userPaymetSuccessStatus1 = () => {
     const data = {
-      userid: localStorage.getItem('userid'),
+      userid: localStorage.getItem("userid"),
     };
-    axios.post("/user/users/change-user-payment-status", data, {
+    axios
+      .post("/user/users/change-user-payment-status", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {
-
         message.success(res.data.message);
         fetchUserDataForSubscription();
       })
@@ -506,20 +509,28 @@ const DisplayCard = () => {
   return (
     <>
       {subscriptionStatus.payment === false && subscription === 0 ? (
-        
-        <Alert
-          message={`Your trading trial expires on ${userFreeExpire}`}
-          description={dayCount === 0 ? <CountdownTimer/> :`${dayCount} Days to go.`}
-          type="info"
-          showIcon
-          banner
-          action={
-            <Button className={`blink-button ${blinking ? 'blink' : ''}`} type="primary" onClick={() => doPayment(3500)}>
-              Pay Now
-            </Button>
-          }
-          style={{ fontWeight: "bold" }}
-        />
+        <div className="custom-alert-container">
+          <Alert
+            message={`Your trading trial expires on ${userFreeExpire}`}
+            description={
+              dayCount === 3 ? <CountdownTimer /> : `${dayCount} Days to go.`
+            }
+            type="info"
+            showIcon
+            banner
+            action={
+              <Button
+                type="primary"
+                className={`blink-button ${blinking ? "blink" : ""}`}
+                style={{ width:'100px', height:'50px', fontFamily:'Calibri', fontWeight:'600'}}
+                onClick={() => doPayment(3500)}
+              >
+                Pay Now
+              </Button>
+            }
+            style={{ fontWeight: "bold" }}
+          />
+        </div>
       ) : (
         ""
       )}

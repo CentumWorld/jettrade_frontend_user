@@ -21,7 +21,7 @@ const InviteFriend = () => {
     };
 
     const handleShareWhatsApp = () => {
-        const link = "https://example.com";
+        const link = "http://trader.jettradefx.in/user-registration";
         const message = `Join us with invite code: ${inviteCode}\n\n${link}`;
         
         const url = `https://wa.me/?text=${encodeURIComponent(message)}`;

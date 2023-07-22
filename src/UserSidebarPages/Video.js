@@ -4,12 +4,14 @@ import "../css/Video.css";
 import Thumbnail from "./Thumbnail";
 import VideoPlayer from "./VideoPlayer";
 import baseUrl from "../baseUrl";
+import { Spin } from "antd";
 
 const apiurl = baseUrl.apiUrl
 
 const Video = () => {
   const [title, setTitle] = useState("");
   const [videos, setVideos] = useState([]);
+  const [spin, setSpin] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null); // State to track selected video URL
   //   const [selectedVideo, setSelectedVideo] = useState(videos[0].videoUrl);
 
@@ -18,6 +20,7 @@ const Video = () => {
   }, []);
 
   const getApiVideos = () => {
+    setSpin(true)
     const token = localStorage.getItem("token");
     console.log("token", token);
     const config = {
@@ -27,6 +30,7 @@ const Video = () => {
       .get(`${apiurl}`+"/user/getallvideos", config)
       .then((response) => {
         setVideos(response.data.videos);
+        setSpin(false)
       })
       .catch((error) => console.error("Error fetching data:", error));
   };
@@ -39,6 +43,7 @@ const Video = () => {
 
   return (
     <>
+    { !spin?
       <div className="video-framing">
         <div className="video-player-container">
           <VideoPlayer videoUrl={selectedVideo} title={title} />
@@ -53,7 +58,10 @@ const Video = () => {
             />
           ))}
         </div>
-      </div>
+      </div>:
+      <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>  
+        <Spin size="large" />
+      </div>}
     </>
   );
 };

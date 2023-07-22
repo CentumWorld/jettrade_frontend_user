@@ -89,6 +89,16 @@
   .custom-alert-container .ant-alert-description {
     color: #cf4409; /* Change the color to your desired value */
   }
+
+  .custom-alert-container{
+    border: 1px solid black;
+  }
+
+  @media only screen and (max-width:425px){
+    .custom-alert-container{
+      width: auto;
+    }
+  }
   
   
   

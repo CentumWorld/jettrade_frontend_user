@@ -8,6 +8,7 @@ import baseUrl from "../baseUrl";
 const apiurl = baseUrl.apiUrl
 
 const Video = () => {
+  const [title, setTitle] = useState("");
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null); // State to track selected video URL
   //   const [selectedVideo, setSelectedVideo] = useState(videos[0].videoUrl);
@@ -30,22 +31,25 @@ const Video = () => {
       .catch((error) => console.error("Error fetching data:", error));
   };
 
-  const handleThumbnailClick = (videoUrl) => {
+  const handleThumbnailClick = (videoUrl, title) => {
     setSelectedVideo(videoUrl);
+    setTitle(title);
   };
+
 
   return (
     <>
       <div className="video-framing">
         <div className="video-player-container">
-          <VideoPlayer videoUrl={selectedVideo} />
+          <VideoPlayer videoUrl={selectedVideo} title={title} />
         </div>
         <div className="thumbnail-list">
           {videos.map((video) => (
             <Thumbnail
               key={video.id}
               imageUrl={video.thumbnail}
-              onClick={() => handleThumbnailClick(video.videoOne)}
+              title={video.title}
+              onClick={() => handleThumbnailClick(video.videoOne, video.title)}
             />
           ))}
         </div>

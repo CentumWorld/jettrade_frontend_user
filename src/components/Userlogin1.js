@@ -59,7 +59,7 @@ const Userlogin1 = () => {
       localStorage.removeItem("rememberMe");
     }
     axios
-      .post("/user/login", {
+      .post(`${apiurl}`+"/user/login", {
         userid: user.userid,
         password: user.password,
       })

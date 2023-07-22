@@ -512,7 +512,7 @@ const DisplayCard = () => {
           <Alert
             message={`Your trading trial expires on ${userFreeExpire}`}
             description={
-              dayCount === 3 ? <CountdownTimer /> : `${dayCount} Days to go.`
+              dayCount === 0 ? <CountdownTimer /> : `${dayCount} Days to go.`
             }
             type="info"
             showIcon

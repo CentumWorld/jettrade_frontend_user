@@ -1,19 +1,22 @@
-.navbar-brand{
+.navbar-brand {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
+
 .navbar-brand h3 {
     color: rgb(54, 8, 54);
     font-weight: bold;
-   
+
 }
-.navbar{
+
+.navbar {
     position: sticky;
     top: 0px;
     z-index: 10;
     height: 10vh;
 }
+
 .modal-title {
     font-weight: bold;
     color: purple;
@@ -28,7 +31,12 @@ form label {
 }
 
 .navbar-box {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.logo-img{
+    width: 100px;
+    height:35px;
 }
 
 /* .navbar-brand {
@@ -40,11 +48,17 @@ form label {
   
   .logo-container {
     margin-top: 10px; /* Adjust this value as needed */
-  
-   
 
-@media only screen and (min-width:768px){
-    .small-sidebar{
+
+
+@media only screen and (min-width:768px) {
+    .small-sidebar {
         display: none;
+    }
+}
+
+@media only screen and (max-width:998px) {
+    .navbar {
+        height: max-content;
     }
 }

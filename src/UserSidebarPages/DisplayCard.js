@@ -155,7 +155,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post("/user/fetch-user-details-userside", data, config)
+      .post(`${apiurl}`+"/user/fetch-user-details-userside", data, config)
       .then((res) => {
         console.log(res.data.result);
         const formattedTradingWallet =
@@ -215,7 +215,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post("/user/users/user-total-withdrawal", data, config)
+      .post(`${apiurl}`+"/user/users/user-total-withdrawal", data, config)
       .then((res) => {
         //console.log(res.data.walletAmount)
         if (res.data.data === 0) {
@@ -250,7 +250,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post("/user/users/user-my-team", data, config)
+      .post(`${apiurl}`+"/user/users/user-my-team", data, config)
       .then((res) => {
         console.log(res.data.teamMembers);
         setRefferalTeam(res.data.teamMembers);
@@ -280,7 +280,7 @@ const DisplayCard = () => {
       handler: function (response) {
         console.log(response, "26");
         axios
-          .post("/user/users/verify-payment", {
+          .post(`${apiurl}`+"/user/users/verify-payment", {
             response: response,
           })
           .then((res) => {
@@ -310,7 +310,7 @@ const DisplayCard = () => {
         payment_capture: 1,
       };
       axios
-        .post("/user/users/user-create-payment", data)
+        .post(`${apiurl}`+"/user/users/user-create-payment", data)
         .then((res) => {
           console.log(res.data, "29");
           handleOpenRazorpay(res.data.data);
@@ -334,7 +334,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post("/user/users/user-update-wallet-after-adding",
+      .post(`${apiurl}`+"/user/users/user-update-wallet-after-adding",
         data,
         config
       )
@@ -399,7 +399,7 @@ const DisplayCard = () => {
           },
         };
         axios
-          .post("/user/users/update-day-count", data, config)
+          .post(`${apiurl}`+"/user/users/update-day-count", data, config)
           .then((res) => {
             console.log(res.data.message);
           })
@@ -418,7 +418,7 @@ const DisplayCard = () => {
           },
         };
         axios
-          .post("/user/users/update-expire", data, config)
+          .post(`${apiurl}`+"/user/users/update-expire", data, config)
           .then((res) => {
             console.log(res.data.message);
             navigate("/logout");
@@ -442,8 +442,7 @@ const DisplayCard = () => {
       handler: function (response) {
         console.log(response, "26");
         axios
-          .post(
-            "/user/users/verify-payment",
+          .post(`${apiurl}`+"/user/users/verify-payment",
             { response: response },
             {
               headers: {
@@ -473,7 +472,7 @@ const DisplayCard = () => {
       payment_capture: 1,
     };
     axios
-      .post("/user/users/user-create-payment", data, {
+      .post(`${apiurl}`+"/user/users/user-create-payment", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -491,7 +490,7 @@ const DisplayCard = () => {
       userid: localStorage.getItem("userid"),
     };
     axios
-      .post("/user/users/change-user-payment-status", data, {
+      .post(`${apiurl}`+"/user/users/change-user-payment-status", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

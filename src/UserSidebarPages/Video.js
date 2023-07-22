@@ -3,6 +3,9 @@ import axios from "axios";
 import "../css/Video.css";
 import Thumbnail from "./Thumbnail";
 import VideoPlayer from "./VideoPlayer";
+import baseUrl from "../baseUrl";
+
+const apiurl = baseUrl.apiUrl
 
 const Video = () => {
   const [videos, setVideos] = useState([]);
@@ -20,7 +23,7 @@ const Video = () => {
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .get("/user/getallvideos", config)
+      .get(`${apiurl}`+"/user/getallvideos", config)
       .then((response) => {
         setVideos(response.data.videos);
       })

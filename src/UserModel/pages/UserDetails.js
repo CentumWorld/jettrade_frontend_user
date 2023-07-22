@@ -138,8 +138,7 @@ const UserDetails = () => {
       },
     };
     try {
-      const response = await axios.post(`${apiurl}`+
-        "/user/fetch-user-details-userside",
+      const response = await axios.post(`${apiurl}`+"/user/fetch-user-details-userside",
         data,
         config
       );
@@ -175,8 +174,7 @@ const UserDetails = () => {
       },
     };
     try {
-      const response = await axios.post(`${apiurl}`+
-        "/user/fetch-profile-photo-user",
+      const response = await axios.post(`${apiurl}`+"/user/fetch-profile-photo-user",
         data,
         config
       );

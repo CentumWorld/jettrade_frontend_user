@@ -61,3 +61,13 @@ form label {
         height: max-content;
     }
 }
+
+@media only screen and (max-width: 365px) {
+    img{
+        display: none;
+    }
+    .navbar-brand{
+        display: flex;
+        align-items: center;
+    }
+}

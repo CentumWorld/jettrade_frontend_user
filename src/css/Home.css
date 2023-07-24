@@ -23,7 +23,7 @@
     background-repeat: no-repeat;
     background-position: 50% 0;
     background-size: cover;
-
+    border: 2px solid white;
   }
 .home_heading1{
     text-align: center;
@@ -105,12 +105,22 @@
 
 /* media query */
 
-@media only screen and (max-width:768px){
+/* @media only screen and (max-width:768px){
     .home_container:before {
         width: 100%;
-        height: 100%;
+        height: 100vh;
         background-position: 25% 0;
       }
+} */
+
+@media only screen and (max-width: 365px) {
+    .home_container:before {
+        height: calc(100vh - 10vh);
+    }
+
+    .home_container {
+        height: calc(100vh - 10vh);
+    }
 }
 
 @media only screen and (max-width:576px) {

@@ -157,7 +157,7 @@ const DisplayCard = () => {
     axios
       .post(`${apiurl}`+"/user/fetch-user-details-userside", data, config)
       .then((res) => {
-        console.log(res.data.result);
+        console.log(res.data);
         const formattedTradingWallet =
           res.data.result.tradingWallet.toLocaleString("en-IN", {
             style: "currency",
@@ -184,7 +184,7 @@ const DisplayCard = () => {
         const trialFormateDate = new Date(
           res.data.result.trialDate
         ).toLocaleDateString();
-        blockUser(trialFormateDate);
+        blockUser(res.data.result.trialDate);
         setTrialDate(trialFormateDate);
         //setDayCount();
         setDayCount(5 - res.data.result.trialDayCount);
@@ -353,17 +353,40 @@ const DisplayCard = () => {
     if (subscription === 0 && subscriptionStatus.payment === false) {
       // Example fetched date from the database
       const dateString = trialFormateDate;
-      const dateParts = dateString.split("/");
+      function subtractTwoDate(date2, systemDate) {
+        const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
+        const diffInMilliseconds = systemDate - date2;
+        const diffInDays = Math.floor(diffInMilliseconds / oneDayInMilliseconds);
+        return diffInDays;
+      }
+      // const dateParts = dateString.split("/");
 
-      const formattedDate = `${dateParts[2]}-${dateParts[0].padStart(
-        2,
-        "0"
-      )}-${dateParts[1].padStart(2, "0")}`;
-      const dbDate1 = new Date(formattedDate);
+      // const formattedDate = `${dateParts[2]}-${dateParts[0].padStart(
+      //   2,
+      //   "0"
+      // )}-${dateParts[1].padStart(2, "0")}`;
+      const dbDate1 = new Date(dateString);
+      const formattedDateString = dbDate1.toLocaleString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        timeZoneName: "short",
+      });
+      const dbDate2 = new Date(formattedDateString);
+      const systemDate = new Date();
+      
+      console.log(dbDate2, systemDate);
+      const dayDifferent = subtractTwoDate(dbDate2, systemDate);
+      console.log(dayDifferent);
+      
 
       console.log(dbDate1);
 
-      const systemDate = new Date();
+
       // ---------------------Testing purpose-----------------------------
       const today = new Date();
       const dayAfterTomorrow = new Date(dbDate1);
@@ -387,11 +410,11 @@ const DisplayCard = () => {
       const timeDiff = systemDate.getTime() - dbDate1.getTime();
       const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
       console.log(daysDiff);
-      if (daysDiff < 5) {
+      if (dayDifferent < 5) {
         const token = localStorage.getItem("token");
         const data = {
           userid: localStorage.getItem("userid"),
-          dayCount: daysDiff,
+          dayCount: dayDifferent,
         };
         const config = {
           headers: {

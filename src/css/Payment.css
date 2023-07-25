@@ -3,7 +3,7 @@
     padding: 0;
 }
 .payment_container{
-    height: 90vh;
+    height: 100vh;
     display: flex;
     background-image:-webkit-linear-gradient(rgb(231, 223, 231),rgb(247, 204, 204));
     justify-content: center;

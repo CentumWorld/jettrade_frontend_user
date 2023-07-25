@@ -25,15 +25,15 @@
     }
 }
 .userLogin-body{
-    width: 30%;
-    height: 50%;
+    width: max-content;
+    height: max-content;
     border: 2px solid rgba(255,255,255,.5);
     border-radius: 20px;
-    padding: 15px;
+    padding: 30px;
     /* background: #fff; */
     background: transparent;
     overflow: scroll;
-    padding: 0 25px 0 25px;
+    /* padding: 0 25px 0 25px; */
     font-family: Calibri;
     backdrop-filter: blur(15px);
 
@@ -103,9 +103,9 @@
   }
 
   /* media query */
-  @media only screen and (min-width: 769px) and (max-width:1024px){
+  /* @media only screen and (min-width: 769px) and (max-width:1024px){
     .userLogin-body{
-        width: 50%
+        width: max-content;
     }    
 }
   @media only screen and (min-width: 576px) and (max-width:768px){
@@ -118,4 +118,4 @@
         width: 90%;
         height: 60%;
     }
-  }
+  }  */

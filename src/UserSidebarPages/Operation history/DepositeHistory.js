@@ -13,7 +13,7 @@ const DepositeHistory = () => {
             <div className='deposite_main_container'>
                 <div className='deposite_card'>
                     <div className='deposite_heading'>
-                        <p>Deposite History</p>
+                        <p>Deposit History</p>
                     </div>
                     <div className='depo_history_para'>
                         <p>Here you can view the details of all your deposits or cancel requests with a pending status. If you want to make a new deposit, navigate to the Deposit page.</p>

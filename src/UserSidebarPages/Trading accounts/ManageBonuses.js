@@ -27,8 +27,8 @@ const ManageBonuses = () => {
                             <TabContext value={value}>
                                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                     <TabList onChange={handleChange} aria-label="lab API tabs example">
-                                        <Tab style={{ 'fontWeight': '800', 'fontSize': '16px' }} label="AVAILABLE DEPOSITE BONUSES" value="1" />
-                                        <Tab style={{ 'fontWeight': '800', 'fontSize': '16px' }} label="ACTIVE AND CANCLED BONUSES" value="2" />
+                                        <Tab style={{ 'fontWeight': '800', 'fontSize': '16px' }} label="AVAILABLE DEPOSIT BONUSES" value="1" />
+                                        <Tab style={{ 'fontWeight': '800', 'fontSize': '16px' }} label="ACTIVE AND CANCELLED BONUSES" value="2" />
 
                                     </TabList>
                                 </Box>

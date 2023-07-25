@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import '../../css/RealAccount.css';
 import {FaAngleDown} from 'react-icons/fa'
 
-
+//real account
 function RealAccount() {
     const [accountType, setAccountType] = useState(true);
     const [metaFive, setMetaFive] = useState(false);
@@ -49,7 +49,7 @@ function RealAccount() {
                 <div className='accont_three_div'>
                     <div className='metatrade_five'>
                         <div className='metatrade_five_heading'>
-                            <p>MetaTreader <strong style={{'color':'orange'}}>5</strong></p>
+                            <p>MetaTrader <strong style={{'color':'orange'}}>5</strong></p>
                         </div>
                         <div className='meta_trade_content'>
                             <p>Spread from..................0.6 pips <br /><small>Floating spread markup</small></p>
@@ -59,7 +59,7 @@ function RealAccount() {
                     </div>
                     <div className='metatrade_four'>
                         <div className='metatrade_five_heading'>
-                            <p>MetaTreader <strong style={{'color':'orange'}}>4</strong></p>
+                            <p>MetaTrader <strong style={{'color':'orange'}}>4</strong></p>
                         </div>
                         <div className='meta_trade_content'>
                             <p>Spread from..................0.6 pips <br /><small>Floating spread markup</small></p>
@@ -80,7 +80,7 @@ function RealAccount() {
                 </div>
                 <div className='three_div_small'>
                     <div className='three_div_small_select_metatrade_five'>
-                        <p>MetaTreader <strong style={{'color':'orange'}}>5</strong></p>
+                        <p>MetaTrader <strong style={{'color':'orange'}}>5</strong></p>
                         <span onClick={metatradefive}><FaAngleDown/></span>
                     </div>
                     {metaFive?  
@@ -93,7 +93,7 @@ function RealAccount() {
                         </div>:''
                     } <br />
                     <div className='three_div_small_select_metatrade_five'>
-                        <p>MetaTreader <strong style={{'color':'orange'}}>4</strong></p>
+                        <p>MetaTrader <strong style={{'color':'orange'}}>4</strong></p>
                         <span onClick={metatradefour}><FaAngleDown/></span>
                     </div>
                     {metaFour?

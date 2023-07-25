@@ -381,7 +381,7 @@ const DisplayCard = () => {
       
       console.log(dbDate2, systemDate);
       const dayDifferent = subtractTwoDate(dbDate2, systemDate);
-      console.log(dayDifferent);
+      console.log(typeof(dayDifferent),'hello 384');
       
 
       console.log(dbDate1);
@@ -629,7 +629,7 @@ const DisplayCard = () => {
                 fontSize: "16px",
               }}
             >
-              {subscriptionStatus.expiry}
+              {!subscriptionStatus.expiry? `${subscriptionStatus.expiry}`:'Not found'}
             </span>
           </div>
         </div>

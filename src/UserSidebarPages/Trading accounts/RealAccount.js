@@ -69,7 +69,7 @@ function RealAccount() {
                     </div>
                     <div className='metatrade_jet'>
                         <div className='metatrade_jet_heading'>
-                            <p>JettradeFX</p>
+                            <p>Jettrade FX</p>
                         </div>
                         <div className='meta_trade_content'>
                             <p>Trade in a new way <br /><small>Access the world's financial markets with our brand-new trading platform</small></p>

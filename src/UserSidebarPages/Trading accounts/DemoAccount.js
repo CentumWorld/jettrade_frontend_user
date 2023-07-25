@@ -49,7 +49,7 @@ function DemoAccount() {
                 <div className='demo_accont_three_div'>
                     <div className='demo_metatrade_five'>
                         <div className='demo_metatrade_five_heading'>
-                            <p>MetaTreader <strong style={{'color':'orange'}}>5</strong></p>
+                            <p>MetaTrader <strong style={{'color':'orange'}}>5</strong></p>
                         </div>
                         <div className='demo_meta_trade_content'>
                             <p>Spread from..................0.6 pips <br /><small>Floating spread markup</small></p>
@@ -59,7 +59,7 @@ function DemoAccount() {
                     </div>
                     <div className='demo_metatrade_four'>
                         <div className='demo_metatrade_five_heading'>
-                            <p>MetaTreader <strong style={{'color':'orange'}}>4</strong></p>
+                            <p>MetaTrader <strong style={{'color':'orange'}}>4</strong></p>
                         </div>
                         <div className='demo_meta_trade_content'>
                             <p>Spread from..................0.6 pips <br /><small>Floating spread markup</small></p>
@@ -69,7 +69,7 @@ function DemoAccount() {
                     </div>
                     <div className='demo_metatrade_jet'>
                         <div className='metatrade_jet_heading'>
-                            <p>JettradeFX</p>
+                            <p>Jettrade FX</p>
                         </div>
                         <div className='demo_meta_trade_content'>
                             <p>Trade in a new way <br /><small>Access the world's financial markets with our brand-new trading platform</small></p>
@@ -80,7 +80,7 @@ function DemoAccount() {
                 </div>
                 <div className='demo_three_div_small'>
                     <div className='demo_three_div_small_select_metatrade_five'>
-                        <p>MetaTreader <strong style={{'color':'orange'}}>5</strong></p>
+                        <p>MetaTrader <strong style={{'color':'orange'}}>5</strong></p>
                         <span onClick={metatradefive}><FaAngleDown/></span>
                     </div>
                     {metaFive?  
@@ -93,7 +93,7 @@ function DemoAccount() {
                         </div>:''
                     } <br />
                     <div className='demo_three_div_small_select_metatrade_five'>
-                        <p>MetaTreader <strong style={{'color':'orange'}}>4</strong></p>
+                        <p>MetaTrader <strong style={{'color':'orange'}}>4</strong></p>
                         <span onClick={metatradefour}><FaAngleDown/></span>
                     </div>
                     {metaFour?

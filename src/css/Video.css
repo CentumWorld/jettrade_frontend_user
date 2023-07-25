@@ -55,6 +55,19 @@
     width: 100%;
   }
   
+  .noVideoImg{
+    width: 60%;
+    height: 30%;
+  }
+
+
+  @media only screen and (max-width:375px){
+    .noVideoImg{
+      width: 100%;
+      height: max-content;
+    }
+  }
+  
   /* .thumbnail-list {
     flex: 1;
     max-width: 30%;

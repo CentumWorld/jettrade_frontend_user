@@ -63,7 +63,7 @@ form label {
 }
 
 @media only screen and (max-width: 365px) {
-    img{
+    .logo-img{
         display: none;
     }
     .navbar-brand{

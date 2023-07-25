@@ -565,7 +565,7 @@ const DisplayCard = () => {
             className="d-flex"
             onClick={() => share(`/user-registration/${userDetails.refferal}`)}
           >
-            <h6>Refferal ID</h6> &nbsp; : &nbsp;{" "}
+            <h6>Referral ID</h6> &nbsp; : &nbsp;{" "}
             <span style={{ cursor: "pointer", color: "yellow" }}>
               {userDetails.refferal}
             </span>
@@ -586,7 +586,7 @@ const DisplayCard = () => {
         </div>
         <div className="card1 ">
           <div className="wallet">
-            <h6> Refferal Wallet</h6>
+            <h6> Referral Wallet</h6>
           </div>
           <div className="d-flex">
             <h6>Amount :</h6>&nbsp;&nbsp;{" "}

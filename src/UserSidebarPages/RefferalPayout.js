@@ -208,16 +208,16 @@ const RefferalPayout = () => {
 
 
             <div className="reffer-container">
-                <p>Reffer Payout History</p>
+                <p>Referral Payout History</p>
 
                 <div class="card-container">
                     <div class="card">
                         <p>Total Amount</p>
                         <h6>Total Amount: {payoutAmout}</h6>
-                        <p>Refferal Payout Amount</p>
+                        <p>Referral Payout Amount</p>
                     </div>
                     <div class="card">
-                        <p>Refferal Payout Withdrawal</p>
+                        <p>Referral Payout Withdrawal</p>
                         <label htmlFor="">Enter Amount</label>
                         <Input
                             type="number"

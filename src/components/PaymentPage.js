@@ -173,7 +173,7 @@ function PaymentPage() {
               <strong>
                 <mark>NOTE:-</mark>
               </strong>
-              Service/Software use charges <strong>JETTRADE FX</strong>
+              Service/Software usage charge <strong>JETTRADE FX</strong>
             </p>
           </div>
         </div>

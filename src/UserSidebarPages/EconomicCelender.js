@@ -52,7 +52,7 @@ const EconomicCelender = () => {
 
   return (
     <>
-      <p style={{ fontFamily: 'Calibri', fontSize: '20px', fontWeight: 600, color: '#5e72e4' }}> Economic Celender</p>
+      <p style={{ fontFamily: 'Calibri', fontSize: '20px', fontWeight: 600, color: '#5e72e4' }}> Economic Calender</p>
       <div className="tradingview-widget-container" ref={containerRef}>
         <div className="tradingview-widget-container__widget">
           <iframe

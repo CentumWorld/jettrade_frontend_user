@@ -30,7 +30,7 @@ function RealAccount() {
         <div className='real_account'>
             <div className='real_account_card'>
                 <div className='account_details_heading'>
-                    <p>Set up account details</p>
+                    <p>Setup account details</p>
                 </div>
                 <div className='account_type_para'>
                     <p>Account type</p>

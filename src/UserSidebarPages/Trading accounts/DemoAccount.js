@@ -30,7 +30,7 @@ function DemoAccount() {
         <div className='demo_account'>
             <div className='demo_account_card'>
                 <div className='demo_account_details_heading'>
-                    <p>Set up account details</p>
+                    <p>Setup account details</p>
                 </div>
                 <div className='demo_account_type_para'>
                     <p>Account type</p>

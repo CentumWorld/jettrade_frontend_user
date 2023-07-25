@@ -60,7 +60,7 @@ const routes = [
       },
       {
         path: "/userdashboard/economic-celender",
-        name: "Economic Celender",
+        name: "Economic Calender",
       },
       {
         path: "/userdashboard/heat-map",

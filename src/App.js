@@ -49,6 +49,7 @@ import UserFirstChartPage from './userpages/UserFirstChartPage';
 import DisplayCard from './UserSidebarPages/DisplayCard';
 import UseridAndPasswordSave from './components/UseridAndPasswordSave';
 import Video from './UserSidebarPages/Video';
+import TraditionalCurrencyChart from './UserSidebarPages/TraditionalCurrencyChart';
 
 
 
@@ -138,6 +139,7 @@ function App() {
               <Route path='/userdashboard' element={<Protected Component={UserDashboard} />}>
                 <Route path='dashboard' element={<DisplayCard />} />
                 <Route path='cryptocurrency-market' element={<SignalTradingChart />} />
+                <Route path='traditional-currency-chart' element={<TraditionalCurrencyChart/>} />
                 <Route path='heat-map' element={<HeatMap />} />
                 <Route path='economic-celender' element={<EconomicCelender />} />
                 <Route path='screener' element={<Screener />} />

@@ -55,11 +55,7 @@ const TraditionalCurrencyChart = () => {
   return (
     <div className="tradingview-widget-container">
     <div id="tradingview_9bea0" ref={containerRef} />
-    <div className="tradingview-widget-copyright">
-      <a href="https://in.tradingview.com/" rel="noopener nofollow" target="_blank">
-        <span className="blue-text">Track all markets on TradingView</span>
-      </a>
-    </div>
+    
   </div>
 
   )

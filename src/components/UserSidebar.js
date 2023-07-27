@@ -55,6 +55,10 @@ const routes = [
         name: "Trading Chart",
       },
       {
+        path:"/userdashboard/traditional-currency-chart",
+        name:"Traditional currency chart"
+      },
+      {
         path: "/userdashboard/cryptocurrency-market",
         name: "Cryptocurrency Market",
       },

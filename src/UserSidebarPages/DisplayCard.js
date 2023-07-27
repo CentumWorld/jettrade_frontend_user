@@ -43,11 +43,15 @@ const DisplayCard = () => {
     if (e.key === "market-data") {
       navigate("/userdashboard/market-data");
     }
+    if(e.key === "traditional-currency-chart"){
+      navigate('/userdashboard/traditional-currency-chart') ;
+    }
   };
 
   const menu = (
     <Menu onClick={handleMenuClick}>
       <Menu.Item key="cryptocurrency-market">Cryptocurrency Market</Menu.Item>
+      <Menu.Item key="traditional-currency-chart">Traditional currency chart</Menu.Item>
       <Menu.Item key="economic-celender">Economic Celender</Menu.Item>
       <Menu.Item key="heat-map">Heat Map</Menu.Item>
       <Menu.Item key="cross-rates">Cross rates</Menu.Item>

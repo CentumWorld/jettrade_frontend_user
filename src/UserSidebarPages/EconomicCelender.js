@@ -12,8 +12,8 @@ const EconomicCelender = () => {
     script.innerHTML = JSON.stringify({
       colorTheme: 'light',
       isTransparent: false,
-      width: '510',
-      height: '500',
+      width: '90%',
+      height: '600',
       locale: 'in',
       importanceFilter: '-1,0,1',
       currencyFilter: 'USD,EUR,ITL,NZD,CHF,AUD,FRF,JPY,ZAR,TRL,CAD,DEM,MXN,ESP,GBP',

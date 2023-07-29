@@ -23,6 +23,7 @@ import {
 } from "react-icons/ai";
 import { BsFillChatTextFill } from "react-icons/bs";
 import { FiVideo } from "react-icons/fi";
+import {FaHandHoldingUsd} from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import UserSidebarMenu from "./usersidebar/UserSidebarMenu";
 import { UserModal } from "../UserModel/UserModal";
@@ -98,11 +99,11 @@ const routes = [
     name: "Internal transfer",
     icon: <MdSend />,
   },
-  // {
-  //     path: '/userdashboard/promotion',
-  //     name: "Promotions",
-  //     icon: <FaCarrot />,
-  // },
+  {
+    path:"/userdashboard/help-friend",
+    name:"Help Friends",
+    icon: <FaHandHoldingUsd/>
+  },
   {
     path: "/userdashboard",
     name: "Operation history",

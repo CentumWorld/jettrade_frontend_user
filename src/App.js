@@ -50,6 +50,7 @@ import DisplayCard from './UserSidebarPages/DisplayCard';
 import UseridAndPasswordSave from './components/UseridAndPasswordSave';
 import Video from './UserSidebarPages/Video';
 import TraditionalCurrencyChart from './UserSidebarPages/TraditionalCurrencyChart';
+import HelpFriend from './UserSidebarPages/HelpFriend';
 
 
 
@@ -150,6 +151,8 @@ function App() {
                 <Route path='new-deposit' element={<NewDeposite />} />
                 <Route path='withdraw' element={<Withdrawal />} />
                 <Route path='transfer' element={<InternalTransfer />} />
+                <Route path='help-friend' element=
+                {<HelpFriend/>}/>
                 <Route path='invite' element={<InviteFriend />} />
                 <Route path='chat' element={<LiveChat />} />
                 <Route path='refferal-payout' element={<RefferalPayout />} />

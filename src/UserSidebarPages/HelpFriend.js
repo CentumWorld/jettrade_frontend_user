@@ -3,7 +3,10 @@ import React, { useEffect, useState } from "react";
 import "../css/HelpFriend.css";
 import axios from "axios";
 import { Input, Button, message } from "antd";
-import {FaRupeeSign} from 'react-icons/fa'
+import {FaRupeeSign} from 'react-icons/fa';
+import baseUrl from '../baseUrl';
+
+const apiurl = baseUrl.apiUrl
 
 const HelpFriend = () => {
   // State variables to store form inputs
@@ -30,7 +33,7 @@ const HelpFriend = () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      const response = await axios.post(
+      const response = await axios.post(`${apiurl}`+
         "/user/trading-wallet-transfer-from-one-user-to-another",
         payload,
         config

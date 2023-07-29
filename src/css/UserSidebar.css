@@ -20,6 +20,13 @@
 .routes{
     color: rgb(148, 233, 38);
 }
+
+.dashboard-title{
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+}
 .top_section{
     display: flex;
     align-items: center;

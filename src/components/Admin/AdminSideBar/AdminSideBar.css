@@ -6,6 +6,7 @@
 .admin-sidebar-main-container{
     position: sticky;
     top: 70px;
+    border: 1px solid black;
 }
 .admin-sidebar{
     width: 400px;

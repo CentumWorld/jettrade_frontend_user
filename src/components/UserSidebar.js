@@ -683,6 +683,7 @@ function UserSidebar(props) {
           animate={{ width: isOpen ? "300px" : "50px" }}
           className="userSidebar"
         >
+          <div className="dashboard-title">
           <div className="top_section">
             {isOpen && (
               <h1 className="logo" style={{ color: "#5e72e4" }}>
@@ -714,7 +715,7 @@ function UserSidebar(props) {
             </div>
           </div>
           {isOpen ? (
-            <div>
+            <div className="deposit-btn">
               <NavLink
                 to="/userdashboard/new-deposit"
                 className="deposit_button btn btn-primary"
@@ -727,6 +728,7 @@ function UserSidebar(props) {
               <AiFillBank />
             </NavLink>
           )}
+          </div>
 
           <section className="routes">
             {routes.map((route) => {

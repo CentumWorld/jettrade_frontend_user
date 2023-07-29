@@ -11,7 +11,7 @@
    /* background: rgb(241, 239, 239);  */
    background: #fff;
    color: rgb(37, 35, 35);
-   height: 89vh;
+   height: 90vh;
    overflow: scroll;
 }
 .userSidebar::-webkit-scrollbar{

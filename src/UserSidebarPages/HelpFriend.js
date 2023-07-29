@@ -1,33 +1,20 @@
-// import React from 'react'
-// import '../css/HelpFriend.css'
-// import axios from 'axios'
 
-// const HelpFriend = () => {
-//   return (
-//     <>
-//         <div className='help-friend-container'>
-//             <div className='help-friend-header'>
-//                 <p>Transfer wallet amount to your friend</p>
-//             </div>
-//             <div className='help-friend-body'>
-
-//             </div>
-//         </div>
-//     </>
-//   )
-// }
-
-// export default HelpFriend
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/HelpFriend.css";
 import axios from "axios";
 import { Input, Button, message } from "antd";
+import {FaRupeeSign} from 'react-icons/fa'
 
 const HelpFriend = () => {
   // State variables to store form inputs
   const [toUser, setToUser] = useState("");
   const [amount, setAmount] = useState("");
+  const [wallet, setWalletAmount] = useState(0)
+  useEffect(()=>{
+  
+     setWalletAmount(localStorage.getItem('wallet'))
+    
+  })
 
   const handleTransfer = async (e) => {
     e.preventDefault();
@@ -62,14 +49,17 @@ const HelpFriend = () => {
       <div className="help-friend-container">
         <div className="help-friend-header">
           <p>Transfer wallet amount to your friend</p>
+          <div className="user-wallet">
+          <FaRupeeSign/>&nbsp;{wallet}
+          </div>
         </div>
         <div className="help-friend-body">
           <div className="help-friend-content">
             <form onSubmit={handleTransfer}>
               {/* Friend's Username */}
-              <label>Friend's UserId:</label><br />
+              <label>Friend's Userid:</label><br />
                 <Input
-                    style={{width:'300px'}}
+                // style={{width:'300px'}}
                   type="text"
                   value={toUser}
                   onChange={(e) => setToUser(e.target.value)}
@@ -81,7 +71,7 @@ const HelpFriend = () => {
               <label> Amount: </label><br />
                
                 <Input
-                 style={{width:'300px'}}
+                //  style={{width:'300px'}}
                   type="number"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
@@ -89,7 +79,9 @@ const HelpFriend = () => {
                 />
              
               <br />
-              <Button  style={{width:'300px', marginTop:'15px'}} type="primary" htmlType="submit">
+              <Button
+                style={{ marginTop:'15px'}}
+                type="primary" htmlType="submit">
                 Transfer
               </Button>
             </form>

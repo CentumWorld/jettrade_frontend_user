@@ -109,10 +109,16 @@ function Navbar() {
               className="btn rounded btn-outline-primary rounded-pill"
               to="/logout"
               aria-current="page"
-              style={{ marginRight: "1rem", display:'flex', alignItems:'center', gap:'.5rem', width:"max-content"}}
+              style={{
+                marginRight: "1rem",
+                display: "flex",
+                alignItems: "center",
+                gap: ".5rem",
+                width: "max-content",
+              }}
             >
               Logout
-              <RiLogoutBoxLine style={{height:'1rem', width:'1rem'}}/>
+              <RiLogoutBoxLine style={{ height: "1rem", width: "1rem" }} />
             </NavLink>
           </li>
         </>
@@ -143,18 +149,14 @@ function Navbar() {
 
   return (
     <>
-      <nav className="navbar navbar-box navbar-expand-lg navbar-light bg-light">
+      <nav id="navbar_container" className="navbar navbar-box navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <div className="navbar-brand">
             <div>
               <h3>JETTRADE FX </h3>
             </div>
             <div>
-              <img
-                src={logo}
-                alt=""
-                className="logo-img"
-              />
+              <img src={logo} alt="" className="logo-img" />
             </div>
             <div>
               <button

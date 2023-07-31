@@ -24,7 +24,9 @@
     display: flex;
     justify-content: center;
 }
-
+.custom-input::placeholder {
+  color:grey ; /* Change the color to your desired color */
+}
 .trading_chart{
     display: flex;
     justify-content: center;

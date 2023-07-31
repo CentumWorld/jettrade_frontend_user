@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/DisplayCard.css";
 import axios from "axios";
-import { FaRupeeSign } from "react-icons/fa";
+import { FaRupeeSign,FaHandHoldingUsd} from "react-icons/fa";
 import { BsWallet2 } from "react-icons/bs";
 import CountdownTimer from "./CountdownTimer";
 import {
@@ -76,14 +76,15 @@ const DisplayCard = () => {
   const [totalWithdrawal, setTotalWithdrawal] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [refferalTeam, setRefferalTeam] = useState([]);
-  const [isAddMoneyToWalletModalVisible, setIsAddMoneyToWalletModalVisible] =
-    useState();
+  const [isAddMoneyToWalletModalVisible, setIsAddMoneyToWalletModalVisible] =useState();
   const [money, setMoney] = useState(500);
   const [tradingWallet, setTradingWallet] = useState(0);
   const [dayCount, setDayCount] = useState(0);
   const [trialDate, setTrialDate] = useState(null);
   const [userFreeExpire, setExpireDate] = useState(null);
   const [blinking, setBlinking] = useState(true);
+  const [totalTradingWallet,setTotalTradingWallet] = useState()
+  const [isUserWithdrawalFromTradingWalletVisible,setIsUserWithdrawalFromTradingWalletVisible] = useState();
 
   useEffect(() => {
     setUserDetails({
@@ -92,6 +93,7 @@ const DisplayCard = () => {
     });
     fetchUserDataForSubscription();
     fetchTotalWithdrawal();
+    callApiToUserTotalWithdrawalFromTradingWallet()
     callApiToMyTeam();
     const blinkInterval = setInterval(() => {
       setBlinking((prevBlinking) => !prevBlinking);
@@ -122,8 +124,23 @@ const DisplayCard = () => {
   const addMoneyToWallethandleCancel = () => {
     setIsAddMoneyToWalletModalVisible(false);
   };
+
+  // modal for withdraw money from trading wallet
+  const showUserWithdrawalFromTradingWallet = () => {
+    setIsUserWithdrawalFromTradingWalletVisible(true);
+  }
+
+  const handleShowUserWithdrawalFromTradingWalletOk = () => {
+    setIsUserWithdrawalFromTradingWalletVisible(false);
+  }
+  const handleShowUserWithdrawalFromTradingWalletCancel = () => {
+    setIsUserWithdrawalFromTradingWalletVisible(false)
+  }
+
+
   const share = (url) => {
     // navigate('/user-registration/:inviteCode')
+
 
     localStorage.removeItem("login");
     localStorage.removeItem("token");
@@ -159,7 +176,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/fetch-user-details-userside", data, config)
+      .post("/user/fetch-user-details-userside", data, config)
       .then((res) => {
         console.log(res.data);
         const formattedTradingWallet =
@@ -219,7 +236,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/users/user-total-withdrawal", data, config)
+      .post("/user/users/user-total-withdrawal", data, config)
       .then((res) => {
         //console.log(res.data.walletAmount)
         if (res.data.data === 0) {
@@ -242,6 +259,30 @@ const DisplayCard = () => {
     navigate("/userdashboard/trading-chart");
   };
 
+  // callApiToUserTotalWithdrawalFromTradingWallet
+
+  const callApiToUserTotalWithdrawalFromTradingWallet = () => {
+    const token = localStorage.getItem("token");
+    const data = {
+      userid : localStorage.getItem("userid")
+    };
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    axios.post("/user/users/user-total-withdrawal-from-trading-wallet",data,config)
+    .then((res) => {
+      console.log(res.data.sumOfAmountWithdrawn);
+      setTotalTradingWallet(res.data.sumOfAmountWithdrawn)
+    })
+    .catch((error) => {
+      console.log(error.response);
+    })
+  }
+
+
   // call api to my team
   const callApiToMyTeam = () => {
     const token = localStorage.getItem("token");
@@ -254,7 +295,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/users/user-my-team", data, config)
+      .post("/user/users/user-my-team", data, config)
       .then((res) => {
         console.log(res.data.teamMembers);
         setRefferalTeam(res.data.teamMembers);
@@ -284,7 +325,7 @@ const DisplayCard = () => {
       handler: function (response) {
         console.log(response, "26");
         axios
-          .post(`${apiurl}`+"/user/users/verify-payment", {
+          .post("/user/users/verify-payment", {
             response: response,
           })
           .then((res) => {
@@ -314,7 +355,7 @@ const DisplayCard = () => {
         payment_capture: 1,
       };
       axios
-        .post(`${apiurl}`+"/user/users/user-create-payment", data)
+        .post("/user/users/user-create-payment", data)
         .then((res) => {
           console.log(res.data, "29");
           handleOpenRazorpay(res.data.data);
@@ -338,7 +379,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/users/user-update-wallet-after-adding",
+      .post("/user/users/user-update-wallet-after-adding",
         data,
         config
       )
@@ -426,7 +467,7 @@ const DisplayCard = () => {
           },
         };
         axios
-          .post(`${apiurl}`+"/user/users/update-day-count", data, config)
+          .post("/user/users/update-day-count", data, config)
           .then((res) => {
             console.log(res.data.message);
           })
@@ -445,7 +486,7 @@ const DisplayCard = () => {
           },
         };
         axios
-          .post(`${apiurl}`+"/user/users/update-expire", data, config)
+          .post("/user/users/update-expire", data, config)
           .then((res) => {
             console.log(res.data.message);
             navigate("/logout");
@@ -469,7 +510,7 @@ const DisplayCard = () => {
       handler: function (response) {
         console.log(response, "26");
         axios
-          .post(`${apiurl}`+"/user/users/verify-payment",
+          .post("/user/users/verify-payment",
             { response: response },
             {
               headers: {
@@ -499,7 +540,7 @@ const DisplayCard = () => {
       payment_capture: 1,
     };
     axios
-      .post(`${apiurl}`+"/user/users/user-create-payment", data, {
+      .post("/user/users/user-create-payment", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -517,7 +558,7 @@ const DisplayCard = () => {
       userid: localStorage.getItem("userid"),
     };
     axios
-      .post(`${apiurl}`+"/user/users/change-user-payment-status", data, {
+      .post("/user/users/change-user-payment-status", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -710,14 +751,20 @@ const DisplayCard = () => {
             <span style={{ color: "yellow" }}>{tradingWallet}</span>
           </div>
         </div>
+
         <div className="card1">
           <div className="Withdrawal">
             <h6>Withdrawal</h6>
           </div>
           <div className="withdrawal-view">
-            <span style={{ color: "yellow" }}>
-              <FaRupeeSign />
-            </span>
+            <div className="d-flex" style={{ color: "white" }}>
+              <h6>Amount : </h6> &nbsp;&nbsp;
+              <span style={{color:"yellow"}}><FaRupeeSign />{totalTradingWallet}</span>
+            </div>
+            <div className="d-flex">
+            <h6>Withdraw :</h6> &nbsp;&nbsp;{" "}
+            <span style={{ color: "yellow",cursor:'pointer' }} onClick={showUserWithdrawalFromTradingWallet} ><FaHandHoldingUsd/></span>
+          </div>
           </div>
         </div>
         <div className="card1">
@@ -769,7 +816,7 @@ const DisplayCard = () => {
       <Modal
         title={<span style={{ color: "purple" }}>Add cash</span>}
         open={isAddMoneyToWalletModalVisible}
-        onOk={addMoneyToWallethandleOk}
+        onOk={showUserWithdrawalFromTradingWallet}
         onCancel={addMoneyToWallethandleCancel}
         okText="Pay Now"
       >
@@ -811,6 +858,26 @@ const DisplayCard = () => {
             onChange={setMoneyFuction}
           />
         </div>
+      </Modal>
+
+
+      {/* withdraw money from trading wallet modal */}
+      <Modal
+        title={<span style={{ color: "purple"}}>Withdraw from wallet </span>}
+        open={isUserWithdrawalFromTradingWalletVisible}
+        onOk={handleShowUserWithdrawalFromTradingWalletOk}
+        onCancel={handleShowUserWithdrawalFromTradingWalletCancel}
+        okText="withdraw"
+      >
+        <label style={{color:'black',fontWeight:600}} >Amount</label>
+      <Input
+      className="custom-input"
+        id="amount"
+        type="number"
+        value=""
+        onChange=""
+        placeholder="Enter amount"
+      />
       </Modal>
     </>
   );

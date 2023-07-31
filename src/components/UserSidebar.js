@@ -266,7 +266,7 @@ function UserSidebar(props) {
     };
 
     axios
-      .post(`${apiurl}` + "/user/users/fetch-user-notification", data, config)
+      .post("/user/users/fetch-user-notification", data, config)
       .then((result) => {
         console.log(result.data.allNotitfication);
         setAllNotification(result.data.allNotitfication);
@@ -292,7 +292,7 @@ function UserSidebar(props) {
       },
     };
     axios
-      .post(`${apiurl}` + "/user/fetch-user-details-userside", data, config)
+      .post("/user/fetch-user-details-userside", data, config)
       .then((res) => {
         setSubscriptionDiv(res.data.result.paymentCount);
         const formattedDate = new Date(res.data.result.doj);
@@ -332,7 +332,7 @@ function UserSidebar(props) {
     };
     axios
       .post(
-        `${apiurl}` + "/user/users/fetch-user-notification-status",
+        "/user/users/fetch-user-notification-status",
         data,
         config
       )
@@ -359,7 +359,7 @@ function UserSidebar(props) {
 
     axios
       .post(
-        `${apiurl}` + "/user/users/set-notification-to-false-user",
+      "/user/users/set-notification-to-false-user",
         data,
         config
       )
@@ -395,7 +395,7 @@ function UserSidebar(props) {
       payment_capture: 1,
     };
     axios
-      .post(`${apiurl}` + "/user/users/user-create-payment", data)
+      .post("/user/users/user-create-payment", data)
       .then((res) => {
         console.log(res.data, "29");
         handleOpenRazorpay(res.data.data);
@@ -417,7 +417,7 @@ function UserSidebar(props) {
       handler: function (response) {
         console.log(response, "26");
         axios
-          .post(`${apiurl}` + "/user/users/verify-payment", {
+          .post("/user/users/verify-payment", {
             response: response,
           })
           .then((res) => {
@@ -437,11 +437,17 @@ function UserSidebar(props) {
 
   // user payment success status
   const userPaymetSuccessStatus = () => {
+    const token = localStorage.getItem("token")
     const data = {
       userid: localStorage.getItem("userid"),
     };
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
     axios
-      .post(`${apiurl}` + "/user/users/change-user-payment-status", data)
+      .post("/user/users/change-payment-status-for-renewal", data,config)
       .then((res) => {
         message.success(res.data.message);
         navigate("/userdashboard/dashboard");
@@ -753,7 +759,7 @@ function UserSidebar(props) {
               );
             })}
           </section>
-
+             
           <div
             className="d-flex"
             onClick={showSubscriptionModal}

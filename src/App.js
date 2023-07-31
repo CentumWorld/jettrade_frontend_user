@@ -51,6 +51,7 @@ import UseridAndPasswordSave from './components/UseridAndPasswordSave';
 import Video from './UserSidebarPages/Video';
 import TraditionalCurrencyChart from './UserSidebarPages/TraditionalCurrencyChart';
 import HelpFriend from './UserSidebarPages/HelpFriend';
+import MyTeam from './UserSidebarPages/MyTeam';
 
 
 
@@ -156,6 +157,7 @@ function App() {
                 <Route path='invite' element={<InviteFriend />} />
                 <Route path='chat' element={<LiveChat />} />
                 <Route path='wallet-withdrawal' element={<RefferalPayout />} />
+                <Route path='my-team' element={<MyTeam/>}/>
                 <Route path='video' element={<Video/>}/>
 
                 {/* Opertaion Hostory */}

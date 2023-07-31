@@ -197,6 +197,12 @@ const routes = [
     icon: <GrTransaction />,
   },
   {
+    path: "/userdashboard/my-team",
+    name: "Referral Pauout",
+    icon: <FaShare/>,
+  },
+
+  {
     path: "/userdashboard/video",
     name: "Video",
     icon: <FiVideo />,

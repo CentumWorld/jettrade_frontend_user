@@ -38,7 +38,7 @@ function Home() {
                   height={50}
                   width={50}
                 />
-                <div>
+                <div> 
                   <span className="trader">I am a Trader</span>
                 </div>
               </a>

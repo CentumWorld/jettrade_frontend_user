@@ -155,7 +155,7 @@ function App() {
                 {<HelpFriend/>}/>
                 <Route path='invite' element={<InviteFriend />} />
                 <Route path='chat' element={<LiveChat />} />
-                <Route path='refferal-payout' element={<RefferalPayout />} />
+                <Route path='wallet-withdrawal' element={<RefferalPayout />} />
                 <Route path='video' element={<Video/>}/>
 
                 {/* Opertaion Hostory */}

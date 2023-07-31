@@ -20,6 +20,7 @@ const RefferalPayout = () => {
     const [lastAmount, setLastAmount] = useState('');
     const [lastDate, setLastDate] = useState('');
     const [approvedDetails, setApprovedDetails] = useState([]);
+    const [totalWallet, setTradingWallet] = useState(0)
     const [isRefferalPayoutWithdrawModalVisible, setIsRefferalPayoutWithdrawModalVisible] = useState(false);
     const [selectedOption, setSelectedOption] = useState('BankTransfer');
 
@@ -45,21 +46,33 @@ const RefferalPayout = () => {
             headers: { 'Authorization': `Bearer ${token}` }
         }
 
-        axios.post(`${apiurl}`+'/user/users/refferal-payout-request-user', data, config)
-            .then((res) => {
-                message.success('Requested sent');
-                // fetchRefferalPayout();
-                setAmount('');
-                fetchRefferalRequest();
-            })
-            .catch(err => {
-                message.warning(err.response.data.message)
-            })
+        // axios.post('/user/users/refferal-payout-request-user', data, config)
+        //     .then((res) => {
+        //         message.success('Requested sent');
+        //         // fetchRefferalPayout();
+        //         setAmount('');
+        //         fetchRefferalRequest();
+        //     })
+        //     .catch(err => {
+        //         message.warning(err.response.data.message)
+        //     })
+
+        axios.post("/user/users/withdrawl-From-Wallet-And-TradingWallet",data,config)
+        .then((res)=>{
+            message.success('Requested sent');
+            fetchRefferalPayout();
+            setAmount('');
+            callApiToUserAllData();
+        })
+        .catch(err=>{
+            console.log(err)
+        })
     };
     useEffect(() => {
-        fetchRefferalPayout();
-        fetchRefferalRequest();
-        fetchApprovedRequest();
+        //fetchRefferalPayout();
+         fetchRefferalRequest();
+        // fetchApprovedRequest();
+        callApiToUserAllData();
     }, []);
 
     const fetchRefferalPayout = () => {
@@ -71,13 +84,14 @@ const RefferalPayout = () => {
         const data = {
             userid: userid
         }
-        axios.post(`${apiurl}`+'/user/users/user-fetch-refferal-payout', data, config)
+        axios.post('/user/users/user-fetch-refferal-payout', data, config)
             .then((res) => {
                 const formattedAmount = res.data.wallet.toLocaleString('en-IN', {
                     style: 'currency',
                     currency: 'INR'
                 });
                 setPayOutAmount(formattedAmount)
+                fetchRefferalRequest();
             })
             .catch(err => {
                 console.log(err);
@@ -89,14 +103,15 @@ const RefferalPayout = () => {
         let data = {
             userid: localStorage.getItem('userid')
         }
-        let config = {
+        console.log(data, token);
+        const config = {
             headers: { 'Authorization': `Bearer ${token}` }
         }
-        axios.post(`${apiurl}`+'/user/users/user-fetch-refferal-payout-withdrawal-request', data, config)
+        axios.post('/user/users/fetch-Wallet-Withdrawal-History', data, config)
             .then((res) => {
-                const length = res.data.userWithdrawalRequest.length;
-                const lastData = res.data.userWithdrawalRequest[length - 1];
-                const lastDate = res.data.userWithdrawalRequest[length - 1].requestDate;
+                const length = res.data.walletHistory.length;
+                const lastData = res.data.walletHistory[length - 1];
+                const lastDate = res.data.walletHistory[length - 1].date;
                 console.log(lastDate);
                 const formattedDate = new Date(lastDate).toLocaleDateString();
                 const parts = formattedDate.split('/');
@@ -105,8 +120,8 @@ const RefferalPayout = () => {
                 const year = parts[2];
                 const finalDate = `${day}/${month}/${year}`;
                 setLastDate(finalDate);
-                setLastAmount(lastData.walletAmount);
-                setRequestDetails(res.data.userWithdrawalRequest);
+                setLastAmount(lastData.amountWithdrawn);
+                setRequestDetails(res.data.walletHistory);
 
             })
             .catch(err => {
@@ -124,7 +139,7 @@ const RefferalPayout = () => {
             headers: { 'Authorization': `Bearer ${token}` }
         }
 
-        axios.post(`${apiurl}`+'/user/users/fetch-approve-refferal-payout-user', data, config)
+        axios.post('/user/users/fetch-approve-refferal-payout-user', data, config)
             .then((res) => {
                 console.log(res.data);
                 setApprovedDetails(res.data.userWithdrawalApprove)
@@ -142,8 +157,8 @@ const RefferalPayout = () => {
         },
         {
             title: 'Amount',
-            dataIndex: 'walletAmount',
-            key: 'walletAmount',
+            dataIndex: 'amountWithdrawn',
+            key: 'amountWithdrawn',
             render: (text) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(text),
         },
         {
@@ -202,22 +217,47 @@ const RefferalPayout = () => {
 
     console.log(lastDate);
 
+
+    const callApiToUserAllData = ()=>{
+        let data = {
+          _id : localStorage.getItem('user')
+        }
+        let token = localStorage.getItem('token');
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        axios.post("/user/fetch-user-details-userside",data,config)
+        .then((res)=>{
+          const totalWallet = res.data.result.wallet + res.data.result.tradingWallet;
+          const formattedTradingWallet =
+          totalWallet.toLocaleString("en-IN", {
+            style: "currency",
+            currency: "INR",
+          });
+          setTradingWallet(formattedTradingWallet)
+        })
+        .catch(err=>{
+          console.log(err)
+        })
+      }
+
     return (
 
         <>
 
 
             <div className="reffer-container">
-                <p>Referral Payout History</p>
+                <p>Withdrawal</p>
 
                 <div class="card-container">
                     <div class="card">
                         <p>Total Amount</p>
-                        <h6>Total Amount: {payoutAmout}</h6>
-                        <p>Referral Payout Amount</p>
+                        <h6>Total Amount: {totalWallet}</h6>
                     </div>
                     <div class="card">
-                        <p>Referral Payout Withdrawal</p>
+                        <p>Wallet Withdrawal</p>
                         <label htmlFor="">Enter Amount</label>
                         <Input
                             type="number"
@@ -229,7 +269,7 @@ const RefferalPayout = () => {
                         <Button onClick={showRefferalPayoutModal}>Withdraw</Button>
                     </div>
                     <div class="card">
-                        <p>Last Payout Request</p>
+                        <p>Last Withdrawal</p>
                         <h6>Amount:<FaRupeeSign /> {lastAmount}</h6>
                         <strong> Last Date: {lastDate}</strong>
                     </div>

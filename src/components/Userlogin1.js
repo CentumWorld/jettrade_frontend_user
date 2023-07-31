@@ -76,7 +76,8 @@ const Userlogin1 = () => {
           localStorage.setItem("refferal", response.data.userLogin.refferal_id);
           localStorage.setItem("userfname", response.data.userLogin.fname);
           localStorage.setItem("userType", response.data.userLogin.userType);
-          localStorage.setItem("wallet", response.data.userLogin.tradingWallet)
+          localStorage.setItem("wallet", response.data.userLogin.tradingWallet);
+          localStorage.setItem("refferalWallet",response.data.userLogin.wallet);
 
           navigate("/userdashboard");
         } else {

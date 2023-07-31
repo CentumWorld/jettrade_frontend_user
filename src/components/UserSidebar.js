@@ -24,6 +24,7 @@ import {
 import { BsFillChatTextFill } from "react-icons/bs";
 import { FiVideo } from "react-icons/fi";
 import {FaHandHoldingUsd} from "react-icons/fa";
+import {GrTransaction} from 'react-icons/gr'
 import { NavLink } from "react-router-dom";
 import UserSidebarMenu from "./usersidebar/UserSidebarMenu";
 import { UserModal } from "../UserModel/UserModal";
@@ -191,9 +192,9 @@ const routes = [
   //     icon: <TfiGift />,
   // },
   {
-    path: "/userdashboard/refferal-payout",
-    name: "Referral Payout",
-    icon: <FaShare />,
+    path: "/userdashboard/wallet-withdrawal",
+    name: "Transaction",
+    icon: <GrTransaction />,
   },
   {
     path: "/userdashboard/video",

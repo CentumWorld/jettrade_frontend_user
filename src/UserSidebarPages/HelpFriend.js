@@ -15,7 +15,7 @@ const HelpFriend = () => {
   const [wallet, setWalletAmount] = useState(0)
   useEffect(()=>{
   
-     setWalletAmount(localStorage.getItem('wallet'))
+     callApiToAllUserData();
     
   })
 
@@ -45,6 +45,30 @@ const HelpFriend = () => {
     } catch (error) {
       message.warning(error.response.data.message);
     }
+  };
+  const  callApiToAllUserData = ()=>{
+    let data = {
+      _id : localStorage.getItem('user')
+    }
+    let token = localStorage.getItem('token');
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    axios.post("/user/fetch-user-details-userside",data,config)
+    .then((res)=>{
+      const totalWallet = res.data.result.wallet + res.data.result.tradingWallet;
+      const formattedTradingWallet =
+      totalWallet.toLocaleString("en-IN", {
+        style: "currency",
+        currency: "INR",
+      });
+      setWalletAmount(formattedTradingWallet)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
   };
 
   return (

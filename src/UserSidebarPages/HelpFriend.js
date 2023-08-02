@@ -84,7 +84,7 @@ const HelpFriend = () => {
           <div className="help-friend-content">
             <form onSubmit={handleTransfer}>
               {/* Friend's Username */}
-              <label>Friend's Userid:</label><br />
+              <label>Friend's User Id:</label><br />
                 <Input
                 // style={{width:'300px'}}
                   type="text"

@@ -53,7 +53,7 @@ function Home() {
                   width={50}
                 />
                 <div>
-                  <span className="trader">I am a Refferal</span>
+                  <span className="trader">I am a Referral</span>
                 </div>
               </a>
             </div>

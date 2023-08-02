@@ -61,6 +61,10 @@ form label {
 }
 
 @media only screen and (max-width:998px) {
+    #navbar_container{
+        width: 100%;
+        height: max-content;
+    }
     .navbar {
         height: max-content;
     }

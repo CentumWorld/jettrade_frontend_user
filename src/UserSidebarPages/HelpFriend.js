@@ -33,8 +33,7 @@ const HelpFriend = () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      const response = await axios.post(`${apiurl}`+
-        "/user/trading-wallet-transfer-from-one-user-to-another",
+      const response = await axios.post(`${apiurl}`+"/user/trading-wallet-transfer-from-one-user-to-another",
         payload,
         config
       );

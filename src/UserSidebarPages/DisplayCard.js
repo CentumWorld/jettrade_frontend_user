@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/DisplayCard.css";
 import axios from "axios";
-import { FaRupeeSign,FaHandHoldingUsd} from "react-icons/fa";
+import { FaRupeeSign, FaHandHoldingUsd } from "react-icons/fa";
 import { BsWallet2 } from "react-icons/bs";
 import CountdownTimer from "./CountdownTimer";
 import {
@@ -43,8 +43,8 @@ const DisplayCard = () => {
     if (e.key === "market-data") {
       navigate("/userdashboard/market-data");
     }
-    if(e.key === "traditional-currency-chart"){
-      navigate('/userdashboard/traditional-currency-chart') ;
+    if (e.key === "traditional-currency-chart") {
+      navigate('/userdashboard/traditional-currency-chart');
     }
   };
 
@@ -71,20 +71,21 @@ const DisplayCard = () => {
     doj: "",
     plan: Number,
     formattedAmount: "",
+    count: 0
   });
   const [subscription, setSubscription] = useState(0);
   const [totalWithdrawal, setTotalWithdrawal] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [refferalTeam, setRefferalTeam] = useState([]);
-  const [isAddMoneyToWalletModalVisible, setIsAddMoneyToWalletModalVisible] =useState();
+  const [isAddMoneyToWalletModalVisible, setIsAddMoneyToWalletModalVisible] = useState();
   const [money, setMoney] = useState(500);
   const [tradingWallet, setTradingWallet] = useState(0);
   const [dayCount, setDayCount] = useState(0);
   const [trialDate, setTrialDate] = useState(null);
   const [userFreeExpire, setExpireDate] = useState(null);
   const [blinking, setBlinking] = useState(true);
-  const [totalTradingWallet,setTotalTradingWallet] = useState()
-  const [isUserWithdrawalFromTradingWalletVisible,setIsUserWithdrawalFromTradingWalletVisible] = useState();
+  const [totalTradingWallet, setTotalTradingWallet] = useState(0);
+  const [isUserWithdrawalFromTradingWalletVisible, setIsUserWithdrawalFromTradingWalletVisible] = useState();
 
   useEffect(() => {
     setUserDetails({
@@ -164,7 +165,7 @@ const DisplayCard = () => {
     navigate("/userdashboard/refferal-payout");
   };
 
-  const walletWithdrawal = () =>{
+  const walletWithdrawal = () => {
     navigate("/userdashboard/wallet-withdrawal");
   }
 
@@ -181,10 +182,10 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/fetch-user-details-userside", data, config)
+      .post(`${apiurl}` + "/user/fetch-user-details-userside", data, config)
       .then((res) => {
         console.log(res.data);
-       
+
         //setTradingWallet(formattedTradingWallet);
 
         setSubscription(res.data.result.paymentCount);
@@ -217,6 +218,7 @@ const DisplayCard = () => {
           doj: formattedDateOfJoining,
           plan: res.data.result.paymentCount,
           formattedAmount: formattedAmount1,
+          count: res.data.result.paymentCount
         });
       })
       .catch((error) => {
@@ -237,7 +239,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/users/user-total-withdrawal", data, config)
+      .post(`${apiurl}` + "/user/users/user-total-withdrawal", data, config)
       .then((res) => {
         //console.log(res.data.walletAmount)
         if (res.data.data === 0) {
@@ -265,7 +267,7 @@ const DisplayCard = () => {
   const callApiToUserTotalWithdrawalFromTradingWallet = () => {
     const token = localStorage.getItem("token");
     const data = {
-      userid : localStorage.getItem("userid")
+      userid: localStorage.getItem("userid")
     };
 
     const config = {
@@ -273,14 +275,26 @@ const DisplayCard = () => {
         Authorization: `Bearer ${token}`,
       },
     };
-    axios.post(`${apiurl}`+"/user/users/user-total-withdrawal-from-trading-wallet",data,config)
-    .then((res) => {
-      console.log(res.data.sumOfAmountWithdrawn);
-      setTotalTradingWallet(res.data.sumOfAmountWithdrawn)
-    })
-    .catch((error) => {
-      console.log(error.response);
-    })
+    axios.post(`${apiurl}` + "/user/users/user-total-withdrawal-from-trading-wallet", data, config)
+      .then((res) => {
+        console.log(res.data.sumOfAmountWithdrawn);
+        if (res.data.sumOfAmountWithdrawn === undefined) {
+          const formattedIndianRupees = new Intl.NumberFormat('en-IN', {
+            style: 'currency',
+            currency: 'INR'
+          }).format(0);
+          setTotalTradingWallet(formattedIndianRupees)
+        } else {
+          const formattedIndianRupees = new Intl.NumberFormat('en-IN', {
+            style: 'currency',
+            currency: 'INR'
+          }).format(res.data.sumOfAmountWithdrawn);
+          setTotalTradingWallet(formattedIndianRupees)
+        }
+      })
+      .catch((error) => {
+        console.log(error.response);
+      })
   }
 
 
@@ -296,7 +310,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/users/user-my-team", data, config)
+      .post(`${apiurl}` + "/user/users/user-my-team", data, config)
       .then((res) => {
         console.log(res.data.teamMembers);
         //setRefferalTeam(res.data.teamMembers);
@@ -326,7 +340,7 @@ const DisplayCard = () => {
       handler: function (response) {
         console.log(response, "26");
         axios
-          .post(`${apiurl}`+"/user/users/verify-payment", {
+          .post(`${apiurl}` + "/user/users/verify-payment", {
             response: response,
           })
           .then((res) => {
@@ -356,7 +370,7 @@ const DisplayCard = () => {
         payment_capture: 1,
       };
       axios
-        .post(`${apiurl}`+"/user/users/user-create-payment", data)
+        .post(`${apiurl}` + "/user/users/user-create-payment", data)
         .then((res) => {
           console.log(res.data, "29");
           handleOpenRazorpay(res.data.data);
@@ -380,7 +394,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/users/adding-amount-to-trading-wallet",
+      .post(`${apiurl}` + "/user/users/adding-amount-to-trading-wallet",
         data,
         config
       )
@@ -389,6 +403,7 @@ const DisplayCard = () => {
         setIsAddMoneyToWalletModalVisible(false);
         setMoney(500);
         fetchUserDataForSubscription();
+        callApiToUserAllData();
       })
       .catch((error) => {
         message.error(error.response.data.message);
@@ -424,11 +439,11 @@ const DisplayCard = () => {
       });
       const dbDate2 = new Date(formattedDateString);
       const systemDate = new Date();
-      
+
       console.log(dbDate2, systemDate);
       const dayDifferent = subtractTwoDate(dbDate2, systemDate);
-      console.log(typeof(dayDifferent),'hello 384');
-      
+      console.log(typeof (dayDifferent), 'hello 384');
+
 
       console.log(dbDate1);
 
@@ -468,7 +483,7 @@ const DisplayCard = () => {
           },
         };
         axios
-          .post(`${apiurl}`+"/user/users/update-day-count", data, config)
+          .post(`${apiurl}` + "/user/users/update-day-count", data, config)
           .then((res) => {
             console.log(res.data.message);
           })
@@ -487,7 +502,7 @@ const DisplayCard = () => {
           },
         };
         axios
-          .post(`${apiurl}`+"/user/users/update-expire", data, config)
+          .post(`${apiurl}` + "/user/users/update-expire", data, config)
           .then((res) => {
             console.log(res.data.message);
             navigate("/logout");
@@ -511,7 +526,7 @@ const DisplayCard = () => {
       handler: function (response) {
         console.log(response, "26");
         axios
-          .post(`${apiurl}`+"/user/users/verify-payment",
+          .post(`${apiurl}` + "/user/users/verify-payment",
             { response: response },
             {
               headers: {
@@ -541,7 +556,7 @@ const DisplayCard = () => {
       payment_capture: 1,
     };
     axios
-      .post(`${apiurl}`+"/user/users/user-create-payment", data, {
+      .post(`${apiurl}` + "/user/users/user-create-payment", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -559,7 +574,7 @@ const DisplayCard = () => {
       userid: localStorage.getItem("userid"),
     };
     axios
-      .post(`${apiurl}`+"/user/users/change-user-payment-status", data, {
+      .post(`${apiurl}` + "/user/users/change-user-payment-status", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -572,9 +587,9 @@ const DisplayCard = () => {
         message.error(error.response.data.message);
       });
   };
-  const callApiToUserAllData = ()=>{
+  const callApiToUserAllData = () => {
     let data = {
-      _id : localStorage.getItem('user')
+      _id: localStorage.getItem('user')
     }
     let token = localStorage.getItem('token');
     const config = {
@@ -582,19 +597,19 @@ const DisplayCard = () => {
         Authorization: `Bearer ${token}`,
       },
     };
-    axios.post(`${apiurl}`+"/user/fetch-user-details-userside",data,config)
-    .then((res)=>{
-      const totalWallet = res.data.result.wallet + res.data.result.tradingWallet;
-      const formattedTradingWallet =
-      totalWallet.toLocaleString("en-IN", {
-        style: "currency",
-        currency: "INR",
-      });
-      setTradingWallet(formattedTradingWallet)
-    })
-    .catch(err=>{
-      console.log(err)
-    })
+    axios.post(`${apiurl}` + "/user/fetch-user-details-userside", data, config)
+      .then((res) => {
+        const totalWallet = res.data.result.wallet + res.data.result.tradingWallet;
+        const formattedTradingWallet =
+          totalWallet.toLocaleString("en-IN", {
+            style: "currency",
+            currency: "INR",
+          });
+        setTradingWallet(formattedTradingWallet)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   return (
@@ -613,7 +628,7 @@ const DisplayCard = () => {
               <Button
                 type="primary"
                 className={`blink-button ${blinking ? "blink" : ""}`}
-                style={{ width:'100px', height:'50px', fontFamily:'Calibri', fontWeight:'600'}}
+                style={{ width: '100px', height: '50px', fontFamily: 'Calibri', fontWeight: '600' }}
                 onClick={() => doPayment(3500)}
               >
                 Pay Now
@@ -686,7 +701,9 @@ const DisplayCard = () => {
                 fontSize: "16px",
               }}
             >
-              {subscriptionStatus.payment ? "Running" : "Inactive"}
+              {(!subscriptionStatus.payment && subscriptionStatus.count === 0) ? "Inactive" : ""}
+              {subscriptionStatus.payment ? "Running" : ""}
+              {(!subscriptionStatus.payment && subscriptionStatus.count > 0) ? "Expired" : ""}
             </span>
           </div>
           <div className="d-flex">
@@ -699,7 +716,7 @@ const DisplayCard = () => {
                 fontSize: "16px",
               }}
             >
-              {!subscriptionStatus.expiry? `${subscriptionStatus.expiry}`:'Not found'}
+              {subscriptionStatus.payment ? `${subscriptionStatus.expiry}` : 'Not found'}
             </span>
           </div>
         </div>
@@ -784,12 +801,12 @@ const DisplayCard = () => {
           <div className="withdrawal-view" onClick={walletWithdrawal}>
             <div className="d-flex" style={{ color: "white" }}>
               <h6>Amount : </h6> &nbsp;&nbsp;
-              <span style={{color:"yellow"}}><FaRupeeSign />{totalTradingWallet}</span>
+              <span style={{ color: "yellow" }}>{totalTradingWallet}</span>
             </div>
             <div className="d-flex">
-            <h6>Withdraw :</h6> &nbsp;&nbsp;{" "}
-            <span style={{ color: "yellow",cursor:'pointer' }} onClick={showUserWithdrawalFromTradingWallet} ><FaHandHoldingUsd/></span>
-          </div>
+              <h6>Withdraw :</h6> &nbsp;&nbsp;{" "}
+              <span style={{ color: "yellow", cursor: 'pointer' }} onClick={showUserWithdrawalFromTradingWallet} ><FaHandHoldingUsd /></span>
+            </div>
           </div>
         </div>
         <div className="card1">

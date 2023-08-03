@@ -59,7 +59,7 @@ const RefferalPayout = () => {
 
         axios.post(`${apiurl}`+"/user/users/withdrawl-From-Wallet-And-TradingWallet",data,config)
         .then((res)=>{
-            message.success('Requested sent');
+            message.success('Withdrawal successfull');
             fetchRefferalPayout();
             setAmount('');
             callApiToUserAllData();

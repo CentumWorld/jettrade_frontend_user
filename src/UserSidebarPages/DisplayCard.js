@@ -16,6 +16,9 @@ import {
   Alert,
 } from "antd";
 import baseUrl from "../baseUrl";
+import RunningProgressiveBar from "./RunningProgressiveBar";
+import TrialProgressiveBar from "./TrialProgressiveBar";
+import ExpiredProgressiveBar from "./ExpiredProgressiveBar";
 
 const apiurl = baseUrl.apiUrl;
 
@@ -86,6 +89,15 @@ const DisplayCard = () => {
   const [blinking, setBlinking] = useState(true);
   const [totalTradingWallet, setTotalTradingWallet] = useState(0);
   const [isUserWithdrawalFromTradingWalletVisible, setIsUserWithdrawalFromTradingWalletVisible] = useState();
+  const [progressiveBarData, setProgressiveBarData] = useState({
+    totalCount:0,
+    runningStage:0,
+    trialStage:0,
+    expiredStage:0,
+    runningPercentage:0,
+    trialPercentage:0,
+    expiredPercentage:0
+  });
 
   useEffect(() => {
     setUserDetails({
@@ -97,6 +109,7 @@ const DisplayCard = () => {
     fetchTotalWithdrawal();
     callApiToUserTotalWithdrawalFromTradingWallet()
     callApiToMyTeam();
+    callApiProgressiveBar();
     const blinkInterval = setInterval(() => {
       setBlinking((prevBlinking) => !prevBlinking);
     }, 1000); // Adjust the blinking speed here (e.g., 1000ms = 1 second)
@@ -612,6 +625,31 @@ const DisplayCard = () => {
       })
   }
 
+  const callApiProgressiveBar = () =>{
+    let token = localStorage.getItem('token');
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    axios.get(`${apiurl}` + "/user/total_Count_Of_Payment_Status_Of_User_user",config)
+    .then((res)=>{
+      console.log(res.data)
+      setProgressiveBarData({
+        totalCount:res.data.totalCount,
+        runningCount:res.data.runningCount,
+        trialStage:res.data.inactiveCount,
+        expiredStage:res.data.expiredCount,
+        runningPercentage:res.data.runningPercentage,
+        trialPercentage:res.data.inactivePercentage,
+        expiredPercentage:res.data.expiredPercentage
+      })
+    })
+    .catch((err=>{
+      console.log(err.response)
+    }))
+  }
+
   return (
     <>
       {subscriptionStatus.payment === false && subscription === 0 ? (
@@ -642,6 +680,15 @@ const DisplayCard = () => {
       )}
       <div className="card1-container">
         <div className="card1">
+          <RunningProgressiveBar percent={progressiveBarData}/>
+        </div>
+        <div className="card1">
+          <TrialProgressiveBar percent={progressiveBarData}/>
+        </div>
+        <div className="card1">
+            <ExpiredProgressiveBar percent={progressiveBarData} />
+        </div>
+        <div className="card1">
           <div className="d-flex">
             <h6>User ID </h6>&nbsp; : &nbsp;
             <span style={{ color: "yellow" }}>{userDetails.userid}</span>
@@ -669,24 +716,6 @@ const DisplayCard = () => {
             </span>
           </div>
         </div>
-        {/* <div className="card1 ">
-          <div className="wallet">
-            <h6> Referral Wallet</h6>
-          </div>
-          <div className="d-flex">
-            <h6>Amount :</h6>&nbsp;&nbsp;{" "}
-            <span style={{ color: "yellow" }}>
-              {subscriptionStatus.formattedAmount}
-            </span>
-          </div>
-          <div className="d-flex">
-            <h6>Withdrawal :</h6>&nbsp;&nbsp;{" "}
-            <span style={{ color: "yellow" }}>
-              <FaRupeeSign />
-              {totalWithdrawal}
-            </span>
-          </div>
-        </div> */}
         <div className="card1">
           <div className="subscription-card">
             <h6>Subscription</h6>
@@ -901,26 +930,6 @@ const DisplayCard = () => {
           />
         </div>
       </Modal>
-
-
-      {/* withdraw money from trading wallet modal */}
-      {/* <Modal
-        title={<span style={{ color: "purple"}}>Withdraw from wallet </span>}
-        open={isUserWithdrawalFromTradingWalletVisible}
-        onOk={handleShowUserWithdrawalFromTradingWalletOk}
-        onCancel={handleShowUserWithdrawalFromTradingWalletCancel}
-        okText="withdraw"
-      >
-        <label style={{color:'black',fontWeight:600}} >Amount</label>
-      <Input
-      className="custom-input"
-        id="amount"
-        type="number"
-        value=""
-        onChange=""
-        placeholder="Enter amount"
-      />
-      </Modal> */}
     </>
   );
 };

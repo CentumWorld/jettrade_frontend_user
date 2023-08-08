@@ -65,7 +65,7 @@ const RefferalPayout = () => {
             callApiToUserAllData();
         })
         .catch(err=>{
-            console.log(err)
+            message.warning(err.response.data.message)
         })
     };
     useEffect(() => {

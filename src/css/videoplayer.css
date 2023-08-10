@@ -1,0 +1,159 @@
+.subtitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.like-button,
+.comment-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: rgba(169, 169, 169, 0.387);
+    border-radius: 10px;
+    padding: 2px 6px;
+}
+
+.like-section {
+    display: flex;
+    gap: 1rem;
+}
+
+.comment-input {
+    background-color: aliceblue;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.576);
+    width: 100%;
+    outline: none;
+}
+
+.comment-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-buttons {
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.cancel-button {
+    border: none;
+    background-color: rgba(0, 0, 0, 0.537);
+    color: white;
+    border-radius: 10px;
+    padding: 2px 6px;
+}
+
+.comment-button {
+    border: none;
+    color: rgba(0, 0, 0, 0.989);
+    background-color: rgba(207, 194, 194, 0.443);
+    border-radius: 10px;
+    padding: 2px 6px;
+}
+
+.comment-input:focus {
+    border-bottom: 2px solid black;
+    transition: all 200ms ease-in-out;
+}
+
+.modal-box{
+    position: absolute;
+    bottom: 50%;
+    z-index: 100;
+    left: 50%;
+    background-color: #c7c3c3;
+    border: 2px solid black;
+    min-width: 40%;
+    padding: 10px;
+    color: black;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.modal-heading{
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.image-container{
+    height: 100%;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-around;
+}
+
+.image-container img{
+    height: 50px;
+}
+
+.copy-link-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.copy-btn{
+    border: none;
+    background-color: grey;
+    color: white;
+    padding: 2px 4px;
+    font-size: 1.2rem;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.link-section{
+    border: 1px solid black;
+    flex: 1;
+    height: 30px;
+    background-color: black;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.link{
+    color: deepskyblue;
+    margin-top: 3px;
+    height: 50px;
+    margin-left: 3px;
+}
+
+.reply-button{
+    background-color: transparent;
+    border: none;
+    font-size:small;
+}
+
+@media only  screen and (max-width: 1024px){
+    .modal-box{
+        right: 50%;
+    }
+}
+
+@media only  screen and (max-width: 768px){
+    .modal-box{
+        left: 10%;
+        width: max-content;
+
+    }
+}
+
+.replies-list{
+    margin-bottom: 0.5rem;
+}
+
+.repl-button-container{
+    display: flex;
+    gap: 1rem;
+}

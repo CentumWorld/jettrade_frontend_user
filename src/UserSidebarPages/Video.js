@@ -25,13 +25,14 @@ const Video = () => {
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .get(`${apiurl}` + "/user/getallvideos", config)
+      .get("/user/users/user-fetch-all-videos", config)
       .then((response) => {
-        setVideos(response.data.videos);
-        console.log(response.data.videos.length);
-        setVideosLength(response.data.videos.length)
-        setSpin(false)
+        // setVideos(response.data.videos);
+        console.log(response);
+        // setVideosLength(response.data.videos.length)
+        // setSpin(false)
       })
+
       .catch((error) => console.error("Error fetching data:", error));
   };
   const handleThumbnailClick = (videoUrl, title) => {

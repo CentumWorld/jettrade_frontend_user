@@ -31,7 +31,7 @@ function AdminLogin(props) {
 
     const adminLogin = (e) => {
         e.preventDefault();
-        axios.post(`${apiurl}`+"/admin/login", {
+        axios.post("/admin/login", {
             admin_id: admin.admin_id,
             password: admin.admin_password
         })

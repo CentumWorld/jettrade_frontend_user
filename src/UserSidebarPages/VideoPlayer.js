@@ -11,19 +11,34 @@ import { toast } from "react-toastify";
 import { FaShare } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import axios from "axios";
+import { message } from "antd";
 
-const VideoPlayer = ({ videoUrl, title }) => {
-  const [isLiked, setIsLiked] = useState(false);
+const VideoPlayer = ({
+  videoUrl,
+  title,
+  liked,
+  perticularvideoId,
+  dislike,
+}) => {
+  console.log(liked);
+  const [isLiked, setIsLiked] = useState(liked);
   const [isDisliked, setIsDisliked] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [activeReplyIndex, setActiveReplyIndex] = useState(null);
+  const [likeCount, setLikeCount] = useState(0);
+  const [likeBackGroundColor, setLikeBackGroundColor] = useState(false);
+  const [dislikeBackGroundColor, setDislikeBackGroundColor] = useState(false);
+  const [disLikeCount, setDisLikeCount] = useState(0);
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    setLikeCount(liked);
+    setDisLikeCount(dislike);
+    callApiToLikeOrNot(perticularvideoId);
+    callApiToDislikeOrNot(perticularvideoId);
+  }, [liked, dislike]);
 
   const handleCommentChange = (event) => {
     setNewComment(event.target.value);
@@ -67,7 +82,47 @@ const VideoPlayer = ({ videoUrl, title }) => {
   };
 
   const handleClickDisLike = () => {
-    setIsDisliked((prev) => !prev);
+    setDislikeBackGroundColor((prev) => !prev);
+    if (dislikeBackGroundColor) {
+      let data = {
+        videoId: perticularvideoId,
+        action: "dislike",
+      };
+      const token = localStorage.getItem("token");
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      axios
+        .post("/user/users/interact_with_video", data, config)
+        .then((res) => {
+          const updatedLikeCount = res.data.video.dislikes;
+          setDisLikeCount(updatedLikeCount);
+          setIsDisliked(!dislike);
+        })
+        .catch((err) => {
+          console.log(err.response.data.message);
+        });
+    } else {
+      let data = {
+        videoId: perticularvideoId,
+        action: "dislike",
+      };
+      const token = localStorage.getItem("token");
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      axios
+        .post("/user/users/interact_with_video", data, config)
+        .then((res) => {
+          const updatedLikeCount = res.data.video.dislikes;
+          setDisLikeCount(updatedLikeCount);
+          setIsDisliked(!dislike);
+          callApiToDislikeOrNot(perticularvideoId)
+        })
+        .catch((err) => {
+          console.log(err.response.data.message);
+        });
+    }
   };
 
   const fetchData = () => {
@@ -85,6 +140,88 @@ const VideoPlayer = ({ videoUrl, title }) => {
   };
   const handleClickLike = () => {
     setIsLiked((prev) => !prev);
+    console.log(isLiked, perticularvideoId);
+    setLikeBackGroundColor((prev) => !prev);
+    if (likeBackGroundColor) {
+      let data = {
+        videoId: perticularvideoId,
+        action: "like",
+      };
+      const token = localStorage.getItem("token");
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      axios
+        .post("/user/users/interact_with_video", data, config)
+        .then((res) => {
+          const updatedLikeCount = res.data.video.likes;
+          setLikeCount(updatedLikeCount);
+          setIsLiked(!isLiked);
+        })
+        .catch((err) => {
+          console.log(err.response.data.message);
+        });
+    } else {
+      let data = {
+        videoId: perticularvideoId,
+        action: "like",
+      };
+      const token = localStorage.getItem("token");
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      axios
+        .post("/user/users/interact_with_video", data, config)
+        .then((res) => {
+          console.log(res.data);
+          const updatedLikeCount = res.data.video.likes;
+          setLikeCount(updatedLikeCount);
+          setIsLiked(!isLiked);
+          callApiToLikeOrNot(perticularvideoId);
+        })
+        .catch((err) => {
+          console.log(err.response.data.message);
+        });
+    }
+  };
+
+  const callApiToLikeOrNot = (id) => {
+    let data = {
+      videoId: id,
+      likeType: true,
+    };
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios
+      .post("/user/fetch-user-one-video-like", data, config)
+      .then((res) => {
+        setLikeBackGroundColor(res.data.like.likeType);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const callApiToDislikeOrNot = (id) => {
+    let data = {
+      videoId: id,
+      disLikeType: true,
+    };
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios
+      .post("/user/fetch-user-one-video-dislike", data, config)
+      .then((res) => {
+        console.log(res.data.dislike.disLikeType)
+        setDislikeBackGroundColor(res.data.dislike.disLikeType);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const videoPlayerStyle = {
@@ -113,28 +250,28 @@ const VideoPlayer = ({ videoUrl, title }) => {
           </h2>
           <div className="like-section">
             <div className="like-button-section">
-              {isLiked ? (
+              {likeBackGroundColor ? (
                 <button className="like-button" onClick={handleClickLike}>
                   <AiTwotoneLike fontSize={20} />
-                  <span>Like</span>
+                  <span>{likeCount}</span>
                 </button>
               ) : (
                 <button className="like-button" onClick={handleClickLike}>
                   <AiOutlineLike fontSize={20} />
-                  <span>Like</span>
+                  <span>{likeCount}</span>
                 </button>
               )}
             </div>
             <div className="disLike-button-section">
-              {isDisliked ? (
+              {dislikeBackGroundColor ? (
                 <button className="like-button" onClick={handleClickDisLike}>
                   <AiTwotoneDislike fontSize={20} />
-                  <span>Dislike</span>
+                  <span>{disLikeCount}</span>
                 </button>
               ) : (
                 <button className="like-button" onClick={handleClickDisLike}>
                   <AiOutlineDislike fontSize={20} />
-                  <span>Dislike</span>
+                  <span>{disLikeCount}</span>
                 </button>
               )}
             </div>
@@ -246,3 +383,56 @@ const VideoPlayer = ({ videoUrl, title }) => {
 };
 
 export default VideoPlayer;
+
+// import React, { useState, useEffect } from "react";
+// import { AiTwotoneLike, AiOutlineLike } from "react-icons/ai";
+// import axios from "axios";
+// import "../css/videoplayer.css"; // You can import your own CSS here
+
+// const VideoPlayer = ({ videoUrl, title, liked, perticularvideoId }) => {
+//   const [isLiked, setIsLiked] = useState(liked);
+//   const [likeCount, setLikeCount] = useState(0);
+
+//   useEffect(() => {
+//     setLikeCount(liked);
+//   }, [liked]);
+
+//   const handleClickLike = () => {
+//     const token = localStorage.getItem("token"); // Replace with your token retrieval logic
+//     const config = {
+//       headers: { Authorization: `Bearer ${token}` },
+//     };
+
+//     axios
+//       .post(
+//         "/user/users/interact_with_video",
+//         { videoId: perticularvideoId, action: "like" },
+//         config
+//       )
+//       .then((response) => {
+//         const updatedLikeCount = response.data.video.likes;
+//         setLikeCount(updatedLikeCount);
+//         setIsLiked(!isLiked);
+//       })
+//       .catch((error) => {
+//         console.error(error.message);
+//       });
+//   };
+
+//   return (
+//     <div className="video-container">
+//       <video className="video-player" src={videoUrl} controls />
+//       <div className="video-details">
+//         <h2 className="video-title">{title}</h2>
+//         <div className="like-section">
+//           <button className="like-button" onClick={handleClickLike}>
+//             {isLiked ? <AiTwotoneLike fontSize={20} /> : <AiOutlineLike fontSize={20} />}
+//             <span>{likeCount}</span>
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default VideoPlayer;

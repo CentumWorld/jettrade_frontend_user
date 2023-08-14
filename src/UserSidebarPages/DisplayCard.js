@@ -195,7 +195,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}` + "/user/fetch-user-details-userside", data, config)
+      .post(  "/user/fetch-user-details-userside", data, config)
       .then((res) => {
         console.log(res.data);
 
@@ -252,7 +252,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}` + "/user/users/user-total-withdrawal", data, config)
+      .post("/user/users/user-total-withdrawal", data, config)
       .then((res) => {
         //console.log(res.data.walletAmount)
         if (res.data.data === 0) {
@@ -288,7 +288,7 @@ const DisplayCard = () => {
         Authorization: `Bearer ${token}`,
       },
     };
-    axios.post(`${apiurl}` + "/user/users/user-total-withdrawal-from-trading-wallet", data, config)
+    axios.post( "/user/users/user-total-withdrawal-from-trading-wallet", data, config)
       .then((res) => {
         console.log(res.data.sumOfAmountWithdrawn);
         if (res.data.sumOfAmountWithdrawn === undefined) {
@@ -323,7 +323,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}` + "/user/users/user-my-team", data, config)
+      .post( "/user/users/user-my-team", data, config)
       .then((res) => {
         console.log(res.data.teamMembers);
         //setRefferalTeam(res.data.teamMembers);
@@ -353,7 +353,7 @@ const DisplayCard = () => {
       handler: function (response) {
         console.log(response, "26");
         axios
-          .post(`${apiurl}` + "/user/users/verify-payment", {
+          .post("/user/users/verify-payment", {
             response: response,
           })
           .then((res) => {
@@ -383,7 +383,7 @@ const DisplayCard = () => {
         payment_capture: 1,
       };
       axios
-        .post(`${apiurl}` + "/user/users/user-create-payment", data)
+        .post( "/user/users/user-create-payment", data)
         .then((res) => {
           console.log(res.data, "29");
           handleOpenRazorpay(res.data.data);
@@ -407,7 +407,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}` + "/user/users/adding-amount-to-trading-wallet",
+      .post("/user/users/adding-amount-to-trading-wallet",
         data,
         config
       )
@@ -496,7 +496,7 @@ const DisplayCard = () => {
           },
         };
         axios
-          .post(`${apiurl}` + "/user/users/update-day-count", data, config)
+          .post("/user/users/update-day-count", data, config)
           .then((res) => {
             console.log(res.data.message);
           })
@@ -515,7 +515,7 @@ const DisplayCard = () => {
           },
         };
         axios
-          .post(`${apiurl}` + "/user/users/update-expire", data, config)
+          .post("/user/users/update-expire", data, config)
           .then((res) => {
             console.log(res.data.message);
             navigate("/logout");
@@ -539,7 +539,7 @@ const DisplayCard = () => {
       handler: function (response) {
         console.log(response, "26");
         axios
-          .post(`${apiurl}` + "/user/users/verify-payment",
+          .post( "/user/users/verify-payment",
             { response: response },
             {
               headers: {
@@ -569,7 +569,7 @@ const DisplayCard = () => {
       payment_capture: 1,
     };
     axios
-      .post(`${apiurl}` + "/user/users/user-create-payment", data, {
+      .post("/user/users/user-create-payment", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -587,7 +587,7 @@ const DisplayCard = () => {
       userid: localStorage.getItem("userid"),
     };
     axios
-      .post(`${apiurl}` + "/user/users/change-user-payment-status", data, {
+      .post( "/user/users/change-user-payment-status", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -610,7 +610,7 @@ const DisplayCard = () => {
         Authorization: `Bearer ${token}`,
       },
     };
-    axios.post(`${apiurl}` + "/user/fetch-user-details-userside", data, config)
+    axios.post("/user/fetch-user-details-userside", data, config)
       .then((res) => {
         const totalWallet = res.data.result.wallet + res.data.result.tradingWallet;
         const formattedTradingWallet =
@@ -632,7 +632,7 @@ const DisplayCard = () => {
         Authorization: `Bearer ${token}`,
       },
     };
-    axios.get(`${apiurl}` + "/user/total_Count_Of_Payment_Status_Of_User_user",config)
+    axios.get( "/user/total_Count_Of_Payment_Status_Of_User_user",config)
     .then((res)=>{
       console.log(res.data)
       setProgressiveBarData({

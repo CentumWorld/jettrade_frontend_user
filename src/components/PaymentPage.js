@@ -1,16 +1,15 @@
-
 import React, { useState } from "react";
 import "../css/Payment.css";
 import { useNavigate } from "react-router-dom";
 import CurrencyInput from "react-currency-input-field";
 import axios from "axios";
 import { Input, message } from "antd";
-import baseUrl from '../baseUrl';
+import baseUrl from "../baseUrl";
 
-const apiurl = baseUrl.apiUrl
+const apiurl = baseUrl.apiUrl;
 
 function PaymentPage() {
-  const [userid, setUserID] = useState(localStorage.getItem("userid")||"");
+  const [userid, setUserID] = useState(localStorage.getItem("userid") || "");
   const [payButton, setPayButton] = useState(false);
   const [userData, setUserData] = useState("");
   const navigate = useNavigate();
@@ -30,7 +29,10 @@ function PaymentPage() {
 
       handler: function (response) {
         console.log(response, "26");
-        axios.post(`${apiurl}`+"/user/users/verify-payment",
+        axios
+          .post(
+            "/user/users/verify-payment",
+
             { response: response },
             {
               headers: {
@@ -39,6 +41,7 @@ function PaymentPage() {
             }
           )
           .then((res) => {
+            console.log(res, "///////");
             userPaymetSuccessStatus();
           })
           .catch((err) => {
@@ -58,7 +61,8 @@ function PaymentPage() {
       currency: "INR",
       payment_capture: 1,
     };
-    axios.post(`${apiurl}`+"/user/users/user-create-payment", data, {
+    axios
+      .post("/user/users/user-create-payment", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -80,7 +84,8 @@ function PaymentPage() {
     const data = {
       userid: localStorage.getItem("userid"),
     };
-    axios.post(`${apiurl}`+"/user/users/payment-userid-verify", data, {
+    axios
+      .post("/user/users/payment-userid-verify", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -88,14 +93,12 @@ function PaymentPage() {
       .then((res) => {
         if (res.data.statusCode === 200) {
           message.warning("Login please and renew!");
-        
-
         }
         if (res.data.statusCode === 201) {
           setUserData(res.data.user.paymentCount);
           setPayButton(true);
           message.success(res.data.message);
-        } 
+        }
       })
       .catch((error) => {
         message.error(error.response.data.message);
@@ -106,16 +109,16 @@ function PaymentPage() {
     const data = {
       userid: userid,
     };
-    axios.post(`${apiurl}`+"/user/users/change-user-payment-status", data, {
+    axios
+      .post("/user/users/change-user-payment-status", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {
         localStorage.setItem("login", true);
-
+        console.log(res, "kju");
         message.success(res.data.message);
-
         navigate("/userdashboard");
       })
       .catch((error) => {

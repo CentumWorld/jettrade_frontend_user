@@ -265,6 +265,8 @@ function UserSidebar(props) {
   // callApiToFetchAllNotification
   const callApiToFetchAllNotification = () => {
     const token = localStorage.getItem("token");
+    console.log(token, ";;;;;;;")
+
     const userid = localStorage.getItem("userid");
     const data = { userid };
     const config = {
@@ -274,7 +276,7 @@ function UserSidebar(props) {
     };
 
     axios
-      .post(`${apiurl}`+"/user/users/fetch-user-notification", data, config)
+      .post("/user/users/fetch-user-notification", data, config)
       .then((result) => {
         console.log(result.data.allNotitfication);
         setAllNotification(result.data.allNotitfication);
@@ -291,6 +293,8 @@ function UserSidebar(props) {
   const callApiToFetchUserData = () => {
     const userid = localStorage.getItem("user");
     const token = localStorage.getItem("token");
+
+    console.log(token, "297")
     const data = {
       _id: userid,
     };
@@ -299,9 +303,12 @@ function UserSidebar(props) {
         Authorization: `Bearer ${token}`,
       },
     };
+
+    
     axios
-      .post(`${apiurl}`+"/user/fetch-user-details-userside", data, config)
+      .post("/user/fetch-user-details-userside", data, config)
       .then((res) => {
+        console.log(res, "res")
         setSubscriptionDiv(res.data.result.paymentCount);
         const formattedDate = new Date(res.data.result.doj);
         const addYear = formattedDate.setFullYear(
@@ -339,7 +346,7 @@ function UserSidebar(props) {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/users/fetch-user-notification-status",data,config
+      .post("/user/users/fetch-user-notification-status",data,config
       )
       .then((res) => {
         setNotification(res.data.isNotification);
@@ -363,7 +370,7 @@ function UserSidebar(props) {
     };
 
     axios
-      .post(`${apiurl}`+"/user/users/set-notification-to-false-user",data,config
+      .post("/user/users/set-notification-to-false-user",data,config
       )
       .then((res) => {
         callApiToFetchNotificationStatus();
@@ -397,7 +404,7 @@ function UserSidebar(props) {
       payment_capture: 1,
     };
     axios
-      .post(`${apiurl}`+"/user/users/user-create-payment", data)
+      .post("/user/users/user-create-payment", data)
       .then((res) => {
         console.log(res.data, "29");
         handleOpenRazorpay(res.data.data);
@@ -419,7 +426,7 @@ function UserSidebar(props) {
       handler: function (response) {
         console.log(response, "26");
         axios
-          .post(`${apiurl}`+"/user/users/verify-payment", {
+          .post("/user/users/verify-payment", {
             response: response,
           })
           .then((res) => {
@@ -449,7 +456,7 @@ function UserSidebar(props) {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/users/change-payment-status-for-renewal", data,config)
+      .post("/user/users/change-payment-status-for-renewal", data,config)
       .then((res) => {
         message.success(res.data.message);
         navigate("/userdashboard/dashboard");

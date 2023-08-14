@@ -234,7 +234,7 @@ function UserRegistration() {
       }
     } else {
       try {
-        const res = await axios.post(`${apiurl}`+"/user/users/other-country-user-registration",
+        const res = await axios.post("/user/users/other-country-user-registration",
           formData
         );
         message.success("Registration successful");

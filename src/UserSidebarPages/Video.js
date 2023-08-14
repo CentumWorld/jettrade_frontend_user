@@ -18,6 +18,8 @@ const Video = () => {
   const [perticularvideoId, setPerticularVideoId] = useState("");
   const [dislike, setDislike] = useState("");
   const [comments, setComments] = useState([]);
+
+
   const finalComment = comments.map((item) => {
     return item.comments;
   });
@@ -26,9 +28,20 @@ const Video = () => {
     return item;
   });
   console.log("final item -> ", finalCommments);
+  const finalComments = finalComment; 
+
+  const commentTexts = finalComments.map(comment => comment.text);
+  
+  console.log("Comment Texts:", commentTexts);
+  
   useEffect(() => {
     getApiVideos();
   }, []);
+
+  useEffect(() => {
+    console.log("Videos:", videos.map((item)=> item.comments[0].text)); // Log the videos whenever they change
+  }, [videos]); // Add videos as a dependency to the useEffect
+
   const getApiVideos = () => {
     setSpin(true);
     const token = localStorage.getItem("token");
@@ -41,6 +54,7 @@ const Video = () => {
       .then((response) => {
         setVideos(response.data.videos);
         console.log("Response -> ", response.data.videos);
+
         setComments(response.data.videos);
         setVideosLength(response.data.videos.length);
         setSpin(false);
@@ -54,8 +68,20 @@ const Video = () => {
     setLike(like);
     setPerticularVideoId(id);
     setDislike(dislike);
-  };
 
+    // Find the selected video by its id from the videos array
+
+    console.log(videos, "..............")
+    const selectedVideoItem = videos.find(video => video._id === id);
+
+    
+    // Check if the selected video is found
+    if (selectedVideoItem) {
+      // Extract the comments for the selected video
+      const selectedVideoComments = selectedVideoItem.comments.map(comment => comment.text);
+      console.log("Comments for selected video:", selectedVideoComments);
+    }
+  };
   return (
     <>
       {!spin ? (

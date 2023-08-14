@@ -33,34 +33,20 @@ const VideoPlayer = ({
   const [dislikeBackGroundColor, setDislikeBackGroundColor] = useState(false);
   const [disLikeCount, setDisLikeCount] = useState(0);
 
+  console.log(perticularvideoId);
   useEffect(() => {
     setLikeCount(liked);
     setDisLikeCount(dislike);
     callApiToLikeOrNot(perticularvideoId);
     callApiToDislikeOrNot(perticularvideoId);
+    
+    fetchData(perticularvideoId);
+
+    // callApiToComment(perticularvideoId)
   }, [liked, dislike]);
 
   const handleCommentChange = (event) => {
     setNewComment(event.target.value);
-  };
-
-  const handleCommentSubmit = (event, parentCommentIndex = null) => {
-    event.preventDefault();
-    if (newComment.trim() === "") return;
-
-    const commentToAdd = { text: newComment, replies: [] };
-
-    if (parentCommentIndex !== null) {
-      const updatedComments = [...comments];
-      updatedComments[parentCommentIndex].replies.push(commentToAdd);
-      setComments(updatedComments);
-    } else {
-      const updatedComments = [...comments, commentToAdd];
-      setComments(updatedComments);
-    }
-
-    setNewComment("");
-    setActiveReplyIndex(null);
   };
 
   const copyToClipboard = () => {
@@ -117,7 +103,7 @@ const VideoPlayer = ({
           const updatedLikeCount = res.data.video.dislikes;
           setDisLikeCount(updatedLikeCount);
           setIsDisliked(!dislike);
-          callApiToDislikeOrNot(perticularvideoId)
+          callApiToDislikeOrNot(perticularvideoId);
         })
         .catch((err) => {
           console.log(err.response.data.message);
@@ -125,16 +111,20 @@ const VideoPlayer = ({
     }
   };
 
-  const fetchData = () => {
-    const data = localStorage.getItem("userid");
+  const fetchData = (id) => {
+
+    const data = {
+      videoId:id
+    }
+   
     const token = localStorage.getItem("token");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .post("/user/users/interact_with_video", data, config)
+      .post("/user/fetch_one_video", data, config)
       .then((res) => {
-        console.log(res);
+        console.log(res.data.video.comments);
       })
       .catch((err) => console.log(err.message));
   };
@@ -216,11 +206,42 @@ const VideoPlayer = ({
     axios
       .post("/user/fetch-user-one-video-dislike", data, config)
       .then((res) => {
-        console.log(res.data.dislike.disLikeType)
+        console.log(res.data.dislike.disLikeType);
         setDislikeBackGroundColor(res.data.dislike.disLikeType);
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const handleCommentSubmit = (event) => {
+    event.preventDefault();
+
+    if (newComment.trim() === "") return;
+
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    const commentData = {
+      videoId: perticularvideoId,
+      action: "comment",
+      comments: newComment,
+    };
+
+    axios
+      .post("/user/users/interact_with_video", commentData, config)
+      .then((response) => {
+        // const result = response.data.video.comments;
+        // const finalResult = result.map((item) => item.text);
+        // console.log(finalResult, "///");
+        // setComments(finalResult)
+        setNewComment("");
+        setComments(response.data.video.comments);
+      })
+      .catch((error) => {
+        console.error(error.message);
       });
   };
 
@@ -306,7 +327,10 @@ const VideoPlayer = ({
           <div className="comments-list">
             {comments.map((comment, parentIndex) => (
               <div className="comment" key={parentIndex}>
-                <p className="comment-text"> {comment.text} </p>
+                <p className="comment-text" style={{ color: "black" }}>
+                  {" "}
+                  {comment.text}{" "}
+                </p>
                 {activeReplyIndex === parentIndex ? (
                   <div className="reply-input">
                     <input

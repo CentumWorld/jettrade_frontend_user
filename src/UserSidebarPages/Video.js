@@ -5,8 +5,8 @@ import Thumbnail from "./Thumbnail";
 import VideoPlayer from "./VideoPlayer";
 import baseUrl from "../baseUrl";
 import { Spin } from "antd";
-import noVideoFound  from '../img/no-video.jpg'
-const apiurl = baseUrl.apiUrl
+import noVideoFound from "../img/no-video.jpg";
+const apiurl = baseUrl.apiUrl;
 const Video = () => {
   const [title, setTitle] = useState("");
   const [videos, setVideos] = useState([]);
@@ -15,13 +15,22 @@ const Video = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [like, setLike] = useState(0); // State to track selected video URL
   //   const [selectedVideo, setSelectedVideo] = useState(videos[0].videoUrl);
-  const [perticularvideoId, setPerticularVideoId] = useState('');
-  const [dislike, setDislike] = useState('');
+  const [perticularvideoId, setPerticularVideoId] = useState("");
+  const [dislike, setDislike] = useState("");
+  const [comments, setComments] = useState([]);
+  const finalComment = comments.map((item) => {
+    return item.comments;
+  });
+  console.log("final -> ", finalComment);
+  const finalCommments = finalComment.map((item) => {
+    return item;
+  });
+  console.log("final item -> ", finalCommments);
   useEffect(() => {
     getApiVideos();
   }, []);
   const getApiVideos = () => {
-    setSpin(true)
+    setSpin(true);
     const token = localStorage.getItem("token");
     console.log("token", token);
     const config = {
@@ -30,10 +39,11 @@ const Video = () => {
     axios
       .get("/user/users/user-fetch-all-videos", config)
       .then((response) => {
-         setVideos(response.data.videos);
-        console.log(response);
-         setVideosLength(response.data.videos.length)
-         setSpin(false)
+        setVideos(response.data.videos);
+        console.log("Response -> ", response.data.videos);
+        setComments(response.data.videos);
+        setVideosLength(response.data.videos.length);
+        setSpin(false);
       })
 
       .catch((error) => console.error("Error fetching data:", error));
@@ -41,33 +51,58 @@ const Video = () => {
   const handleThumbnailClick = (videoUrl, title, like, id, dislike) => {
     setSelectedVideo(videoUrl);
     setTitle(title);
-    setLike(like)
-    setPerticularVideoId(id)
-    setDislike(dislike)
+    setLike(like);
+    setPerticularVideoId(id);
+    setDislike(dislike);
   };
- 
+
   return (
     <>
-      {!spin ?
+      {!spin ? (
         <div className="video-framing">
-          {videoLength > 0 ?
-          <div className="video-player-container">
-            <VideoPlayer videoUrl={selectedVideo} title={title} liked={like} perticularvideoId={perticularvideoId} dislike={dislike}/>
-          </div>: <img src={noVideoFound} className="noVideoImg"/>}
+          {videoLength > 0 ? (
+            <div className="video-player-container">
+              <VideoPlayer
+                videoUrl={selectedVideo}
+                title={title}
+                liked={like}
+                perticularvideoId={perticularvideoId}
+                dislike={dislike}
+              />
+            </div>
+          ) : (
+            <img src={noVideoFound} className="noVideoImg" />
+          )}
           <div className="thumbnail-list">
             {videos.map((video) => (
               <Thumbnail
                 key={video.id}
                 imageUrl={video.thumbnail}
                 title={video.title}
-                onClick={() => handleThumbnailClick(video.videoOne, video.title, video.likes, video._id, video.dislikes)}
+                onClick={() =>
+                  handleThumbnailClick(
+                    video.videoOne,
+                    video.title,
+                    video.likes,
+                    video._id,
+                    video.dislikes
+                  )
+                }
               />
             ))}
           </div>
-        </div> :
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        </div>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Spin size="large" />
-        </div>}
+        </div>
+      )}
     </>
   );
 };

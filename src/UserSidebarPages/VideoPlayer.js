@@ -5,7 +5,7 @@ import {
   AiTwotoneDislike,
 } from "react-icons/ai";
 import { AiTwotoneLike } from "react-icons/ai";
-import { BiComment } from "react-icons/bi";
+import { BiChevronDown, BiComment } from "react-icons/bi";
 import "../css/videoplayer.css";
 import { toast } from "react-toastify";
 import { FaShare } from "react-icons/fa";
@@ -43,6 +43,7 @@ const VideoPlayer = ({
 
     fetchData(perticularvideoId);
     handleReplySubmit(activeReplyIndex);
+
 
     // callApiToComment(perticularvideoId)
   }, [liked, dislike]);
@@ -281,7 +282,6 @@ const VideoPlayer = ({
       });
   };
 
-
   const videoPlayerStyle = {
     position: "relative",
     overflow: "hidden",
@@ -293,9 +293,8 @@ const VideoPlayer = ({
     left: 0,
     width: "100%",
     height: "100%",
-    objectFit:
-      "cover",
-    zIndex: 1
+    objectFit: "cover",
+    zIndex: 1,
   };
 
   return (
@@ -303,9 +302,7 @@ const VideoPlayer = ({
       <div style={videoPlayerStyle} className="video-container">
         <video style={videoStyle} src={videoUrl} controls />
         <div className="subtitle">
-          <h2 style={{ fontFamily: "Calibri", textTransform: "capitalize" }}>
-            {title}
-          </h2>
+          <h2>{title}</h2>
           <div className="like-section">
             <div className="like-button-section">
               {likeBackGroundColor ? (
@@ -343,9 +340,9 @@ const VideoPlayer = ({
         </div>
         <div className="comment-section">
           <form>
-            <p>
+            <p className="comment-title">
               <BiComment fontSize={20} />
-              &nbsp; Comment
+              Comment
             </p>
             <input
               type="text"
@@ -364,7 +361,7 @@ const VideoPlayer = ({
           <div className="comments-list">
             {comments.map((comment, parentIndex) => (
               <div className="comment" key={parentIndex}>
-                <p className="comment-text" style={{ color: "black" }}>
+                <p className="comment-text" style={{ color: "black", marginBottom: "0px" }}>
                   {comment.text}
                 </p>
                 {activeReplyIndex === parentIndex ? (
@@ -381,7 +378,7 @@ const VideoPlayer = ({
                         className="comment-button"
                         onClick={(event) => handleReplySubmit(parentIndex)}
                       >
-                        Add Reply
+                        Reply
                       </button>
                       <button
                         className="cancel-button"
@@ -396,7 +393,7 @@ const VideoPlayer = ({
                     className="reply-button"
                     onClick={() => setActiveReplyIndex(parentIndex)}
                   >
-                    View Replies
+                    View Replies <BiChevronDown />
                   </button>
                 )}
 
@@ -445,4 +442,3 @@ const VideoPlayer = ({
 };
 
 export default VideoPlayer;
-

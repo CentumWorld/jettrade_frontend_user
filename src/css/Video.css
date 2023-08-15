@@ -1,7 +1,22 @@
 .video-framing {
     display: flex;
     flex-wrap: wrap;
+    gap: 1rem;
+    overflow: hidden;
   }
+
+  .thumbnail-list{
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    overflow: none;
+    z-index: 10;
+  }
+
   
   .video-player-container {
     flex: 1;
@@ -29,8 +44,9 @@
   }
   
   .thumbnail {
-    margin: 8px;
+    /* margin: 8px; */
     cursor: pointer;
+    /* border: 1px solid black; */
   }
 
   @media (max-width: 767px) {
@@ -42,11 +58,10 @@
       max-width: 100%;
     }
     .thumbnail-list{
-        overflow-y: scroll;
-        height: 60vh;
+        overflow: none;
     }
     .thumbnail-list::-webkit-scrollbar{
-        display: tr;
+        display: none;
     }
   }
   

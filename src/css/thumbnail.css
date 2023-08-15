@@ -1,0 +1,11 @@
+.thumbnailStyle{
+    display: "flex";
+    gap: "10px";
+}
+
+
+@media only screen and (max-width: 375px){
+    .thumbnailStyle{
+        flex-direction: column;
+    }
+}

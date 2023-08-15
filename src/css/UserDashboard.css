@@ -16,11 +16,8 @@
 } */
 
 .user_content_container{
-    margin-left: 2px;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
     padding: 20px;
+    width: 90%;
     height: 90vh;
     overflow: scroll;
 }

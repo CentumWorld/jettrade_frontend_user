@@ -38,9 +38,9 @@ const Video = () => {
     getApiVideos();
   }, []);
 
-  useEffect(() => {
-    console.log("Videos:", videos.map((item)=> item.comments[0].text)); // Log the videos whenever they change
-  }, [videos]); // Add videos as a dependency to the useEffect
+  // useEffect(() => {
+  //   console.log("Videos:", videos.map((item)=> item.comments[0].text)); // Log the videos whenever they change
+  // }, [videos]); // Add videos as a dependency to the useEffect
 
   const getApiVideos = () => {
     setSpin(true);

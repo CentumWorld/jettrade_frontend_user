@@ -4,6 +4,35 @@
     align-items: center;
 }
 
+.thumbnail-list{
+    position: sticky;
+    top: 0;
+    overflow: none;
+}
+
+.video-container{
+    /* border: 1px solid black; */
+}
+
+.reply{
+    color: black;
+    background-color: rgba(128, 128, 128, 0.146);
+    width: max-content;
+    border-radius: 10px;
+    padding: 2px 8px;
+    margin-top: 1rem;
+}
+
+
+.comment-title{
+    color: black;
+}
+
+.subtitle h2{
+    color: black;
+    text-transform: capitalize;
+  }
+
 .like-button,
 .comment-button {
     display: flex;
@@ -31,6 +60,8 @@
 .comment-section {
     display: flex;
     flex-direction: column;
+    overflow: scroll;
+    height: 30%;
 }
 
 .comment-buttons {
@@ -103,6 +134,10 @@
     margin-top: 1rem;
 }
 
+.comment-text{
+    padding-bottom: 0;
+}
+
 .copy-btn{
     border: none;
     background-color: grey;
@@ -149,8 +184,14 @@
     }
 }
 
+@media only screen and (max-width: 425px){
+    .subtitle{
+        flex-direction: column;
+    }
+}
+
 .replies-list{
-    margin-bottom: 0.5rem;
+    margin-left: 1rem;
 }
 
 .repl-button-container{

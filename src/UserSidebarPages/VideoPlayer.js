@@ -27,11 +27,12 @@ const VideoPlayer = ({
   const [copied, setCopied] = useState(false);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
-  const [activeReplyIndex, setActiveReplyIndex] = useState(null);
   const [likeCount, setLikeCount] = useState(0);
   const [likeBackGroundColor, setLikeBackGroundColor] = useState(false);
   const [dislikeBackGroundColor, setDislikeBackGroundColor] = useState(false);
   const [disLikeCount, setDisLikeCount] = useState(0);
+  const [replyText, setReplyText] = useState("");
+  const [activeReplyIndex, setActiveReplyIndex] = useState(null);
 
   console.log(perticularvideoId);
   useEffect(() => {
@@ -39,8 +40,9 @@ const VideoPlayer = ({
     setDisLikeCount(dislike);
     callApiToLikeOrNot(perticularvideoId);
     callApiToDislikeOrNot(perticularvideoId);
-    
+
     fetchData(perticularvideoId);
+    handleReplySubmit(activeReplyIndex);
 
     // callApiToComment(perticularvideoId)
   }, [liked, dislike]);
@@ -112,11 +114,10 @@ const VideoPlayer = ({
   };
 
   const fetchData = (id) => {
-
     const data = {
-      videoId:id
-    }
-   
+      videoId: id,
+    };
+
     const token = localStorage.getItem("token");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -124,7 +125,7 @@ const VideoPlayer = ({
     axios
       .post("/user/fetch_one_video", data, config)
       .then((res) => {
-        console.log(res.data.video.comments);
+        setComments(res.data.video.comments);
       })
       .catch((err) => console.log(err.message));
   };
@@ -214,7 +215,7 @@ const VideoPlayer = ({
       });
   };
 
-  const handleCommentSubmit = (event) => {
+  const handleCommentSubmit = (event, parentIndex) => {
     event.preventDefault();
 
     if (newComment.trim() === "") return;
@@ -245,6 +246,42 @@ const VideoPlayer = ({
       });
   };
 
+  const handleReplySubmit = (parentIndex) => {
+    const parentComment = comments[parentIndex];
+
+    if (replyText.trim() === "") return;
+
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    const replyData = {
+      videoId: perticularvideoId,
+      action: "comment",
+      replyTo: parentComment._id, // Use the comment's _id (commentId)
+      comments: replyText,
+    };
+
+    axios
+      .post("/user/users/interact_with_video", replyData, config)
+      .then((response) => {
+        const updatedComments = [...comments];
+        updatedComments[parentIndex].replies.push({
+          text: replyText,
+          // Add other necessary reply data here
+        });
+
+        setComments(updatedComments);
+        setReplyText("");
+        setActiveReplyIndex(null);
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
+
+
   const videoPlayerStyle = {
     position: "relative",
     overflow: "hidden",
@@ -257,8 +294,8 @@ const VideoPlayer = ({
     width: "100%",
     height: "100%",
     objectFit:
-      "cover" /* Fill the entire container while maintaining aspect ratio */,
-    zIndex: 1 /* Add zIndex to ensure the video stays above other elements */,
+      "cover",
+    zIndex: 1
   };
 
   return (
@@ -328,8 +365,7 @@ const VideoPlayer = ({
             {comments.map((comment, parentIndex) => (
               <div className="comment" key={parentIndex}>
                 <p className="comment-text" style={{ color: "black" }}>
-                  {" "}
-                  {comment.text}{" "}
+                  {comment.text}
                 </p>
                 {activeReplyIndex === parentIndex ? (
                   <div className="reply-input">
@@ -337,15 +373,13 @@ const VideoPlayer = ({
                       type="text"
                       className="comment-input"
                       placeholder="Add a reply..."
-                      value={newComment}
-                      onChange={handleCommentChange}
+                      value={replyText}
+                      onChange={(event) => setReplyText(event.target.value)}
                     />
                     <div className="repl-button-container">
                       <button
                         className="comment-button"
-                        onClick={(event) =>
-                          handleCommentSubmit(event, parentIndex)
-                        }
+                        onClick={(event) => handleReplySubmit(parentIndex)}
                       >
                         Add Reply
                       </button>
@@ -362,21 +396,25 @@ const VideoPlayer = ({
                     className="reply-button"
                     onClick={() => setActiveReplyIndex(parentIndex)}
                   >
-                    Reply
+                    View Replies
                   </button>
                 )}
-                <div className="replies-list">
-                  {comment.replies.map((reply, replyIndex) => (
-                    <div className="reply" key={replyIndex}>
-                      {reply.text}
-                    </div>
-                  ))}
-                </div>
+
+                {activeReplyIndex === parentIndex && (
+                  <div className="replies-list">
+                    {comment.replies.map((reply, replyIndex) => (
+                      <div className="reply" key={replyIndex}>
+                        {reply.text}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>
         </div>
       </div>
+
       {isModalOpen && (
         <div className="modal-box">
           <div className="modal-container">
@@ -408,55 +446,3 @@ const VideoPlayer = ({
 
 export default VideoPlayer;
 
-// import React, { useState, useEffect } from "react";
-// import { AiTwotoneLike, AiOutlineLike } from "react-icons/ai";
-// import axios from "axios";
-// import "../css/videoplayer.css"; // You can import your own CSS here
-
-// const VideoPlayer = ({ videoUrl, title, liked, perticularvideoId }) => {
-//   const [isLiked, setIsLiked] = useState(liked);
-//   const [likeCount, setLikeCount] = useState(0);
-
-//   useEffect(() => {
-//     setLikeCount(liked);
-//   }, [liked]);
-
-//   const handleClickLike = () => {
-//     const token = localStorage.getItem("token"); // Replace with your token retrieval logic
-//     const config = {
-//       headers: { Authorization: `Bearer ${token}` },
-//     };
-
-//     axios
-//       .post(
-//         "/user/users/interact_with_video",
-//         { videoId: perticularvideoId, action: "like" },
-//         config
-//       )
-//       .then((response) => {
-//         const updatedLikeCount = response.data.video.likes;
-//         setLikeCount(updatedLikeCount);
-//         setIsLiked(!isLiked);
-//       })
-//       .catch((error) => {
-//         console.error(error.message);
-//       });
-//   };
-
-//   return (
-//     <div className="video-container">
-//       <video className="video-player" src={videoUrl} controls />
-//       <div className="video-details">
-//         <h2 className="video-title">{title}</h2>
-//         <div className="like-section">
-//           <button className="like-button" onClick={handleClickLike}>
-//             {isLiked ? <AiTwotoneLike fontSize={20} /> : <AiOutlineLike fontSize={20} />}
-//             <span>{likeCount}</span>
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default VideoPlayer;

@@ -33,6 +33,7 @@ const VideoPlayer = ({
   const [disLikeCount, setDisLikeCount] = useState(0);
   const [replyText, setReplyText] = useState("");
   const [activeReplyIndex, setActiveReplyIndex] = useState(null);
+  const [views, setViews] = useState(0);
 
   console.log(perticularvideoId);
   useEffect(() => {
@@ -40,13 +41,13 @@ const VideoPlayer = ({
     setDisLikeCount(dislike);
     callApiToLikeOrNot(perticularvideoId);
     callApiToDislikeOrNot(perticularvideoId);
-
     fetchData(perticularvideoId);
     handleReplySubmit(activeReplyIndex);
-
-
-    // callApiToComment(perticularvideoId)
   }, [liked, dislike]);
+
+  useEffect(() => {
+    fetchViewsData(perticularvideoId);
+  }, [perticularvideoId]);
 
   const handleCommentChange = (event) => {
     setNewComment(event.target.value);
@@ -130,9 +131,27 @@ const VideoPlayer = ({
       })
       .catch((err) => console.log(err.message));
   };
+
+  const fetchViewsData = (id) => {
+    let data = {
+      videoId: id,
+      action: "view",
+    };
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios
+      .post("/user/users/interact_with_video", data, config)
+      .then((res) => {
+        setViews(res.data.video.views);
+      })
+      .catch((err) => console.log(err.message));
+  };
+
   const handleClickLike = () => {
     setIsLiked((prev) => !prev);
-    console.log(isLiked, perticularvideoId);
+    console.log("liked and videoIo -> ", isLiked, perticularvideoId);
     setLikeBackGroundColor((prev) => !prev);
     if (likeBackGroundColor) {
       let data = {
@@ -148,7 +167,7 @@ const VideoPlayer = ({
         .then((res) => {
           const updatedLikeCount = res.data.video.likes;
           setLikeCount(updatedLikeCount);
-          setIsLiked(!isLiked);
+          // setIsLiked(!isLiked);
         })
         .catch((err) => {
           console.log(err.response.data.message);
@@ -270,7 +289,6 @@ const VideoPlayer = ({
         const updatedComments = [...comments];
         updatedComments[parentIndex].replies.push({
           text: replyText,
-          // Add other necessary reply data here
         });
 
         setComments(updatedComments);
@@ -297,12 +315,24 @@ const VideoPlayer = ({
     zIndex: 1,
   };
 
+  const handleCancelHandler = (event) => {
+    event.preventDefault();
+    setNewComment("");
+  }
+
   return (
     <>
       <div style={videoPlayerStyle} className="video-container">
         <video style={videoStyle} src={videoUrl} controls />
         <div className="subtitle">
-          <h2>{title}</h2>
+          <div className="title-and-views">
+            <h2>{title}</h2>
+            <p className="views">
+              {views}
+              &nbsp;
+              Views
+            </p>
+          </div>
           <div className="like-section">
             <div className="like-button-section">
               {likeBackGroundColor ? (
@@ -352,7 +382,7 @@ const VideoPlayer = ({
               onChange={handleCommentChange}
             />
             <div className="comment-buttons">
-              <button className="cancel-button">Cancel</button>
+              <button className="cancel-button" onClick={handleCancelHandler}>Cancel</button>
               <button className="comment-button" onClick={handleCommentSubmit}>
                 Comment
               </button>
@@ -361,7 +391,10 @@ const VideoPlayer = ({
           <div className="comments-list">
             {comments.map((comment, parentIndex) => (
               <div className="comment" key={parentIndex}>
-                <p className="comment-text" style={{ color: "black", marginBottom: "0px" }}>
+                <p
+                  className="comment-text"
+                  style={{ color: "black", marginBottom: "0px" }}
+                >
                   {comment.text}
                 </p>
                 {activeReplyIndex === parentIndex ? (

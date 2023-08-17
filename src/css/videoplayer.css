@@ -10,8 +10,8 @@
     overflow: none;
 }
 
-.video-container{
-    /* border: 1px solid black; */
+.views{
+    color: black;
 }
 
 .reply{
@@ -23,12 +23,22 @@
     margin-top: 1rem;
 }
 
+.title-and-views{
+    display: flex;
+    flex-direction: column;
+}
+
+.views{
+    font-size: 0.8rem;
+}
+
 
 .comment-title{
     color: black;
 }
 
 .subtitle h2{
+    font-size: 1.2rem;
     color: black;
     text-transform: capitalize;
   }
@@ -197,4 +207,5 @@
 .repl-button-container{
     display: flex;
     gap: 1rem;
+    margin-top: 1rem;
 }

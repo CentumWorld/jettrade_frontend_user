@@ -17,30 +17,12 @@ const Video = () => {
   //   const [selectedVideo, setSelectedVideo] = useState(videos[0].videoUrl);
   const [perticularvideoId, setPerticularVideoId] = useState("");
   const [dislike, setDislike] = useState("");
-  const [comments, setComments] = useState([]);
 
-
-  const finalComment = comments.map((item) => {
-    return item.comments;
-  });
-  console.log("final -> ", finalComment);
-  const finalCommments = finalComment.map((item) => {
-    return item;
-  });
-  console.log("final item -> ", finalCommments);
-  const finalComments = finalComment; 
-
-  const commentTexts = finalComments.map(comment => comment.text);
-  
-  console.log("Comment Texts:", commentTexts);
   
   useEffect(() => {
     getApiVideos();
   }, []);
 
-  // useEffect(() => {
-  //   console.log("Videos:", videos.map((item)=> item.comments[0].text)); // Log the videos whenever they change
-  // }, [videos]); // Add videos as a dependency to the useEffect
 
   const getApiVideos = () => {
     setSpin(true);
@@ -55,7 +37,7 @@ const Video = () => {
         setVideos(response.data.videos);
         console.log("Response -> ", response.data.videos);
 
-        setComments(response.data.videos);
+        // setComments(response.data.videos);
         setVideosLength(response.data.videos.length);
         setSpin(false);
       })

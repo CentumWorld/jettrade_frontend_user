@@ -25,7 +25,7 @@ function UserLogin() {
 
     const userLogin = (e) => {
         e.preventDefault();
-        axios.post(`${apiurl}`+"/user/login", {
+        axios.post("/user/login", {
             userid: user.userid,
             password: user.password
         })

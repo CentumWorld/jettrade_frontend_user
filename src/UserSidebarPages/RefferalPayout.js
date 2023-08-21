@@ -57,7 +57,7 @@ const RefferalPayout = () => {
         //         message.warning(err.response.data.message)
         //     })
 
-        axios.post(`${apiurl}`+"/user/users/withdrawl-From-Wallet-And-TradingWallet",data,config)
+        axios.post("/user/users/withdrawl-From-Wallet-And-TradingWallet",data,config)
         .then((res)=>{
             message.success('Withdrawal successfull');
             fetchRefferalPayout();
@@ -85,7 +85,7 @@ const RefferalPayout = () => {
         const data = {
             userid: userid
         }
-        axios.post(`${apiurl}`+'/user/users/user-fetch-refferal-payout', data, config)
+        axios.post('/user/users/user-fetch-refferal-payout', data, config)
             .then((res) => {
                 const formattedAmount = res.data.wallet.toLocaleString('en-IN', {
                     style: 'currency',
@@ -108,7 +108,7 @@ const RefferalPayout = () => {
         const config = {
             headers: { 'Authorization': `Bearer ${token}` }
         }
-        axios.post(`${apiurl}`+'/user/users/fetch-Wallet-Withdrawal-History', data, config)
+        axios.post('/user/users/fetch-Wallet-Withdrawal-History', data, config)
             .then((res) => {
                 const length = res.data.walletHistory.length;
                 const lastData = res.data.walletHistory[length - 1];
@@ -140,7 +140,7 @@ const RefferalPayout = () => {
             headers: { 'Authorization': `Bearer ${token}` }
         }
 
-        axios.post(`${apiurl}`+'/user/users/fetch-approve-refferal-payout-user', data, config)
+        axios.post('/user/users/fetch-approve-refferal-payout-user', data, config)
             .then((res) => {
                 console.log(res.data);
                 setApprovedDetails(res.data.userWithdrawalApprove)
@@ -223,7 +223,7 @@ const RefferalPayout = () => {
             Authorization: `Bearer ${token}`,
           },
         };
-        axios.post(`${apiurl}`+"/user/fetch-user-details-userside",data,config)
+        axios.post("/user/fetch-user-details-userside",data,config)
         .then((res)=>{
           const totalWallet = res.data.result.wallet + res.data.result.tradingWallet;
           const formattedTradingWallet =
@@ -248,7 +248,7 @@ const RefferalPayout = () => {
               Authorization: `Bearer ${token}`,
             },
           };
-         axios.post(`${apiurl}`+"/user/users/fetch-Wallet-History", data,config) 
+         axios.post("/user/users/fetch-Wallet-History", data,config) 
          .then((res)=>{
             console.log(res.data)
             setApprovedDetails(res.data.walletHistory)

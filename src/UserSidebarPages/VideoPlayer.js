@@ -12,6 +12,9 @@ import { FaShare } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import axios from "axios";
 import { message } from "antd";
+import baseUrl from "../baseUrl";
+
+const apiurl = baseUrl.apiUrl;
 
 const VideoPlayer = ({
   videoUrl,
@@ -83,7 +86,7 @@ const VideoPlayer = ({
         headers: { Authorization: `Bearer ${token}` },
       };
       axios
-        .post("/user/users/interact_with_video", data, config)
+        .post(`${apiurl}`+"/user/users/interact_with_video", data, config)
         .then((res) => {
           const updatedLikeCount = res.data.video.dislikes;
           setDisLikeCount(updatedLikeCount);
@@ -102,7 +105,7 @@ const VideoPlayer = ({
         headers: { Authorization: `Bearer ${token}` },
       };
       axios
-        .post("/user/users/interact_with_video", data, config)
+        .post(`${apiurl}`+"/user/users/interact_with_video", data, config)
         .then((res) => {
           const updatedLikeCount = res.data.video.dislikes;
           setDisLikeCount(updatedLikeCount);
@@ -125,7 +128,7 @@ const VideoPlayer = ({
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .post("/user/fetch_one_video", data, config)
+      .post(`${apiurl}`+"/user/fetch_one_video", data, config)
       .then((res) => {
         setComments(res.data.video.comments);
       })
@@ -142,7 +145,7 @@ const VideoPlayer = ({
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .post("/user/users/interact_with_video", data, config)
+      .post(`${apiurl}`+"/user/users/interact_with_video", data, config)
       .then((res) => {
         setViews(res.data.video.views);
       })
@@ -163,7 +166,7 @@ const VideoPlayer = ({
         headers: { Authorization: `Bearer ${token}` },
       };
       axios
-        .post("/user/users/interact_with_video", data, config)
+        .post(`${apiurl}`+"/user/users/interact_with_video", data, config)
         .then((res) => {
           const updatedLikeCount = res.data.video.likes;
           setLikeCount(updatedLikeCount);
@@ -182,7 +185,7 @@ const VideoPlayer = ({
         headers: { Authorization: `Bearer ${token}` },
       };
       axios
-        .post("/user/users/interact_with_video", data, config)
+        .post(`${apiurl}`+"/user/users/interact_with_video", data, config)
         .then((res) => {
           console.log(res.data);
           const updatedLikeCount = res.data.video.likes;
@@ -206,7 +209,7 @@ const VideoPlayer = ({
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .post("/user/fetch-user-one-video-like", data, config)
+      .post(`${apiurl}`+"/user/fetch-user-one-video-like", data, config)
       .then((res) => {
         setLikeBackGroundColor(res.data.like.likeType);
       })
@@ -225,7 +228,7 @@ const VideoPlayer = ({
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .post("/user/fetch-user-one-video-dislike", data, config)
+      .post(`${apiurl}`+"/user/fetch-user-one-video-dislike", data, config)
       .then((res) => {
         console.log(res.data.dislike.disLikeType);
         setDislikeBackGroundColor(res.data.dislike.disLikeType);
@@ -252,7 +255,7 @@ const VideoPlayer = ({
     };
 
     axios
-      .post("/user/users/interact_with_video", commentData, config)
+      .post(`${apiurl}`+"/user/users/interact_with_video", commentData, config)
       .then((response) => {
         // const result = response.data.video.comments;
         // const finalResult = result.map((item) => item.text);
@@ -284,7 +287,7 @@ const VideoPlayer = ({
     };
 
     axios
-      .post("/user/users/interact_with_video", replyData, config)
+      .post(`${apiurl}`+"/user/users/interact_with_video", replyData, config)
       .then((response) => {
         const updatedComments = [...comments];
         updatedComments[parentIndex].replies.push({

@@ -3,7 +3,7 @@
   "homepage": "http://trader.jettradefx.in",
   "version": "0.1.0",
   "private": true,
-  "proxy":"http://localhost:4000",
+  "proxy": "http://localhost:4000",
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
     "@emotion/react": "^11.10.6",
@@ -28,7 +28,7 @@
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
     "npm": "^9.8.0",
-    "rc-progress": "^3.4.2",
+    "rc-progress": "^3.5.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-currency-input-field": "^3.6.10",

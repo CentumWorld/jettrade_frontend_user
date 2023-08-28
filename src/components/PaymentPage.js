@@ -31,7 +31,7 @@ function PaymentPage() {
         console.log(response, "26");
         axios
           .post(
-            "/user/users/verify-payment",
+            `${apiurl}`+"/user/users/verify-payment",
 
             { response: response },
             {
@@ -62,7 +62,7 @@ function PaymentPage() {
       payment_capture: 1,
     };
     axios
-      .post("/user/users/user-create-payment", data, {
+      .post(`${apiurl}`+"/user/users/user-create-payment", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -85,7 +85,7 @@ function PaymentPage() {
       userid: localStorage.getItem("userid"),
     };
     axios
-      .post("/user/users/payment-userid-verify", data, {
+      .post(`${apiurl}`+"/user/users/payment-userid-verify", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -110,7 +110,7 @@ function PaymentPage() {
       userid: userid,
     };
     axios
-      .post("/user/users/change-user-payment-status", data, {
+      .post(`${apiurl}`+"/user/users/change-user-payment-status", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

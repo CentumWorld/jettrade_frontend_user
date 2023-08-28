@@ -39,7 +39,7 @@ function UserForgetPassword(props) {
             message.warning('Please enter UserID');
         } else {
            
-            axios.post('/user/forgetPassword', data)
+            axios.post(`${apiurl}`+'/user/forgetPassword', data)
             .then((res) => {
                 message.success('OTP sent successfully');
                 setUserIdSubmitted(true);
@@ -64,7 +64,7 @@ function UserForgetPassword(props) {
             message.warning('Please enter OTP !!')
             
         } else {
-            axios.post('/user/verifyOtp',data)
+            axios.post(`${apiurl}`+'/user/verifyOtp',data)
             .then((res) => {
              console.log(res);
              message.success(res.data.message);
@@ -100,7 +100,7 @@ function UserForgetPassword(props) {
             message.warning('Password and confirm password mismatch !!')
         }   
         else {
-            axios.post("/user/resetPassword",data)
+            axios.post(`${apiurl}`+"/user/resetPassword",data)
             .then((res) => {
                 //console.log(res);
                 message.success(res.data.message);

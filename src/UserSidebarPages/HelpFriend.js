@@ -33,7 +33,7 @@ const HelpFriend = () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      const response = await axios.post("/user/trading-wallet-transfer-from-one-user-to-another",
+      const response = await axios.post(`${apiurl}`+"/user/trading-wallet-transfer-from-one-user-to-another",
         payload,
         config
       );
@@ -55,7 +55,7 @@ const HelpFriend = () => {
         Authorization: `Bearer ${token}`,
       },
     };
-    axios.post("/user/fetch-user-details-userside",data,config)
+    axios.post(`${apiurl}`+"/user/fetch-user-details-userside",data,config)
     .then((res)=>{
       const totalWallet = res.data.result.wallet + res.data.result.tradingWallet;
       const formattedTradingWallet =

@@ -29,7 +29,7 @@ function Home() {
           <div className="home-footer">
             <p>PARTNER WITH CENTUM WORLD</p>
           </div>
-          <div className="imagecontainer">
+          {/* <div className="imagecontainer">
             <div className="trader-div">
               <a href="http://trader.jettradefx.in/user-login" className="trader-link">
                 <img
@@ -57,7 +57,7 @@ function Home() {
                 </div>
               </a>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

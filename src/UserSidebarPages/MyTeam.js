@@ -22,7 +22,7 @@ const MyTeam = () => {
         const config = {
             headers: { Authorization: `Bearer ${token}` },
           };
-        axios.post('/user/users/user-my-team', data, config)
+        axios.post(`${apiurl}`+'/user/users/user-my-team', data, config)
         .then((res)=>{
             setMyTeam(res.data.teamMembers)
             //console.log(res.data.teamMembers)

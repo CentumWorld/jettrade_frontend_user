@@ -32,7 +32,7 @@ const Video = () => {
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .get("/user/users/user-fetch-all-videos", config)
+      .get(`${apiurl}`+"/user/users/user-fetch-all-videos", config)
       .then((response) => {
         setVideos(response.data.videos);
         console.log("Response -> ", response.data.videos);

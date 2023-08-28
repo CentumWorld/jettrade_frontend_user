@@ -276,7 +276,7 @@ function UserSidebar(props) {
     };
 
     axios
-      .post("/user/users/fetch-user-notification", data, config)
+      .post(`${apiurl}`+"/user/users/fetch-user-notification", data, config)
       .then((result) => {
         console.log(result.data.allNotitfication);
         setAllNotification(result.data.allNotitfication);
@@ -306,7 +306,7 @@ function UserSidebar(props) {
 
     
     axios
-      .post("/user/fetch-user-details-userside", data, config)
+      .post(`${apiurl}`+"/user/fetch-user-details-userside", data, config)
       .then((res) => {
         console.log(res, "res")
         setSubscriptionDiv(res.data.result.paymentCount);
@@ -346,7 +346,7 @@ function UserSidebar(props) {
       },
     };
     axios
-      .post("/user/users/fetch-user-notification-status",data,config
+      .post(`${apiurl}`+"/user/users/fetch-user-notification-status",data,config
       )
       .then((res) => {
         setNotification(res.data.isNotification);
@@ -370,7 +370,7 @@ function UserSidebar(props) {
     };
 
     axios
-      .post("/user/users/set-notification-to-false-user",data,config
+      .post(`${apiurl}`+"/user/users/set-notification-to-false-user",data,config
       )
       .then((res) => {
         callApiToFetchNotificationStatus();
@@ -404,7 +404,7 @@ function UserSidebar(props) {
       payment_capture: 1,
     };
     axios
-      .post("/user/users/user-create-payment", data)
+      .post(`${apiurl}`+"/user/users/user-create-payment", data)
       .then((res) => {
         console.log(res.data, "29");
         handleOpenRazorpay(res.data.data);
@@ -426,7 +426,7 @@ function UserSidebar(props) {
       handler: function (response) {
         console.log(response, "26");
         axios
-          .post("/user/users/verify-payment", {
+          .post(`${apiurl}`+"/user/users/verify-payment", {
             response: response,
           })
           .then((res) => {
@@ -456,7 +456,7 @@ function UserSidebar(props) {
       },
     };
     axios
-      .post("/user/users/change-payment-status-for-renewal", data,config)
+      .post(`${apiurl}`+"/user/users/change-payment-status-for-renewal", data,config)
       .then((res) => {
         message.success(res.data.message);
         navigate("/userdashboard/dashboard");

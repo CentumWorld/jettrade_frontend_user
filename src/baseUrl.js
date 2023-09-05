@@ -1,4 +1,4 @@
 const baseUrl = {
-    apiUrl:'http://103.149.68.19:8081'
+    apiUrl:''
 }
 export default baseUrl;

@@ -399,7 +399,7 @@ const DisplayCard = () => {
     const token = localStorage.getItem("token");
     const data = {
       userid: localStorage.getItem("userid"),
-      amountAdded: amount,
+      amountAdded:Number(amount),
     };
     const config = {
       headers: {

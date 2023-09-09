@@ -37,6 +37,7 @@ const Chat = ({ socket, username, room }) => {
 
 
 
+
         //received message from admin
         socket.on("user_receive_message", (data) => {
             //console.log(data)
@@ -47,18 +48,21 @@ const Chat = ({ socket, username, room }) => {
 
         // admin online
         // Listen for admin online
-        socket.on('adminOnline', (data)=>{
+        socket.on('adminOnline', (data) => {
             adminOffline();
         })
 
+
         // Listen for admin offline
-        socket.on('falnaOffline', (data)=>{
+        socket.on('adminOffline', (adminId) => {
+            console.log(adminId, '56');
             adminOffline();
         })
+
+
         //Clean up on component unmount
         return () => {
             socket.emit('userLogout', room);
-            //socket.disconnect();
         }
 
 
@@ -82,7 +86,7 @@ const Chat = ({ socket, username, room }) => {
         const config = {
             headers: { 'Authorization': `Bearer ${token}` }
         };
-        axios.post(`${apiurl}`+'/user/users/fetch-chat-message-user', data, config)
+        axios.post(`${apiurl}` + '/user/users/fetch-chat-message-user', data, config)
             .then((result) => {
                 console.log(result.data.userChatMessage)
                 //setMessageList((list) => [...list, result.data.adminChatMessage])
@@ -96,19 +100,20 @@ const Chat = ({ socket, username, room }) => {
     }
 
     const adminOffline = () => {
+        console.log("admin offline")
         let token = localStorage.getItem('token')
 
         const config = {
             headers: { 'Authorization': `Bearer ${token}` }
         };
 
-        axios.get(`${apiurl}`+'/user/users/admin-online-or-not',config)
-        .then((res)=>{
-            setIsAdminOnline(res.data.isOnline)
-        })
-        .catch((err)=>{
-            console.log(err.response)
-        })
+        axios.get(`${apiurl}` + '/user/users/admin-online-or-not', config)
+            .then((res) => {
+                setIsAdminOnline(res.data.isOnline)
+            })
+            .catch((err) => {
+                console.log(err.response)
+            })
 
     }
 
@@ -117,8 +122,8 @@ const Chat = ({ socket, username, room }) => {
         <div className='chat-window'>
             <div className='chat-header'>
 
-                <p>Live Chat &nbsp;<span className={statusClass}>{isAdminOnline ? 'Online' : 'Offline'}</span></p> 
-                
+                <p>Live Chat &nbsp;<span className={statusClass}>{isAdminOnline ? 'Online' : 'Offline'}</span></p>
+
 
             </div>
             <div className='chat-body'>

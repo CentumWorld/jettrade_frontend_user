@@ -76,13 +76,12 @@ function PaymentPage() {
   };
 
   const handleChangeUserID = (e) => {
-    e.preventDefault();
     setUserID(e.target.value);
   };
 
   const verifyUser = () => {
     const data = {
-      userid: localStorage.getItem("userid"),
+      userid: localStorage.getItem("userid") || userid,
     };
     axios
       .post(`${apiurl}`+"/user/users/payment-userid-verify", data, {

@@ -7,7 +7,7 @@ const ExpiredProgressiveBar = ({percent}) => {
     return (
         <div className='progress-container'>
             <div style={{ textAlign: 'center', fontWeight: '500' }}>
-                <p>Trial stage</p>
+                <p>Expired stage</p>
                 <p>{percent.expiredStage}/{percent.totalCount} Traders</p>
             </div>
             <div style={{ textAlign: 'center' }}>

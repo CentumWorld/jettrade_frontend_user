@@ -176,11 +176,11 @@ const routes = [
     name: "Invite a friend",
     icon: <FaUserPlus />,
   },
-  {
-    path: "/userdashboard/chat",
-    name: "Live Chat",
-    icon: <BsFillChatTextFill />,
-  },
+  // {
+  //   path: "/userdashboard/chat",
+  //   name: "Live Chat",
+  //   icon: <BsFillChatTextFill />,
+  // },
   // {
   //     path: '/copytrading',
   //     name: "Copytrading",

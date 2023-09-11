@@ -216,7 +216,7 @@ const DisplayCard = () => {
         const formattedDateOfJoining = new Date(
           dateOfJoining
         ).toLocaleDateString();
-
+          console.log(res.data.result.trialDate)
         const trialFormateDate = new Date(
           res.data.result.trialDate
         ).toLocaleDateString();
@@ -424,9 +424,11 @@ const DisplayCard = () => {
   };
 
   const blockUser = (trialFormateDate) => {
-    if (subscription === 0 && subscriptionStatus.payment === false) {
+    if (subscription === '0' && subscriptionStatus.payment === false) {
       // Example fetched date from the database
       const dateString = trialFormateDate;
+      console.log(trialFormateDate);
+
       function subtractTwoDate(date2, systemDate) {
         const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
         const diffInMilliseconds = systemDate - date2;

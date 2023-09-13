@@ -90,13 +90,13 @@ const DisplayCard = () => {
   const [totalTradingWallet, setTotalTradingWallet] = useState(0);
   const [isUserWithdrawalFromTradingWalletVisible, setIsUserWithdrawalFromTradingWalletVisible] = useState();
   const [progressiveBarData, setProgressiveBarData] = useState({
-    totalCount:0,
-    runningStage:0,
-    trialStage:0,
-    expiredStage:0,
-    runningPercentage:0,
-    trialPercentage:0,
-    expiredPercentage:0
+    totalCount: 0,
+    runningStage: 0,
+    trialStage: 0,
+    expiredStage: 0,
+    runningPercentage: 0,
+    trialPercentage: 0,
+    expiredPercentage: 0
   });
 
   useEffect(() => {
@@ -195,7 +195,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/fetch-user-details-userside", data, config)
+      .post(`${apiurl}` + "/user/fetch-user-details-userside", data, config)
       .then((res) => {
         console.log(res.data);
 
@@ -216,7 +216,7 @@ const DisplayCard = () => {
         const formattedDateOfJoining = new Date(
           dateOfJoining
         ).toLocaleDateString();
-          console.log(res.data.result.trialDate)
+        console.log(res.data.result.trialDate)
         const trialFormateDate = new Date(
           res.data.result.trialDate
         ).toLocaleDateString();
@@ -252,7 +252,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/users/user-total-withdrawal", data, config)
+      .post(`${apiurl}` + "/user/users/user-total-withdrawal", data, config)
       .then((res) => {
         //console.log(res.data.walletAmount)
         if (res.data.data === 0) {
@@ -288,7 +288,7 @@ const DisplayCard = () => {
         Authorization: `Bearer ${token}`,
       },
     };
-    axios.post( `${apiurl}`+"/user/users/user-total-withdrawal-from-trading-wallet", data, config)
+    axios.post(`${apiurl}` + "/user/users/user-total-withdrawal-from-trading-wallet", data, config)
       .then((res) => {
         console.log(res.data.sumOfAmountWithdrawn);
         if (res.data.sumOfAmountWithdrawn === undefined) {
@@ -323,7 +323,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post( `${apiurl}`+"/user/users/user-my-team", data, config)
+      .post(`${apiurl}` + "/user/users/user-my-team", data, config)
       .then((res) => {
         console.log(res.data.teamMembers);
         //setRefferalTeam(res.data.teamMembers);
@@ -353,7 +353,7 @@ const DisplayCard = () => {
       handler: function (response) {
         console.log(response, "26");
         axios
-          .post(`${apiurl}`+"/user/users/verify-payment", {
+          .post(`${apiurl}` + "/user/users/verify-payment", {
             response: response,
           })
           .then((res) => {
@@ -383,7 +383,7 @@ const DisplayCard = () => {
         payment_capture: 1,
       };
       axios
-        .post( `${apiurl}`+"/user/users/user-create-payment", data)
+        .post(`${apiurl}` + "/user/users/user-create-payment", data)
         .then((res) => {
           console.log(res.data, "29");
           handleOpenRazorpay(res.data.data);
@@ -399,7 +399,7 @@ const DisplayCard = () => {
     const token = localStorage.getItem("token");
     const data = {
       userid: localStorage.getItem("userid"),
-      amountAdded:Number(amount),
+      amountAdded: Number(amount),
     };
     const config = {
       headers: {
@@ -407,7 +407,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/users/adding-amount-to-trading-wallet",
+      .post(`${apiurl}` + "/user/users/adding-amount-to-trading-wallet",
         data,
         config
       )
@@ -498,7 +498,7 @@ const DisplayCard = () => {
           },
         };
         axios
-          .post(`${apiurl}`+"/user/users/update-day-count", data, config)
+          .post(`${apiurl}` + "/user/users/update-day-count", data, config)
           .then((res) => {
             console.log(res.data.message);
           })
@@ -517,7 +517,7 @@ const DisplayCard = () => {
           },
         };
         axios
-          .post(`${apiurl}`+"/user/users/update-expire", data, config)
+          .post(`${apiurl}` + "/user/users/update-expire", data, config)
           .then((res) => {
             console.log(res.data.message);
             navigate("/logout");
@@ -541,7 +541,7 @@ const DisplayCard = () => {
       handler: function (response) {
         console.log(response, "26");
         axios
-          .post( `${apiurl}`+"/user/users/verify-payment",
+          .post(`${apiurl}` + "/user/users/verify-payment",
             { response: response },
             {
               headers: {
@@ -571,7 +571,7 @@ const DisplayCard = () => {
       payment_capture: 1,
     };
     axios
-      .post(`${apiurl}`+"/user/users/user-create-payment", data, {
+      .post(`${apiurl}` + "/user/users/user-create-payment", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -589,7 +589,7 @@ const DisplayCard = () => {
       userid: localStorage.getItem("userid"),
     };
     axios
-      .post(`${apiurl}`+"/user/users/change-user-payment-status", data, {
+      .post(`${apiurl}` + "/user/users/change-user-payment-status", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -612,7 +612,7 @@ const DisplayCard = () => {
         Authorization: `Bearer ${token}`,
       },
     };
-    axios.post(`${apiurl}`+"/user/fetch-user-details-userside", data, config)
+    axios.post(`${apiurl}` + "/user/fetch-user-details-userside", data, config)
       .then((res) => {
         const totalWallet = res.data.result.wallet + res.data.result.tradingWallet;
         const formattedTradingWallet =
@@ -627,29 +627,29 @@ const DisplayCard = () => {
       })
   }
 
-  const callApiProgressiveBar = () =>{
+  const callApiProgressiveBar = () => {
     let token = localStorage.getItem('token');
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
-    axios.get(`${apiurl}`+"/user/total_Count_Of_Payment_Status_Of_User_user",config)
-    .then((res)=>{
-      console.log(res.data)
-      setProgressiveBarData({
-        totalCount:res.data.totalCount,
-        runningCount:res.data.runningCount,
-        trialStage:res.data.inactiveCount,
-        expiredStage:res.data.expiredCount,
-        runningPercentage:res.data.runningPercentage,
-        trialPercentage:res.data.inactivePercentage,
-        expiredPercentage:res.data.expiredPercentage
+    axios.get(`${apiurl}` + "/user/total_Count_Of_Payment_Status_Of_User_user", config)
+      .then((res) => {
+        console.log(res.data)
+        setProgressiveBarData({
+          totalCount: res.data.totalCount,
+          runningCount: res.data.runningCount,
+          trialStage: res.data.inactiveCount,
+          expiredStage: res.data.expiredCount,
+          runningPercentage: res.data.runningPercentage,
+          trialPercentage: res.data.inactivePercentage,
+          expiredPercentage: res.data.expiredPercentage
+        })
       })
-    })
-    .catch((err=>{
-      console.log(err.response)
-    }))
+      .catch((err => {
+        console.log(err.response)
+      }))
   }
 
   return (
@@ -682,13 +682,13 @@ const DisplayCard = () => {
       )}
       <div className="card1-container">
         <div className="card1">
-          <RunningProgressiveBar percent={progressiveBarData}/>
+          <RunningProgressiveBar percent={progressiveBarData} />
         </div>
         <div className="card1">
-          <TrialProgressiveBar percent={progressiveBarData}/>
+          <TrialProgressiveBar percent={progressiveBarData} />
         </div>
         <div className="card1">
-            <ExpiredProgressiveBar percent={progressiveBarData} />
+          <ExpiredProgressiveBar percent={progressiveBarData} />
         </div>
         <div className="card1">
           <div className="d-flex">
@@ -705,7 +705,8 @@ const DisplayCard = () => {
             </span>
           </div>
         </div>
-        <div className="card1">
+
+        {/* <div className="card1">
           <div className="live-chat">
             <h6>Live Chat</h6>
           </div>
@@ -717,7 +718,8 @@ const DisplayCard = () => {
               Join
             </span>
           </div>
-        </div>
+        </div> */}
+
         <div className="card1">
           <div className="subscription-card">
             <h6>Subscription</h6>

@@ -2,7 +2,6 @@
     background: rgb(243,245,254);
     width: 100%;
     height: 80vh;
-    padding: 20px;
     border-radius: 5px;
 } 
 .withdralwal-header{
@@ -22,8 +21,13 @@
 
 .card-container {
     display: flex;
+    justify-content:space-between;
+    /* flex-wrap: wrap; */
+  }
+
+  .wallet-heading{
+    display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
   }
   
   .card {
@@ -66,5 +70,11 @@
     }
     .card{
       width: 250px;
+    }
+  }
+
+  @media screen and (max-width :768px) {
+    .wallet-heading{
+      flex-direction: column;
     }
   }

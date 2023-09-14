@@ -409,7 +409,7 @@ const RefferalPayout = () => {
                         <h6>Total Amount: {totalWallet}</h6>
                     </div>
                     <div class="card">
-                        <div className='d-flex justify-content-between'>
+                        <div className='d-flex justify-content-between wallet-heading'>
                             <p>Wallet Withdrawal</p>
                             <Button type='primary' onClick={openBankModal}>Select bank</Button>
                         </div>
@@ -430,6 +430,7 @@ const RefferalPayout = () => {
                     </div>
 
                     <br />
+                </div >
                     <Tabs defaultActiveKey="1" onChange={handleTabChange}>
                         <TabPane tab="Withdrawal" key="1">
                             <div style={{ overflow: 'auto', maxHeight: '250px' }}>
@@ -451,7 +452,6 @@ const RefferalPayout = () => {
                             </div>
                         </TabPane>
                     </Tabs>
-                </div >
             </div >
 
             {/* bank modal */}

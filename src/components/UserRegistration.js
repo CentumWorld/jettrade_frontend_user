@@ -208,7 +208,7 @@ function UserRegistration() {
       try {
         const res = await axios.post(`${apiurl}`+"/user/registration", formData);
         message.success("Registration successful");
-        console.log(res.data, "224");
+        // console.log(res.data, "224");
         localStorage.setItem("token", res.data.token);
 
         dispatch({ type: "USER", payload: true });

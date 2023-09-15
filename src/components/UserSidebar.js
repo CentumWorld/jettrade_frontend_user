@@ -176,11 +176,11 @@ const routes = [
     name: "Invite a friend",
     icon: <FaUserPlus />,
   },
-  {
-    path: "/userdashboard/chat",
-    name: "Live Chat",
-    icon: <BsFillChatTextFill />,
-  },
+  // {
+  //   path: "/userdashboard/chat",
+  //   name: "Live Chat",
+  //   icon: <BsFillChatTextFill />,
+  // },
   // {
   //     path: '/copytrading',
   //     name: "Copytrading",
@@ -404,7 +404,7 @@ function UserSidebar(props) {
 
   const renewelPayment = () => {
     const data = {
-      amount: 1500,
+      amount: 1800,
       order_id: "0d0254888555666",
       currency: "INR",
       payment_capture: 1,
@@ -539,7 +539,7 @@ function UserSidebar(props) {
                   }}
                 >
                   {paymentCountSubscription.plan === 1 ? "INR 3500.00" : ""}
-                  {paymentCountSubscription.plan > 1 ? "INR 1500.00" : ""}
+                  {paymentCountSubscription.plan > 1 ? "INR 1800.00" : ""}
                 </Col>
               </Row>
               <Row style={{ marginBottom: "5px" }}>

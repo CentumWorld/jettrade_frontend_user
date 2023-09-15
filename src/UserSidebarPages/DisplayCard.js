@@ -737,7 +737,8 @@ const DisplayCard = () => {
             </span>
           </div>
         </div>
-        <div className="card1">
+
+        {/* <div className="card1">
           <div className="live-chat">
             <h6>Live Chat</h6>
           </div>
@@ -749,7 +750,8 @@ const DisplayCard = () => {
               Join
             </span>
           </div>
-        </div>
+        </div> */}
+
         <div className="card1">
           <div className="subscription-card">
             <h6>Subscription</h6>

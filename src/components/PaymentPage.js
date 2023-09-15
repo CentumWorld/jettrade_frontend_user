@@ -116,7 +116,7 @@ function PaymentPage() {
       })
       .then((res) => {
         localStorage.setItem("login", true);
-        console.log(res, "kju");
+        console.log(res.data, "kju");
         message.success(res.data.message);
         navigate("/userdashboard");
       })

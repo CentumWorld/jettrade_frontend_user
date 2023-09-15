@@ -23,8 +23,8 @@ import {
 } from "react-icons/ai";
 import { BsFillChatTextFill } from "react-icons/bs";
 import { FiVideo } from "react-icons/fi";
-import {FaHandHoldingUsd} from "react-icons/fa";
-import {GrTransaction} from 'react-icons/gr'
+import { FaHandHoldingUsd } from "react-icons/fa";
+import { GrTransaction } from 'react-icons/gr'
 import { NavLink } from "react-router-dom";
 import UserSidebarMenu from "./usersidebar/UserSidebarMenu";
 import { UserModal } from "../UserModel/UserModal";
@@ -57,8 +57,8 @@ const routes = [
         name: "Trading Chart",
       },
       {
-        path:"/userdashboard/traditional-currency-chart",
-        name:"Traditional currency chart"
+        path: "/userdashboard/traditional-currency-chart",
+        name: "Traditional currency chart"
       },
       {
         path: "/userdashboard/cryptocurrency-market",
@@ -101,9 +101,9 @@ const routes = [
     icon: <MdSend />,
   },
   {
-    path:"/userdashboard/help-friend",
-    name:"Help Friends",
-    icon: <FaHandHoldingUsd/>
+    path: "/userdashboard/help-friend",
+    name: "Help Friends",
+    icon: <FaHandHoldingUsd />
   },
   {
     path: "/userdashboard",
@@ -199,7 +199,7 @@ const routes = [
   {
     path: "/userdashboard/my-team",
     name: "Referral Payout",
-    icon: <FaShare/>,
+    icon: <FaShare />,
   },
 
   {
@@ -276,7 +276,7 @@ function UserSidebar(props) {
     };
 
     axios
-      .post(`${apiurl}`+"/user/users/fetch-user-notification", data, config)
+      .post(`${apiurl}` + "/user/users/fetch-user-notification", data, config)
       .then((result) => {
         console.log(result.data.allNotitfication);
         setAllNotification(result.data.allNotitfication);
@@ -304,17 +304,23 @@ function UserSidebar(props) {
       },
     };
 
-    
+
     axios
-      .post(`${apiurl}`+"/user/fetch-user-details-userside", data, config)
+      .post(`${apiurl}` + "/user/fetch-user-details-userside", data, config)
       .then((res) => {
         console.log(res, "res")
         setSubscriptionDiv(res.data.result.paymentCount);
-        const formattedDate = new Date(res.data.result.doj);
-        const addYear = formattedDate.setFullYear(
-          formattedDate.getFullYear() + 1
-        );
-        const finalYear = new Date(addYear).toLocaleDateString();
+
+        console.log(res.data.result.doj)
+
+
+        const originalDate = new Date(res.data.result.doj);
+        // Add 30 days
+        const newDate = new Date(originalDate);
+        newDate.setDate(originalDate.getDate() + 30);
+        const formattedNewDate = newDate.toLocaleDateString('en-GB');
+
+
         const dateOfJoining = new Date(res.data.result.doj);
         const formattedDateOfJoining = new Date(
           dateOfJoining
@@ -323,7 +329,7 @@ function UserSidebar(props) {
         setPaymentCountSubscripton({
           userid: res.data.result.userid,
           payment: res.data.result.paymentStatus,
-          expiry: finalYear,
+          expiry: formattedNewDate,
           doj: formattedDateOfJoining,
           plan: res.data.result.paymentCount,
         });
@@ -346,7 +352,7 @@ function UserSidebar(props) {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/users/fetch-user-notification-status",data,config
+      .post(`${apiurl}` + "/user/users/fetch-user-notification-status", data, config
       )
       .then((res) => {
         setNotification(res.data.isNotification);
@@ -370,7 +376,7 @@ function UserSidebar(props) {
     };
 
     axios
-      .post(`${apiurl}`+"/user/users/set-notification-to-false-user",data,config
+      .post(`${apiurl}` + "/user/users/set-notification-to-false-user", data, config
       )
       .then((res) => {
         callApiToFetchNotificationStatus();
@@ -404,7 +410,7 @@ function UserSidebar(props) {
       payment_capture: 1,
     };
     axios
-      .post(`${apiurl}`+"/user/users/user-create-payment", data)
+      .post(`${apiurl}` + "/user/users/user-create-payment", data)
       .then((res) => {
         console.log(res.data, "29");
         handleOpenRazorpay(res.data.data);
@@ -426,7 +432,7 @@ function UserSidebar(props) {
       handler: function (response) {
         console.log(response, "26");
         axios
-          .post(`${apiurl}`+"/user/users/verify-payment", {
+          .post(`${apiurl}` + "/user/users/verify-payment", {
             response: response,
           })
           .then((res) => {
@@ -456,7 +462,7 @@ function UserSidebar(props) {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/users/change-payment-status-for-renewal", data,config)
+      .post(`${apiurl}` + "/user/users/change-payment-status-for-renewal", data, config)
       .then((res) => {
         message.success(res.data.message);
         navigate("/userdashboard/dashboard");
@@ -579,7 +585,7 @@ function UserSidebar(props) {
                     fontSize: "16px",
                   }}
                 >
-                  {paymentCountSubscription.doj}(mm/dd/yy)
+                  {paymentCountSubscription.doj}
                 </Col>
               </Row>
               <Row style={{ marginBottom: "5px" }}>
@@ -602,7 +608,7 @@ function UserSidebar(props) {
                     fontSize: "16px",
                   }}
                 >
-                  {paymentCountSubscription.expiry}(mm/dd/yy)
+                  {paymentCountSubscription.expiry}
                 </Col>
               </Row>
 
@@ -699,50 +705,50 @@ function UserSidebar(props) {
           className="userSidebar"
         >
           <div className="dashboard-title">
-          <div className="top_section">
-            {isOpen && (
-              <h1 className="logo" style={{ color: "#5e72e4" }}>
-                {userName}
-              </h1>
-            )}
+            <div className="top_section">
+              {isOpen && (
+                <h1 className="logo" style={{ color: "#5e72e4" }}>
+                  {userName}
+                </h1>
+              )}
 
-            {isOpen && (
-              <div className="setting">
-                <AiOutlineSetting onClick={openModal} />
-                {showModal ? <UserModal setShowModal={setShowModal} /> : null}
-              </div>
-            )}
-            {/* <div className='notification'>
+              {isOpen && (
+                <div className="setting">
+                  <AiOutlineSetting onClick={openModal} />
+                  {showModal ? <UserModal setShowModal={setShowModal} /> : null}
+                </div>
+              )}
+              {/* <div className='notification'>
                             {isOpen && <BsBellFill onClick={clickOnBell} style={{ cursor: 'pointer' }} />}
                         </div> */}
-            <div className="notification">
-              <Badge count={notification}>
-                {isOpen && (
-                  <BsBellFill
-                    onClick={clickOnBell}
-                    style={{ cursor: "pointer" }}
-                  />
-                )}
-              </Badge>
+              <div className="notification">
+                <Badge count={notification}>
+                  {isOpen && (
+                    <BsBellFill
+                      onClick={clickOnBell}
+                      style={{ cursor: "pointer" }}
+                    />
+                  )}
+                </Badge>
+              </div>
+              <div className="bars">
+                <FaBars onClick={toggle} />
+              </div>
             </div>
-            <div className="bars">
-              <FaBars onClick={toggle} />
-            </div>
-          </div>
-          {isOpen ? (
-            <div className="deposit-btn">
-              <NavLink
-                to="/userdashboard/new-deposit"
-                className="deposit_button btn btn-primary"
-              >
-                START WITH A DEPOSIT
+            {isOpen ? (
+              <div className="deposit-btn">
+                <NavLink
+                  to="/userdashboard/new-deposit"
+                  className="deposit_button btn btn-primary"
+                >
+                  START WITH A DEPOSIT
+                </NavLink>
+              </div>
+            ) : (
+              <NavLink to="/userdashboard/new-deposit" className="deposit_logo">
+                <AiFillBank />
               </NavLink>
-            </div>
-          ) : (
-            <NavLink to="/userdashboard/new-deposit" className="deposit_logo">
-              <AiFillBank />
-            </NavLink>
-          )}
+            )}
           </div>
 
           <section className="routes">
@@ -770,7 +776,7 @@ function UserSidebar(props) {
               );
             })}
           </section>
-             
+
           <div
             className="d-flex"
             onClick={showSubscriptionModal}

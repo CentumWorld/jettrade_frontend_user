@@ -90,13 +90,13 @@ const DisplayCard = () => {
   const [totalTradingWallet, setTotalTradingWallet] = useState(0);
   const [isUserWithdrawalFromTradingWalletVisible, setIsUserWithdrawalFromTradingWalletVisible] = useState();
   const [progressiveBarData, setProgressiveBarData] = useState({
-    totalCount:0,
-    runningStage:0,
-    trialStage:0,
-    expiredStage:0,
-    runningPercentage:0,
-    trialPercentage:0,
-    expiredPercentage:0
+    totalCount: 0,
+    runningStage: 0,
+    trialStage: 0,
+    expiredStage: 0,
+    runningPercentage: 0,
+    trialPercentage: 0,
+    expiredPercentage: 0
   });
 
   useEffect(() => {
@@ -195,7 +195,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/fetch-user-details-userside", data, config)
+      .post(`${apiurl}` + "/user/fetch-user-details-userside", data, config)
       .then((res) => {
         console.log(res.data);
 
@@ -207,16 +207,32 @@ const DisplayCard = () => {
           style: "currency",
           currency: "INR",
         });
-        const formattedDate = new Date(res.data.result.doj);
-        const addYear = formattedDate.setFullYear(
-          formattedDate.getFullYear() + 1
-        );
-        const finalYear = new Date(addYear).toLocaleDateString();
+        console.log(res.data.result.doj)
+
+        const originalDate = new Date(res.data.result.doj);
+        // Add 30 days
+        const newDate = new Date(originalDate);
+        newDate.setDate(originalDate.getDate() + 30);
+        const formattedNewDate = newDate.toISOString().split('T')[0];
+        console.log(formattedNewDate);
+
+        // expiry check
+        const currentDate = new Date();
+        // console.log(currentDate)
+        // currentDate.setDate(currentDate.getDate() + 30);
+        const differenceInMilliseconds = currentDate - originalDate;
+        const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
+        console.log(differenceInDays)
+        if(differenceInDays >= 30){
+          monthExpiry()
+        }
+
+
         const dateOfJoining = new Date(res.data.result.doj);
         const formattedDateOfJoining = new Date(
           dateOfJoining
         ).toLocaleDateString();
-          console.log(res.data.result.trialDate)
+        console.log(res.data.result.trialDate)
         const trialFormateDate = new Date(
           res.data.result.trialDate
         ).toLocaleDateString();
@@ -227,7 +243,7 @@ const DisplayCard = () => {
         setSubscriptionStatus({
           userid: res.data.result.userid,
           payment: res.data.result.paymentStatus,
-          expiry: finalYear,
+          expiry: formattedNewDate,
           doj: formattedDateOfJoining,
           plan: res.data.result.paymentCount,
           formattedAmount: formattedAmount1,
@@ -238,6 +254,27 @@ const DisplayCard = () => {
         console.log(error);
       });
   };
+
+  // monthExpiry()
+  const  monthExpiry = ()=>{
+    const userid = localStorage.getItem("userid");
+    const token = localStorage.getItem("token");
+    const data = {
+      userid: userid,
+    };
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    axios.post(`${apiurl}` + "/user/change-payment-status",data, config)
+    .then((res)=>{
+      message.danger(res.data.message)
+    })
+    .catch((err)=>{
+      console.log(err.response.data.message)
+    })
+  }
 
   // fetchTotalWithdrawal
   const fetchTotalWithdrawal = () => {
@@ -252,7 +289,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/users/user-total-withdrawal", data, config)
+      .post(`${apiurl}` + "/user/users/user-total-withdrawal", data, config)
       .then((res) => {
         //console.log(res.data.walletAmount)
         if (res.data.data === 0) {
@@ -288,7 +325,7 @@ const DisplayCard = () => {
         Authorization: `Bearer ${token}`,
       },
     };
-    axios.post( `${apiurl}`+"/user/users/user-total-withdrawal-from-trading-wallet", data, config)
+    axios.post(`${apiurl}` + "/user/users/user-total-withdrawal-from-trading-wallet", data, config)
       .then((res) => {
         console.log(res.data.sumOfAmountWithdrawn);
         if (res.data.sumOfAmountWithdrawn === undefined) {
@@ -323,7 +360,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post( `${apiurl}`+"/user/users/user-my-team", data, config)
+      .post(`${apiurl}` + "/user/users/user-my-team", data, config)
       .then((res) => {
         console.log(res.data.teamMembers);
         //setRefferalTeam(res.data.teamMembers);
@@ -353,7 +390,7 @@ const DisplayCard = () => {
       handler: function (response) {
         console.log(response, "26");
         axios
-          .post(`${apiurl}`+"/user/users/verify-payment", {
+          .post(`${apiurl}` + "/user/users/verify-payment", {
             response: response,
           })
           .then((res) => {
@@ -383,7 +420,7 @@ const DisplayCard = () => {
         payment_capture: 1,
       };
       axios
-        .post( `${apiurl}`+"/user/users/user-create-payment", data)
+        .post(`${apiurl}` + "/user/users/user-create-payment", data)
         .then((res) => {
           console.log(res.data, "29");
           handleOpenRazorpay(res.data.data);
@@ -399,7 +436,7 @@ const DisplayCard = () => {
     const token = localStorage.getItem("token");
     const data = {
       userid: localStorage.getItem("userid"),
-      amountAdded:Number(amount),
+      amountAdded: Number(amount),
     };
     const config = {
       headers: {
@@ -407,7 +444,7 @@ const DisplayCard = () => {
       },
     };
     axios
-      .post(`${apiurl}`+"/user/users/adding-amount-to-trading-wallet",
+      .post(`${apiurl}` + "/user/users/adding-amount-to-trading-wallet",
         data,
         config
       )
@@ -435,12 +472,7 @@ const DisplayCard = () => {
         const diffInDays = Math.floor(diffInMilliseconds / oneDayInMilliseconds);
         return diffInDays;
       }
-      // const dateParts = dateString.split("/");
 
-      // const formattedDate = `${dateParts[2]}-${dateParts[0].padStart(
-      //   2,
-      //   "0"
-      // )}-${dateParts[1].padStart(2, "0")}`;
       const dbDate1 = new Date(dateString);
       const formattedDateString = dbDate1.toLocaleString("en-US", {
         weekday: "short",
@@ -498,7 +530,7 @@ const DisplayCard = () => {
           },
         };
         axios
-          .post(`${apiurl}`+"/user/users/update-day-count", data, config)
+          .post(`${apiurl}` + "/user/users/update-day-count", data, config)
           .then((res) => {
             console.log(res.data.message);
           })
@@ -517,7 +549,7 @@ const DisplayCard = () => {
           },
         };
         axios
-          .post(`${apiurl}`+"/user/users/update-expire", data, config)
+          .post(`${apiurl}` + "/user/users/update-expire", data, config)
           .then((res) => {
             console.log(res.data.message);
             navigate("/logout");
@@ -541,7 +573,7 @@ const DisplayCard = () => {
       handler: function (response) {
         console.log(response, "26");
         axios
-          .post( `${apiurl}`+"/user/users/verify-payment",
+          .post(`${apiurl}` + "/user/users/verify-payment",
             { response: response },
             {
               headers: {
@@ -571,7 +603,7 @@ const DisplayCard = () => {
       payment_capture: 1,
     };
     axios
-      .post(`${apiurl}`+"/user/users/user-create-payment", data, {
+      .post(`${apiurl}` + "/user/users/user-create-payment", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -589,7 +621,7 @@ const DisplayCard = () => {
       userid: localStorage.getItem("userid"),
     };
     axios
-      .post(`${apiurl}`+"/user/users/change-user-payment-status", data, {
+      .post(`${apiurl}` + "/user/users/change-user-payment-status", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -612,7 +644,7 @@ const DisplayCard = () => {
         Authorization: `Bearer ${token}`,
       },
     };
-    axios.post(`${apiurl}`+"/user/fetch-user-details-userside", data, config)
+    axios.post(`${apiurl}` + "/user/fetch-user-details-userside", data, config)
       .then((res) => {
         const totalWallet = res.data.result.wallet + res.data.result.tradingWallet;
         const formattedTradingWallet =
@@ -627,29 +659,29 @@ const DisplayCard = () => {
       })
   }
 
-  const callApiProgressiveBar = () =>{
+  const callApiProgressiveBar = () => {
     let token = localStorage.getItem('token');
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
-    axios.get(`${apiurl}`+"/user/total_Count_Of_Payment_Status_Of_User_user",config)
-    .then((res)=>{
-      console.log(res.data)
-      setProgressiveBarData({
-        totalCount:res.data.totalCount,
-        runningCount:res.data.runningCount,
-        trialStage:res.data.inactiveCount,
-        expiredStage:res.data.expiredCount,
-        runningPercentage:res.data.runningPercentage,
-        trialPercentage:res.data.inactivePercentage,
-        expiredPercentage:res.data.expiredPercentage
+    axios.get(`${apiurl}` + "/user/total_Count_Of_Payment_Status_Of_User_user", config)
+      .then((res) => {
+        console.log(res.data)
+        setProgressiveBarData({
+          totalCount: res.data.totalCount,
+          runningCount: res.data.runningCount,
+          trialStage: res.data.inactiveCount,
+          expiredStage: res.data.expiredCount,
+          runningPercentage: res.data.runningPercentage,
+          trialPercentage: res.data.inactivePercentage,
+          expiredPercentage: res.data.expiredPercentage
+        })
       })
-    })
-    .catch((err=>{
-      console.log(err.response)
-    }))
+      .catch((err => {
+        console.log(err.response)
+      }))
   }
 
   return (
@@ -682,13 +714,13 @@ const DisplayCard = () => {
       )}
       <div className="card1-container">
         <div className="card1">
-          <RunningProgressiveBar percent={progressiveBarData}/>
+          <RunningProgressiveBar percent={progressiveBarData} />
         </div>
         <div className="card1">
-          <TrialProgressiveBar percent={progressiveBarData}/>
+          <TrialProgressiveBar percent={progressiveBarData} />
         </div>
         <div className="card1">
-            <ExpiredProgressiveBar percent={progressiveBarData} />
+          <ExpiredProgressiveBar percent={progressiveBarData} />
         </div>
         <div className="card1">
           <div className="d-flex">

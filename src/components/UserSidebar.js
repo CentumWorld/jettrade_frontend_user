@@ -29,6 +29,7 @@ import { NavLink } from "react-router-dom";
 import UserSidebarMenu from "./usersidebar/UserSidebarMenu";
 import { UserModal } from "../UserModel/UserModal";
 import { Modal, Row, Col, Button, message, Switch, Badge } from "antd";
+import { FcNeutralTrading } from 'react-icons/fc';
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
@@ -46,6 +47,13 @@ const routes = [
     path: "/userdashboard/dashboard",
     name: "Dashboard",
     icon: <MdDashboard />,
+  },
+  {
+    path: "https://centumo.centumworld.com/#/exchange/quick",
+    name: "CENTUMO Swap",
+    icon: <FcNeutralTrading />,
+    externalLink: true,
+    target: "_blank",
   },
   {
     path: "/userdashboard",

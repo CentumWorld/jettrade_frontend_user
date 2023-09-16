@@ -785,6 +785,23 @@ const DisplayCard = () => {
             </span>
           </div>
         </div>
+
+        <div className="card1">
+          <div className="live-chat">
+            <h6>CENTUMO Swap</h6>
+          </div>
+          <div className="live-chat-join">
+          <a
+                href="https://centumo.centumworld.com/#/exchange/quick"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "yellow", cursor: "pointer" }}
+              >
+                Click me
+              </a>
+          </div>
+        </div>
+
         <div className="card1">
           <div className="live-chat">
             <h6>Invite friends</h6>

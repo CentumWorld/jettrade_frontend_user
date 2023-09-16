@@ -223,7 +223,7 @@ const DisplayCard = () => {
         const differenceInMilliseconds = currentDate - originalDate;
         const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
         console.log(differenceInDays)
-        if(differenceInDays >= 30){
+        if (differenceInDays >= 30) {
           monthExpiry()
         }
 
@@ -256,7 +256,7 @@ const DisplayCard = () => {
   };
 
   // monthExpiry()
-  const  monthExpiry = ()=>{
+  const monthExpiry = () => {
     const userid = localStorage.getItem("userid");
     const token = localStorage.getItem("token");
     const data = {
@@ -267,13 +267,13 @@ const DisplayCard = () => {
         Authorization: `Bearer ${token}`,
       },
     };
-    axios.post(`${apiurl}` + "/user/change-payment-status",data, config)
-    .then((res)=>{
-      message.danger(res.data.message)
-    })
-    .catch((err)=>{
-      console.log(err.response.data.message)
-    })
+    axios.post(`${apiurl}` + "/user/change-payment-status", data, config)
+      .then((res) => {
+        message.danger(res.data.message)
+      })
+      .catch((err) => {
+        console.log(err.response.data.message)
+      })
   }
 
   // fetchTotalWithdrawal
@@ -712,16 +712,9 @@ const DisplayCard = () => {
       ) : (
         ""
       )}
+
       <div className="card1-container">
-        <div className="card1">
-          <RunningProgressiveBar percent={progressiveBarData} />
-        </div>
-        <div className="card1">
-          <TrialProgressiveBar percent={progressiveBarData} />
-        </div>
-        <div className="card1">
-          <ExpiredProgressiveBar percent={progressiveBarData} />
-        </div>
+
         <div className="card1">
           <div className="d-flex">
             <h6>User ID </h6>&nbsp; : &nbsp;
@@ -737,20 +730,6 @@ const DisplayCard = () => {
             </span>
           </div>
         </div>
-
-        {/* <div className="card1">
-          <div className="live-chat">
-            <h6>Live Chat</h6>
-          </div>
-          <div className="live-chat-join">
-            <span
-              onClick={joinChat}
-              style={{ cursor: "pointer", color: "yellow" }}
-            >
-              Join
-            </span>
-          </div>
-        </div> */}
 
         <div className="card1">
           <div className="subscription-card">
@@ -791,16 +770,43 @@ const DisplayCard = () => {
             <h6>CENTUMO Swap</h6>
           </div>
           <div className="live-chat-join">
-          <a
-                href="https://centumo.centumworld.com/#/exchange/quick"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "yellow", cursor: "pointer" }}
-              >
-                Click me
-              </a>
+            <a
+              href="https://centumo.centumworld.com/#/exchange/quick"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "yellow", cursor: "pointer" }}
+            >
+              Click me
+            </a>
           </div>
         </div>
+
+        <div className="card1">
+          <RunningProgressiveBar percent={progressiveBarData} />
+        </div>
+        <div className="card1">
+          <TrialProgressiveBar percent={progressiveBarData} />
+        </div>
+        <div className="card1">
+          <ExpiredProgressiveBar percent={progressiveBarData} />
+        </div>
+
+
+
+        {/* <div className="card1">
+          <div className="live-chat">
+            <h6>Live Chat</h6>
+          </div>
+          <div className="live-chat-join">
+            <span
+              onClick={joinChat}
+              style={{ cursor: "pointer", color: "yellow" }}
+            >
+              Join
+            </span>
+          </div>
+        </div> */}
+
 
         <div className="card1">
           <div className="live-chat">

@@ -772,6 +772,8 @@ function UserSidebar(props) {
                     className={
                       isOpen ? "user_sidebar_link" : "user_sidebar_link_small"
                     }
+                    target="_blank" // This will open "CENTUMO Swap" in a new tab
+                    rel="noopener noreferrer" // Recommended for security
                   >
                     <div className="icon">{route.icon}</div>
                     {isOpen && (

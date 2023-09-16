@@ -21,7 +21,7 @@ import {
   AiFillBank,
   AiOutlineAreaChart,
 } from "react-icons/ai";
-import { BsFillChatTextFill } from "react-icons/bs";
+import { FcBarChart } from "react-icons/fc";
 import { FiVideo } from "react-icons/fi";
 import { FaHandHoldingUsd } from "react-icons/fa";
 import { GrTransaction } from 'react-icons/gr'
@@ -58,7 +58,7 @@ const routes = [
   {
     path: "/userdashboard",
     name: "Chart and Data",
-    icon: <AiOutlineAreaChart />,
+    icon: <FcBarChart />,
     subRoutes: [
       {
         path: "/userdashboard/trading-chart",

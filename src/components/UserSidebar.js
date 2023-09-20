@@ -764,6 +764,25 @@ function UserSidebar(props) {
               if (route.subRoutes) {
                 return <UserSidebarMenu isOpen={isOpen} route={route} />;
               }
+              if (route.externalLink) {
+                // For the "CENTUMO Swap" link, open in a new tab
+                return (
+                  <a
+                    href={route.path}
+                    key={route.name}
+                    className={
+                      isOpen ? "user_sidebar_link" : "user_sidebar_link_small"
+                    }
+                    target="_blank" // This will open "CENTUMO Swap" in a new tab
+                    rel="noopener noreferrer" // Recommended for security
+                  >
+                    <div className="admin-icon">{route.icon}</div>
+                    <motion.div className="admin_link_text">
+                      {route.name}
+                    </motion.div>
+                  </a>
+                );
+              }
               return (
                 <>
                   <NavLink
@@ -772,8 +791,6 @@ function UserSidebar(props) {
                     className={
                       isOpen ? "user_sidebar_link" : "user_sidebar_link_small"
                     }
-                    target="_blank" // This will open "CENTUMO Swap" in a new tab
-                    rel="noopener noreferrer" // Recommended for security
                   >
                     <div className="icon">{route.icon}</div>
                     {isOpen && (

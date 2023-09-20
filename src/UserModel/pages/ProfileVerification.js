@@ -165,7 +165,7 @@ function ProfileVerification() {
         const token = localStorage.getItem('token');
         const formData = new FormData();
         setLoading(true);
-        formData.append('userid', localStorage.getItem('userid'));
+        formData.append('userid', localStorage.getItem('user'));
         formData.append('aadhar_front_side', aadharImage.file);
         formData.append('aadhar_back_side', aadharBackImage.file);
         formData.append('pan_card', panImage.file);
@@ -183,7 +183,8 @@ function ProfileVerification() {
 
             })
             .catch(error => {
-                console.error('Error uploading file:', error);
+                setLoading(false)
+                message.warning(error.response.data.message);
                 // Handle any errors
             });
     }

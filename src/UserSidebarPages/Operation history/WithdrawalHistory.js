@@ -15,7 +15,7 @@ const WithdrawalHistory = () => {
             <p>Withdrawal History</p>
           </div>
           <div className='withdrawal_history_para'>
-            <p>Here you can view all your withdrawal requests and their details.</p>
+            <p style={{color: "#000"}}>Here you can view all your withdrawal requests and their details.</p>
           </div>
           <div className='withdrawal_select_status'>
             <select class="form-select">

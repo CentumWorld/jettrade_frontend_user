@@ -22,7 +22,7 @@ const Monitoring = () => {
                     </div>
                     <hr />
                     <div className='monitoring_available_account_field_data'>
-                        <span>No record found</span>
+                        <span style={{color: "#000"}}>No record found</span>
                     </div>
 
                     <div className='monitoring_monitored_account'>
@@ -35,7 +35,7 @@ const Monitoring = () => {
                     </div>
                     <hr />
                     <div className='monitorined_account_data'>
-                        <span>No record</span>
+                        <span style={{color: "#000"}}>No record</span>
                     </div>
                 </div>
             </div>

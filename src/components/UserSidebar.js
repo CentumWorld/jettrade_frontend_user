@@ -13,36 +13,33 @@ import {
   FaUserPlus,
   FaShare,
 } from "react-icons/fa";
-import { BsBellFill } from "react-icons/bs";
+import { BsBellFill, BsMinecart } from "react-icons/bs";
 import { RxCountdownTimer } from "react-icons/rx";
 import { TfiMenuAlt, TfiGift } from "react-icons/tfi";
 import {
   AiOutlineSetting,
   AiFillBank,
   AiOutlineAreaChart,
+  AiOutlineSwap,
 } from "react-icons/ai";
 import { FcBarChart } from "react-icons/fc";
 import { FiVideo } from "react-icons/fi";
 import { FaHandHoldingUsd } from "react-icons/fa";
-import { GrTransaction } from 'react-icons/gr'
+import { GrTransaction } from "react-icons/gr";
 import { NavLink } from "react-router-dom";
 import UserSidebarMenu from "./usersidebar/UserSidebarMenu";
 import { UserModal } from "../UserModel/UserModal";
 import { Modal, Row, Col, Button, message, Switch, Badge } from "antd";
-import { FcNeutralTrading } from 'react-icons/fc';
-import { FcUpRight } from 'react-icons/fc';
+import { FcNeutralTrading } from "react-icons/fc";
+import { FcUpRight } from "react-icons/fc";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import baseUrl from "../baseUrl";
+import { BiLogOutCircle } from "react-icons/bi";
 
 const apiurl = baseUrl.apiUrl;
 
 const routes = [
-  // {
-  //     path:'/userdashboard/signals',
-  //     name:"Signal",
-  //     icon:<AiOutlineAreaChart/>,
-  // },
   {
     path: "/userdashboard/dashboard",
     name: "Dashboard",
@@ -51,14 +48,14 @@ const routes = [
   {
     path: "https://centumo.centumworld.com/#/exchange/quick",
     name: "CENTUMO Swap",
-    icon: <FcNeutralTrading />,
+    icon: <AiOutlineSwap />,
     externalLink: true,
     target: "_blank",
   },
   {
     path: "https://centumworldrig.com/",
     name: "CENTUMO RIG",
-    icon: <FcUpRight />,
+    icon: <BsMinecart />,
     externalLink: true,
     target: "_blank",
   },
@@ -73,7 +70,7 @@ const routes = [
       },
       {
         path: "/userdashboard/traditional-currency-chart",
-        name: "Traditional currency chart"
+        name: "Traditional currency chart",
       },
       {
         path: "/userdashboard/cryptocurrency-market",
@@ -91,10 +88,6 @@ const routes = [
         path: "/userdashboard/cross-rates",
         name: "Cross Rates",
       },
-      // {
-      //     path: "/userdashboard/helper-charts",
-      //     name: 'Helper Charts',
-      // },
       {
         path: "/userdashboard/market-data",
         name: "Market Data",
@@ -118,7 +111,7 @@ const routes = [
   {
     path: "/userdashboard/help-friend",
     name: "Help Friends",
-    icon: <FaHandHoldingUsd />
+    icon: <FaHandHoldingUsd />,
   },
   {
     path: "/userdashboard",
@@ -166,46 +159,11 @@ const routes = [
       },
     ],
   },
-  // {
-  //     path: '/userdashboard/contest',
-  //     name: "Contests",
-  //     icon: <IoTrophy />,
-  //     subRoutes: [
-  //         {
-  //             path: "/contests/champion-demo",
-  //             name: 'Champion Demo Contest',
-  //         },
-  //         {
-  //             path: "/contests/opne-champion-demo/account",
-  //             name: ' Opne Champion Demo Contest account',
-  //         },
-  //     ],
-  // },
-  // {
-  //     path: '/userdashboard/statuses',
-  //     name: "User Statuses",
-  //     icon: <BiStar />,
-  // },
   {
     path: "/userdashboard/invite",
     name: "Invite a friend",
     icon: <FaUserPlus />,
   },
-  // {
-  //   path: "/userdashboard/chat",
-  //   name: "Live Chat",
-  //   icon: <BsFillChatTextFill />,
-  // },
-  // {
-  //     path: '/copytrading',
-  //     name: "Copytrading",
-  //     icon: <FaBullseye />,
-  // },
-  // {
-  //     path: '/promocode',
-  //     name: "Promocode",
-  //     icon: <TfiGift />,
-  // },
   {
     path: "/userdashboard/wallet-withdrawal",
     name: "Transaction",
@@ -221,6 +179,11 @@ const routes = [
     path: "/userdashboard/video",
     name: "Video",
     icon: <FiVideo />,
+  },
+  {
+    path: "/logout",
+    name: "Logout",
+    icon: <BiLogOutCircle />,
   },
 ];
 
@@ -280,7 +243,7 @@ function UserSidebar(props) {
   // callApiToFetchAllNotification
   const callApiToFetchAllNotification = () => {
     const token = localStorage.getItem("token");
-    console.log(token, ";;;;;;;")
+    console.log(token, ";;;;;;;");
 
     const userid = localStorage.getItem("userid");
     const data = { userid };
@@ -309,7 +272,7 @@ function UserSidebar(props) {
     const userid = localStorage.getItem("user");
     const token = localStorage.getItem("token");
 
-    console.log(token, "297")
+    console.log(token, "297");
     const data = {
       _id: userid,
     };
@@ -319,22 +282,19 @@ function UserSidebar(props) {
       },
     };
 
-
     axios
       .post(`${apiurl}` + "/user/fetch-user-details-userside", data, config)
       .then((res) => {
-        console.log(res, "res")
+        console.log(res, "res");
         setSubscriptionDiv(res.data.result.paymentCount);
 
-        console.log(res.data.result.doj)
-
+        console.log(res.data.result.doj);
 
         const originalDate = new Date(res.data.result.doj);
         // Add 30 days
         const newDate = new Date(originalDate);
         newDate.setDate(originalDate.getDate() + 30);
-        const formattedNewDate = newDate.toLocaleDateString('en-GB');
-
+        const formattedNewDate = newDate.toLocaleDateString("en-GB");
 
         const dateOfJoining = new Date(res.data.result.doj);
         const formattedDateOfJoining = new Date(
@@ -367,7 +327,10 @@ function UserSidebar(props) {
       },
     };
     axios
-      .post(`${apiurl}` + "/user/users/fetch-user-notification-status", data, config
+      .post(
+        `${apiurl}` + "/user/users/fetch-user-notification-status",
+        data,
+        config
       )
       .then((res) => {
         setNotification(res.data.isNotification);
@@ -391,7 +354,10 @@ function UserSidebar(props) {
     };
 
     axios
-      .post(`${apiurl}` + "/user/users/set-notification-to-false-user", data, config
+      .post(
+        `${apiurl}` + "/user/users/set-notification-to-false-user",
+        data,
+        config
       )
       .then((res) => {
         callApiToFetchNotificationStatus();
@@ -467,7 +433,7 @@ function UserSidebar(props) {
 
   // user payment success status
   const userPaymetSuccessStatus = () => {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
     const data = {
       userid: localStorage.getItem("userid"),
     };
@@ -477,7 +443,11 @@ function UserSidebar(props) {
       },
     };
     axios
-      .post(`${apiurl}` + "/user/users/change-payment-status-for-renewal", data, config)
+      .post(
+        `${apiurl}` + "/user/users/change-payment-status-for-renewal",
+        data,
+        config
+      )
       .then((res) => {
         message.success(res.data.message);
         navigate("/userdashboard/dashboard");
@@ -496,6 +466,29 @@ function UserSidebar(props) {
     minute: "numeric",
     second: "numeric",
   };
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  let width;
+
+  if (isOpen && windowWidth < 768) {
+    width = "100vw";
+  } else if ((!isOpen && windowWidth > 768) || (!isOpen && windowWidth < 768)) {
+    width = "50px";
+  } else {
+    width = "350px";
+  }
 
   return (
     <>
@@ -715,10 +708,7 @@ function UserSidebar(props) {
       </div>
 
       <div className="main-container">
-        <motion.div
-          animate={{ width: isOpen ? "300px" : "50px" }}
-          className="userSidebar"
-        >
+        <motion.div animate={{ width: width }} className="userSidebar">
           <div className="dashboard-title">
             <div className="top_section">
               {isOpen && (
@@ -769,12 +759,19 @@ function UserSidebar(props) {
           <section className="routes">
             {routes.map((route) => {
               if (route.subRoutes) {
-                return <UserSidebarMenu isOpen={isOpen} route={route} />;
+                return (
+                  <UserSidebarMenu
+                    isOpen={isOpen}
+                    route={route}
+                    toggleSidebar={toggle}
+                  />
+                );
               }
               if (route.externalLink) {
                 // For the "CENTUMO Swap" link, open in a new tab
                 return (
                   <a
+                    onClick={toggle}
                     href={route.path}
                     key={route.name}
                     className={
@@ -793,6 +790,7 @@ function UserSidebar(props) {
               return (
                 <>
                   <NavLink
+                    onClick={toggle}
                     to={route.path}
                     key={route.name}
                     className={

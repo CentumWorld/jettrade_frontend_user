@@ -48,7 +48,7 @@ const ManageBonuses = () => {
                                         </div>
                                         <hr />
                                         <div className='deposite_bonuses_tab_data'>
-                                            <span>No record found</span>
+                                            <span style={{color: "#000"}}>No record found</span>
                                         </div>
                                     </div>
                                 </TabPanel>
@@ -72,7 +72,7 @@ const ManageBonuses = () => {
                                             <hr />
                                         </div>
                                         <div className='active_canceled_bonuses_data'>
-                                            <span>No record found</span>
+                                            <span style={{color: "#000"}}>No record found</span>
                                         </div>
                                     </div>
                                 </TabPanel>

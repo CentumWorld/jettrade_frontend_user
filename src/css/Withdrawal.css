@@ -3,6 +3,7 @@
     margin: 0;
     box-sizing: border-box;
 }
+
 .withdraw_container{
     display: flex;
     justify-content: center;
@@ -25,6 +26,7 @@
     font-size: 20px;
     font-weight: 600;
     padding: 20px 20px;
+    color: black;
 }
 .withdraw_account_type {
     display: grid;
@@ -43,6 +45,7 @@
     gap: 10;
     justify-content: center;
     cursor: pointer;
+    color: black;
 }
 
 /* media query */

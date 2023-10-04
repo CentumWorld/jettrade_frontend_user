@@ -29,6 +29,7 @@
 .user_internal_transfer_heading p {
     font-weight: bold;
     font-size: 20px;
+    color: black;
 }
 .user_internal_transfer_para p{
     font-size: 14px;
@@ -106,6 +107,7 @@
     }
     .user_internal_transfer_heading p {
         font-size: 18px;
+        color: black;
     }
     .user_internal_transfer_para p{
         font-size: 12px;
@@ -117,7 +119,7 @@
         width: 100%;
     }
     .user_internal_transfer_card{
-        padding: 0;
+        padding: 30px;
     }
     .user_internal_transfer_amount {
         padding: 5px 5px;

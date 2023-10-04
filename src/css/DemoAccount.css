@@ -26,10 +26,12 @@
 .demo_account_details_heading{
     font-size: 20px;
     font-weight: bold;
+    color: black;
 }
 .demo_account_type_para{
     font-size: 18px;
     font-weight:700;
+    color: black;
 }
 .account_type_btn_real button{
     width: 180px;

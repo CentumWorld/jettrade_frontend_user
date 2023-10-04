@@ -22,9 +22,15 @@
 
 }
 
+
+.accounts_para{
+    color: black;
+}
+
 .accounts_heading p {
     font-weight: bold;
     font-size: 20px;
+    color: black;
 }
 
 .tab_heading {

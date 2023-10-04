@@ -26,6 +26,7 @@
 .withdrawal_heading p{
     font-size: 20px;
     font-weight: bold;
+    color: black;
 }
 /* .select_status{
     height: 55px;
@@ -78,6 +79,7 @@
 .withdrawal_history_record{
     display: flex;
     justify-content: space-between;
+    color: black;
 }
 /* .history_list{
     margin-right:10px ;
@@ -103,6 +105,7 @@
 @media only screen and (max-width: 767px){
     .withdrawal_history_record{
         overflow: scroll;
+        color: black;
     }
     .withdrawal_card{
         overflow: scroll; 

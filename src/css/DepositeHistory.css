@@ -26,9 +26,11 @@
 .deposite_heading p{
     font-size: 20px;
     font-weight: bold;
+    color: black;
 }
 .depo_history_para p{
     font-size: 16px;
+    color: black;
 }
 /* .select_status{
     height: 55px;

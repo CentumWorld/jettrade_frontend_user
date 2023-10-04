@@ -26,10 +26,12 @@
 .bonuses_heading p{
     font-size: 20px;
     font-weight: bold;
+    color: black;
 }
 .bonuses_para p{
     font-size: 16px;
     margin-bottom: 40px;
+    color: black;
 }
 .deposite_bonuses_tab{
     margin-top: 40px;
@@ -70,9 +72,11 @@
     }
     .bonuses_heading p{
         font-size: 18px;
+        color: black;
     }
     .bonuses_para p{
         font-size: 12px;
+        color: black;
     }
     .deposit_bonus_data p{
         font-size: 12px;

@@ -86,7 +86,7 @@ const VideoPlayer = ({
         headers: { Authorization: `Bearer ${token}` },
       };
       axios
-        .post(`${apiurl}`+"/user/users/interact_with_video", data, config)
+        .post(`${apiurl}` + "/user/users/interact_with_video", data, config)
         .then((res) => {
           const updatedLikeCount = res.data.video.dislikes;
           setDisLikeCount(updatedLikeCount);
@@ -105,7 +105,7 @@ const VideoPlayer = ({
         headers: { Authorization: `Bearer ${token}` },
       };
       axios
-        .post(`${apiurl}`+"/user/users/interact_with_video", data, config)
+        .post(`${apiurl}` + "/user/users/interact_with_video", data, config)
         .then((res) => {
           const updatedLikeCount = res.data.video.dislikes;
           setDisLikeCount(updatedLikeCount);
@@ -128,7 +128,7 @@ const VideoPlayer = ({
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .post(`${apiurl}`+"/user/fetch_one_video", data, config)
+      .post(`${apiurl}` + "/user/fetch_one_video", data, config)
       .then((res) => {
         setComments(res.data.video.comments);
       })
@@ -145,7 +145,7 @@ const VideoPlayer = ({
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .post(`${apiurl}`+"/user/users/interact_with_video", data, config)
+      .post(`${apiurl}` + "/user/users/interact_with_video", data, config)
       .then((res) => {
         setViews(res.data.video.views);
       })
@@ -166,7 +166,7 @@ const VideoPlayer = ({
         headers: { Authorization: `Bearer ${token}` },
       };
       axios
-        .post(`${apiurl}`+"/user/users/interact_with_video", data, config)
+        .post(`${apiurl}` + "/user/users/interact_with_video", data, config)
         .then((res) => {
           const updatedLikeCount = res.data.video.likes;
           setLikeCount(updatedLikeCount);
@@ -185,7 +185,7 @@ const VideoPlayer = ({
         headers: { Authorization: `Bearer ${token}` },
       };
       axios
-        .post(`${apiurl}`+"/user/users/interact_with_video", data, config)
+        .post(`${apiurl}` + "/user/users/interact_with_video", data, config)
         .then((res) => {
           console.log(res.data);
           const updatedLikeCount = res.data.video.likes;
@@ -209,7 +209,7 @@ const VideoPlayer = ({
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .post(`${apiurl}`+"/user/fetch-user-one-video-like", data, config)
+      .post(`${apiurl}` + "/user/fetch-user-one-video-like", data, config)
       .then((res) => {
         setLikeBackGroundColor(res.data.like.likeType);
       })
@@ -228,7 +228,7 @@ const VideoPlayer = ({
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .post(`${apiurl}`+"/user/fetch-user-one-video-dislike", data, config)
+      .post(`${apiurl}` + "/user/fetch-user-one-video-dislike", data, config)
       .then((res) => {
         console.log(res.data.dislike.disLikeType);
         setDislikeBackGroundColor(res.data.dislike.disLikeType);
@@ -255,7 +255,11 @@ const VideoPlayer = ({
     };
 
     axios
-      .post(`${apiurl}`+"/user/users/interact_with_video", commentData, config)
+      .post(
+        `${apiurl}` + "/user/users/interact_with_video",
+        commentData,
+        config
+      )
       .then((response) => {
         // const result = response.data.video.comments;
         // const finalResult = result.map((item) => item.text);
@@ -287,7 +291,7 @@ const VideoPlayer = ({
     };
 
     axios
-      .post(`${apiurl}`+"/user/users/interact_with_video", replyData, config)
+      .post(`${apiurl}` + "/user/users/interact_with_video", replyData, config)
       .then((response) => {
         const updatedComments = [...comments];
         updatedComments[parentIndex].replies.push({
@@ -321,7 +325,9 @@ const VideoPlayer = ({
   const handleCancelHandler = (event) => {
     event.preventDefault();
     setNewComment("");
-  }
+  };
+
+  
 
   return (
     <>
@@ -332,8 +338,7 @@ const VideoPlayer = ({
             <h2>{title}</h2>
             <p className="views">
               {views}
-              &nbsp;
-              Views
+              &nbsp; Views
             </p>
           </div>
           <div className="like-section">
@@ -385,7 +390,9 @@ const VideoPlayer = ({
               onChange={handleCommentChange}
             />
             <div className="comment-buttons">
-              <button className="cancel-button" onClick={handleCancelHandler}>Cancel</button>
+              <button className="cancel-button" onClick={handleCancelHandler}>
+                Cancel
+              </button>
               <button className="comment-button" onClick={handleCommentSubmit}>
                 Comment
               </button>
@@ -398,10 +405,15 @@ const VideoPlayer = ({
                   className="comment-text"
                   style={{ color: "black", marginBottom: "0px" }}
                 >
-                  {comment.text}
+                  <strong>{comment.userName}</strong>: {comment.text}
                 </p>
                 {activeReplyIndex === parentIndex ? (
                   <div className="reply-input">
+                    <p className="reply-to">
+                      Replying to: <strong>{comment.userName}</strong>
+                    </p>
+                    {/* <p className="reply-username">You are replying as: <strong>{user.userName}</strong></p> */}
+
                     <input
                       type="text"
                       className="comment-input"
@@ -409,7 +421,7 @@ const VideoPlayer = ({
                       value={replyText}
                       onChange={(event) => setReplyText(event.target.value)}
                     />
-                    <div className="repl-button-container">
+                    <div className="reply-button-container">
                       <button
                         className="comment-button"
                         onClick={(event) => handleReplySubmit(parentIndex)}
@@ -437,7 +449,7 @@ const VideoPlayer = ({
                   <div className="replies-list">
                     {comment.replies.map((reply, replyIndex) => (
                       <div className="reply" key={replyIndex}>
-                        {reply.text}
+                        <strong>{reply.userName}</strong>: {reply.text}
                       </div>
                     ))}
                   </div>

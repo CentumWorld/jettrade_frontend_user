@@ -125,7 +125,7 @@ function App() {
             <Navbar />
 
             <Routes>
-              <Route path='/' element={<Home />} />
+              <Route path='/' element={islogin ? <UserDashboard/>:<Home />} />
               <Route path="/chart" element={<FullForexTicker />} />
               {/* <Route  path='/admindashboard' element={islogin === 'true'?<AdminDashboard/>:<Route path='/' element={<Home/>}/>}/> */}
 

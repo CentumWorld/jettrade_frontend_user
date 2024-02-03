@@ -180,6 +180,7 @@ const routes = [
     name: "Video",
     icon: <FiVideo />,
   },
+
   {
     path: "/logout",
     name: "Logout",
@@ -821,8 +822,8 @@ function UserSidebar(props) {
                 marginTop: "10px",
               }}
             />
-            {isOpen && (
-              <p
+            {isOpen ? (
+              <div
                 style={{
                   marginLeft: "3px",
                   fontWeight: "600",
@@ -832,16 +833,11 @@ function UserSidebar(props) {
                 }}
               >
                 Subscription
-              </p>
+              </div>
+            ) : (
+              ""
             )}
           </div>
-
-          {/* <div className='d-flex' style={{ cursor: 'pointer' }}>
-                        <MdNightsStay style={{ fontSize: '25px', marginLeft: '15px' }} />
-                        {isOpen && <p style={{ marginLeft: '3px', fontWeight: '600', marginRight: '10px' }}>Theme</p>}
-                        {isOpen && <Switch checked={toggleValue} onChange={handleToggleChange} />}
-
-                    </div> */}
         </motion.div>
       </div>
     </>

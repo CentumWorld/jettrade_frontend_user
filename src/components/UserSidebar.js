@@ -386,7 +386,7 @@ function UserSidebar(props) {
 
   const renewelPayment = () => {
     const data = {
-      amount: 1800,
+      amount: 1500,
       order_id: "0d0254888555666",
       currency: "INR",
       payment_capture: 1,
@@ -548,7 +548,7 @@ function UserSidebar(props) {
                   }}
                 >
                   {paymentCountSubscription.plan === 1 ? "INR 3500.00" : ""}
-                  {paymentCountSubscription.plan > 1 ? "INR 1800.00" : ""}
+                  {paymentCountSubscription.plan > 1 ? "INR 1500.00" : ""}
                 </Col>
               </Row>
               <Row style={{ marginBottom: "5px" }}>
@@ -829,6 +829,7 @@ function UserSidebar(props) {
                   fontWeight: "600",
                   marginRight: "10px",
                   marginTop: "10px",
+                  color: "#000"
                 }}
               >
                 Subscription

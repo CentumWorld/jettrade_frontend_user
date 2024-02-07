@@ -159,21 +159,21 @@ const routes = [
       },
     ],
   },
-  {
-    path: "/userdashboard/invite",
-    name: "Invite a friend",
-    icon: <FaUserPlus />,
-  },
+  // {
+  //   path: "/userdashboard/invite",
+  //   name: "Invite a friend",
+  //   icon: <FaUserPlus />,
+  // },
   {
     path: "/userdashboard/wallet-withdrawal",
     name: "Transaction",
     icon: <GrTransaction />,
   },
-  {
-    path: "/userdashboard/my-team",
-    name: "Referral Payout",
-    icon: <FaShare />,
-  },
+  // {
+  //   path: "/userdashboard/my-team",
+  //   name: "Referral Payout",
+  //   icon: <FaShare />,
+  // },
 
   {
     path: "/userdashboard/video",

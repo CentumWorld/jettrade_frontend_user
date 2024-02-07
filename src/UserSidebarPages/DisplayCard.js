@@ -795,21 +795,6 @@ const DisplayCard = () => {
 
         {/* <div className="card1">
           <div className="live-chat">
-            <h6>Live Chat</h6>
-          </div>
-          <div className="live-chat-join">
-            <span
-              onClick={joinChat}
-              style={{ cursor: "pointer", color: "yellow" }}
-            >
-              Join
-            </span>
-          </div>
-        </div> */}
-
-
-        <div className="card1">
-          <div className="live-chat">
             <h6>Invite friends</h6>
           </div>
           <div className="live-chat-join">
@@ -820,8 +805,8 @@ const DisplayCard = () => {
               Share
             </span>
           </div>
-        </div>
-        <div className="card1">
+        </div> */}
+        {/* <div className="card1">
           <div className="my-team">
             <h6>My Team</h6>
           </div>
@@ -833,7 +818,7 @@ const DisplayCard = () => {
               View
             </span>
           </div>
-        </div>
+        </div> */}
         <div className="card1">
           <div className="trading_chart">
             <h6>Trading Chart</h6>
@@ -903,8 +888,9 @@ const DisplayCard = () => {
           </div>
           <div className="d-flex">
             <span style={{ color: "yellow" }}>
-              <FaRupeeSign />
+              <FaRupeeSign /> 0.00
             </span>
+            
           </div>
         </div>
         <div className="card1">
@@ -913,7 +899,7 @@ const DisplayCard = () => {
           </div>
           <div className="d-flex">
             <span style={{ color: "yellow" }}>
-              <FaRupeeSign />
+              <FaRupeeSign />0.00
             </span>
           </div>
         </div>

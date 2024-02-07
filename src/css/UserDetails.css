@@ -49,15 +49,11 @@
     justify-content: space-between;
 }
 
-.user_head_data {
-    display: flex;
-    justify-content: space-between;
-
-}
 
 .user_head_data h6 {
     margin-right: 2px;
     font-family: Calibri;
+    color:black;
 }
 
 .user_profile {
@@ -76,6 +72,10 @@
     font-size: 16px;
     font-weight: 600;
     border-radius: 20px;
+}
+
+.content{
+    display:flex;
 }
 
 /* media query */
@@ -110,6 +110,12 @@
 
     .user_card {
         overflow: scroll;
+    }
+}
+@media only screen and (max-width:600px){
+    .pic form label img{
+        width:100px;
+        height:100px;
     }
 }
 

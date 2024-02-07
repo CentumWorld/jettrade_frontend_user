@@ -49,7 +49,7 @@
 }
 .bars{
     font-size: 22px;
-    
+    cursor:pointer;
 }
 
 .user-notification-title .ant-modal-title {

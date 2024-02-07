@@ -82,7 +82,6 @@ const UserDetails = () => {
     var formData = new FormData();
     formData.append("image", image.file);
     formData.append("userid", localStorage.getItem("userid"));
-    //console.log(formData);
     const config = {
       headers: {
         Authorization: `Bearer ${token}`, // Set the 'Authorization' header with the token
@@ -142,7 +141,6 @@ const UserDetails = () => {
         data,
         config
       );
-      console.log(response.data, "58");
       if (response) {
         //setUser(response.data.result);
         setUser({
@@ -158,12 +156,12 @@ const UserDetails = () => {
         //fetchUserProfile();
       }
     } catch (error) {
-      console.error(error);
+      
     }
   };
 
   const fetchUserProfile = async (id) => {
-    //console.log(user.userid);
+  
     const token = localStorage.getItem("token");
     let data = {
       userid: id,
@@ -178,13 +176,12 @@ const UserDetails = () => {
         data,
         config
       );
-      console.log(response.data.result, "103");
       setImage({
         placeholder: response.data.result[0].imageUrl,
         //file: e.target.files[0]
       });
     } catch (error) {
-      console.error(error);
+      
     }
   };
 
@@ -201,7 +198,7 @@ const UserDetails = () => {
     };
     axios.post(`${apiurl}`+"/user/users/edit-user-details", data, config)
       .then((result) => {
-        console.log(result.data.result[0], "182");
+        
 
         if (userType === "indian") {
           setEditUserData({
@@ -229,7 +226,7 @@ const UserDetails = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+      
       });
   };
 
@@ -288,7 +285,7 @@ const UserDetails = () => {
     if (userType === "otherCountry") {
       const data = {
         userWhat: "other",
-        userid: localStorage.getItem("userid"),
+        userid: localStorage.getItem("user"),
         fname: editUserData.fname,
         lname: editUserData.lname,
         phone: editUserData.phone,
@@ -304,7 +301,7 @@ const UserDetails = () => {
         },
       };
 
-      console.log(data);
+      
       axios.post(`${apiurl}`+"/user/users/save-user-edited-details", data, config)
         .then((res) => {
           message.success("Updated Successfully");
@@ -341,6 +338,7 @@ const UserDetails = () => {
               </div>
             </div>
           </div>
+
           <div className="user_deatails_main_div row">
             <div className="user_details_content col-md-8">
               <div className="row">
@@ -350,7 +348,6 @@ const UserDetails = () => {
                   </div>
                   <div className="user_head_data">
                     <h6>{user.email}</h6>
-                    {/* <span><NavLink to={''}>change</NavLink></span> */}
                   </div>
                 </div>
               </div>
@@ -543,7 +540,7 @@ const UserDetails = () => {
                         value={editUserData.aadhar}
                         name="aadhar"
                         onChange={editInputChange}
-                        placeholder="Enter last name"
+                        placeholder="Enter aadhaar no."
                       />
                     </Col>
                   </Row>
@@ -556,7 +553,7 @@ const UserDetails = () => {
                         value={editUserData.pan}
                         name="pan"
                         onChange={editInputChange}
-                        placeholder="Enter last name"
+                        placeholder="Enter pan no"
                       />
                     </Col>
                   </Row>

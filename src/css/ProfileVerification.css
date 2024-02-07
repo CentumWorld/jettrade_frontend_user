@@ -17,7 +17,7 @@
     background-color: #fff;
     border-radius: 30px;
     padding: 15px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .verification_card::-webkit-scrollbar{
     display: none;
@@ -25,6 +25,7 @@
 .verification_heading p{
     font-size: 18px;
     font-weight: 700;
+    color:black;
 }
 .upload_id p{
     font-size: 14px;
@@ -96,7 +97,7 @@
     font-size: 18px;
     font-weight: 15px;
 }
-.aadhar_front_heading p{
+.aadhar_front_heading p , span{
     font-size: 14px;
     color: #99999b;
 }
@@ -111,6 +112,9 @@
 .check{
     display: flex;
 }
+.check strong{
+    color:black;
+}
 .check span{
     color: #00b432;
     font-size: 16px;
@@ -123,6 +127,9 @@
     color: red;
     font-size: 16px;
     margin-bottom: 20px;
+}
+.uncheck strong{
+    color:black;
 }
 .plus_icon{
     width: 40px;
@@ -196,6 +203,10 @@
     .verification_submit_button button{
         width: 100%;
 
+    }
+
+    .verification_card{
+        height:85vh;
     }
    
 }

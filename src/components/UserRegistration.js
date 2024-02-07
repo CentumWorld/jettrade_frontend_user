@@ -45,6 +45,7 @@ function UserRegistration() {
   // -----------------------------
   const [phone, setPhone] = useState("");
 
+
   const [userData, setUserData] = useState({
     fname: "",
     lname: "",
@@ -480,7 +481,7 @@ function UserRegistration() {
                 <PhoneInput
                   placeholder="Enter phone number"
                   name="phone"
-                  country="IN" // Set the country prop to "IN" for India
+                  country="IN"
                   countrySelectProps={{ suffixIcon: <FlagOutlined /> }}
                   inputComponent={Input}
                   value={phone}

@@ -24,18 +24,13 @@ export const UserModal = ({ setShowModal }) => {
     return ReactDom.createPortal(
         <div className="container" ref={modalRef} onClick={closeModal}>
             <div className="user_modal">
-                {/* <h2>This is a Modal</h2>
-        <button onClick={() => setShowModal(false)}>X</button> */}
                 <ul>
-                    <li style={{'padding-bottom':'30px'}}><NavLink to="/userdashboard/setting/userdetails"><RiErrorWarningFill/>&nbsp;&nbsp; Your Details</NavLink></li>
-                    <li style={{'padding-bottom':'30px'}}><NavLink to="/userdashboard/setting/verify"><MdOutlineVerifiedUser/>&nbsp;&nbsp;Profile verification</NavLink></li>
-                    <li style={{'padding-bottom':'30px'}}><NavLink to="/userdashboard/setting/changepassword"><IoMdLock/>&nbsp;&nbsp;Change password</NavLink></li>
-                    <li style={{'padding-bottom':'30px'}}><NavLink to="/userdashboard/setting/resetpassword"><GiAnticlockwiseRotation/>&nbsp;&nbsp;Reset password</NavLink></li>
-                    {/* <li style={{'padding-bottom':'30px'}}><NavLink to="/userdashboard/setting/newsletter"><BiNews/>&nbsp;&nbsp;Newsletters</NavLink></li>
-                    <li style={{'padding-bottom':'30px'}}><NavLink to="/userdashboard/setting/bonus"><BsStars/>&nbsp;&nbsp;Bonus setting</NavLink></li>
-                    <li style={{'padding-bottom':'30px'}}><NavLink to=""><FaUserCircle/>&nbsp;&nbsp;Account log</NavLink></li> */}
-                    {/* <li><NavLink to=""><FaRegFlag/>&nbsp;&nbsp;Language</NavLink></li> */}
+                    <li><NavLink to="/userdashboard/setting/userdetails"><RiErrorWarningFill/>&nbsp;&nbsp; Your Details</NavLink></li>
+                    <li><NavLink to="/userdashboard/setting/verify"><MdOutlineVerifiedUser/>&nbsp;&nbsp;Profile verification</NavLink></li>
+                    <li><NavLink to="/userdashboard/setting/changepassword"><IoMdLock/>&nbsp;&nbsp;Change password</NavLink></li>
+                    <li><NavLink to="/userdashboard/setting/resetpassword"><GiAnticlockwiseRotation/>&nbsp;&nbsp;Reset password</NavLink></li>
                 </ul>
+                
                 
             </div>
         </div>,

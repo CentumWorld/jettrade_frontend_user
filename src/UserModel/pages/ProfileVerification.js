@@ -46,7 +46,6 @@ function ProfileVerification() {
                     placeholder: reader.result,
                     file: e.target.files[0]
                 })
-                //console.log(image.file)
 
             }
 
@@ -69,7 +68,6 @@ function ProfileVerification() {
                     placeholder: reader.result,
                     file: e.target.files[0]
                 })
-                //console.log(image.file)
 
             }
             reader.readAsDataURL(e.target.files[0])
@@ -91,7 +89,6 @@ function ProfileVerification() {
                     placeholder: reader.result,
                     file: e.target.files[0]
                 })
-                //console.log(image.file)
 
             }
             reader.readAsDataURL(e.target.files[0])
@@ -113,7 +110,6 @@ function ProfileVerification() {
                     placeholder: reader.result,
                     file: e.target.files[0]
                 })
-                //console.log(image.file)
 
             }
             reader.readAsDataURL(e.target.files[0])
@@ -142,7 +138,6 @@ function ProfileVerification() {
         }
         axios.post(`${apiurl}`+'/user/fetch-user-details-userside', data, config)
             .then((result) => {
-                console.log(result.data.data);
                 if(result.data.data === 'token expired'){
                     navigate('/logout');
                 }else{
@@ -154,7 +149,6 @@ function ProfileVerification() {
 
             })
             .catch((error) => {
-                console.log(error);
             })
     }
 
@@ -191,7 +185,6 @@ function ProfileVerification() {
 
     // submitOtherRequest
     const submitOtherRequest = () =>{
-        console.log(otherCountryImage)
         const token = localStorage.getItem('token');
         const formData = new FormData();
         setLoading(true);
@@ -212,7 +205,7 @@ function ProfileVerification() {
 
             })
             .catch(error => {
-                console.error('Error uploading file:', error);
+               
                 // Handle any errors
             });
     }
@@ -223,15 +216,9 @@ function ProfileVerification() {
                 <div className='verification_card'>
                     <div className='row'>
                         <div className='verification_heading col-md-12'>
-                            <p>Verification request</p>
-
+                            <p>Change your document</p>
                         </div>
 
-                    </div>
-                    <div className='row'>
-                        <div className='upload_id'>
-                            <p>1. Upload your ID</p>
-                        </div>
                     </div>
                     <div className='row'>
                         <div className='verification_select_and_para'>
@@ -262,7 +249,7 @@ function ProfileVerification() {
                                                 onChange={handleClickAadharFrontImage}
                                             />
                                             <label htmlFor="file-input-front">
-                                                <img src={aadharImage.placeholder} alt="" width={200} height={100} />
+                                                <img src={aadharImage.placeholder} alt="" width={230} height={120} />
                                             </label>
 
                                             <div className='aadhar_front_heading'>
@@ -286,7 +273,7 @@ function ProfileVerification() {
                                                 onChange={handleClickAadharBackImage}
                                             />
                                             <label htmlFor="file-input-back">
-                                                <img src={aadharBackImage.placeholder} alt="" width={200} height={100} />
+                                                <img src={aadharBackImage.placeholder} alt="" width={230} height={120} />
                                             </label>
                                             <div className='aadhar_front_heading'>
                                                 <span>Reverse side</span>

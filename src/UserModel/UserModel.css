@@ -19,21 +19,23 @@
     animation: animate 0.3s;
     box-shadow: 1px 1px 10px rgb(187, 186, 186);
   }
-  .user_modal a{
+  .user_modal ul li {
     color: rgb(17, 17, 17);
     font-family: sans-serif;
     font-weight: bold;
     font-size: 16px;
+    height:40px;
   }
  ul{
   list-style:none;
  }
 
- .user_modal ul :hover{
-  width: 220px;
-  height: 40px;
+ .user_modal ul li :hover{
+  width: auto;
+  height: auto;
   border-radius: 15px;
   background: rgb(230, 226, 226);
+  padding:5px 10px;
  }
  
   .user_modal button {
@@ -49,6 +51,8 @@
     border-radius: 2px;
     cursor: pointer;
   }
+
+  
   @keyframes animate {
     from {
       transform: scale(0.5);

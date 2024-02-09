@@ -30,8 +30,6 @@ export const UserModal = ({ setShowModal }) => {
                     <li><NavLink to="/userdashboard/setting/changepassword"><IoMdLock/>&nbsp;&nbsp;Change password</NavLink></li>
                     <li><NavLink to="/userdashboard/setting/resetpassword"><GiAnticlockwiseRotation/>&nbsp;&nbsp;Reset password</NavLink></li>
                 </ul>
-                
-                
             </div>
         </div>,
         document.getElementById("portal")

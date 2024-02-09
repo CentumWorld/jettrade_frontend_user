@@ -24,14 +24,13 @@ const apiurl = baseUrl.apiUrl;
 
 const DisplayCard = () => {
   const handleMenuClick = (e) => {
-    console.log(e.key);
+    
     if (e.key === "cryptocurrency-market") {
-      //openUserLoginFuction();
+      
       navigate("/userdashboard/cryptocurrency-market");
     }
     if (e.key === "economic-celender") {
-      //console.log("hii");
-      // <NavLink to="/user-registration">Sign Up</NavLink>
+      
       navigate("/userdashboard/economic-celender");
     }
     if (e.key === "heat-map") {
@@ -197,9 +196,6 @@ const DisplayCard = () => {
     axios
       .post(`${apiurl}` + "/user/fetch-user-details-userside", data, config)
       .then((res) => {
-        console.log(res.data);
-
-        //setTradingWallet(formattedTradingWallet);
 
         setSubscription(res.data.result.paymentCount);
         const walletAmount = res.data.result.wallet;
@@ -207,19 +203,16 @@ const DisplayCard = () => {
           style: "currency",
           currency: "INR",
         });
-        console.log(res.data.result.doj)
 
         const originalDate = new Date(res.data.result.doj);
+        
         // Add 30 days
         const newDate = new Date(originalDate);
         newDate.setDate(originalDate.getDate() + 30);
         const formattedNewDate = newDate.toISOString().split('T')[0];
-        console.log(formattedNewDate);
 
         // expiry check
         const currentDate = new Date();
-        // console.log(currentDate)
-        // currentDate.setDate(currentDate.getDate() + 30);
         const differenceInMilliseconds = currentDate - originalDate;
         const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
         console.log(differenceInDays)
@@ -227,18 +220,32 @@ const DisplayCard = () => {
           monthExpiry()
         }
 
-
         const dateOfJoining = new Date(res.data.result.doj);
         const formattedDateOfJoining = new Date(
           dateOfJoining
         ).toLocaleDateString();
+       
+        console.log(res.data.result.doj)
+        
+        // -------------------------------------------
+        const givenDateString = res.data.result.doj;
+        const givenDate = new Date(givenDateString);
+        givenDate.setDate(givenDate.getDate() + 5);
+        const day = String(givenDate.getDate()).padStart(2, '0');
+        const month = String(givenDate.getMonth() + 1).padStart(2, '0'); // Month is zero-based
+        const year = givenDate.getFullYear();
+        const resultDateString = `${day}-${month}-${year}`;
+        console.log('Original Date:', givenDateString);
+        console.log('Date after adding 5 days:', resultDateString);
+        setExpireDate(resultDateString)
+        // -------------------------------------------
+
         console.log(res.data.result.trialDate)
         const trialFormateDate = new Date(
           res.data.result.trialDate
         ).toLocaleDateString();
         blockUser(res.data.result.trialDate);
         setTrialDate(trialFormateDate);
-        //setDayCount();
         setDayCount(5 - res.data.result.trialDayCount);
         setSubscriptionStatus({
           userid: res.data.result.userid,
@@ -327,7 +334,6 @@ const DisplayCard = () => {
     };
     axios.post(`${apiurl}` + "/user/users/user-total-withdrawal-from-trading-wallet", data, config)
       .then((res) => {
-        console.log(res.data.sumOfAmountWithdrawn);
         if (res.data.sumOfAmountWithdrawn === undefined) {
           const formattedIndianRupees = new Intl.NumberFormat('en-IN', {
             style: 'currency',

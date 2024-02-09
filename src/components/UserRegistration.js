@@ -523,14 +523,14 @@ function UserRegistration() {
                     </Radio>
                   </Radio.Group>
                 </div>
-                <div className="gender-dob-section">
+                <div className="gender-dob-section"  style={{cursor:"pointer"}}>
                   <p>DOB</p>
                   <DatePicker
                     placeholder="Select a date"
                     className="custom-datepicker"
                     onChange={handleDateOfBirthChange}
                     style={{ marginBottom: "10px" }}
-                    suffixIcon={customDobSuffixIcon}
+                    suffixIcon={customDobSuffixIcon}                  
                   />
                 </div>
               </div>

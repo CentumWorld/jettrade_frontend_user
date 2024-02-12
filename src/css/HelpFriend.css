@@ -37,18 +37,36 @@
    border-radius: 20px;
    box-shadow: 1px 10px 10px #0d0258;
 }
+
 .user-wallet{
+    display:flex;
+    align-items:center;
+    justify-content:center;
     width: 100px;
     height: 40px;
     background: yellow;
     border: 1px solid #0d0258;
     border-radius: 5px;
+    align-content:center;
+    color:black;
+    
+}
+
+.button-style {
+    width:100px;
+    height:30px;
+    background-color:#4393f4;
+    margin-top:15px;
+    color:white;
+    border:none;
+    border-radius:5px;
 }
 
 @media only screen and (max-width: 576px){
     .help-friend-content{
-       width: 80%;
+       width: 95%;
        height: 40vh;
+       color:black;
     }
     .help-friend-header p{
         text-align: center;
@@ -59,4 +77,5 @@
     .user-wallet{
         height:50px ;
     }
+    
 }

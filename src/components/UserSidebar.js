@@ -5,7 +5,7 @@ import {
   MdDashboard,
   MdSend,
   MdNightsStay,
-  MdSubscriptions,
+  MdOutlineSubscriptions,
 } from "react-icons/md";
 import {
   FaMoneyBillWaveAlt,
@@ -16,6 +16,8 @@ import {
 import { BsBellFill, BsMinecart } from "react-icons/bs";
 import { RxCountdownTimer } from "react-icons/rx";
 import { TfiMenuAlt, TfiGift } from "react-icons/tfi";
+import { CiLogout } from "react-icons/ci";
+import { RxDashboard } from "react-icons/rx";
 import {
   AiOutlineSetting,
   AiFillBank,
@@ -36,14 +38,15 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import baseUrl from "../baseUrl";
 import { BiLogOutCircle } from "react-icons/bi";
+import { IoStatsChartOutline } from "react-icons/io5";
 
 const apiurl = baseUrl.apiUrl;
-
+const isSmallDevice = window.innerWidth < 768;
 const routes = [
   {
     path: "/userdashboard/dashboard",
     name: "Dashboard",
-    icon: <MdDashboard />,
+    icon: <RxDashboard />,
   },
   {
     path: "https://centumo.centumworld.com/#/exchange/quick",
@@ -62,7 +65,7 @@ const routes = [
   {
     path: "/userdashboard",
     name: "Chart and Data",
-    icon: <FcBarChart />,
+    icon: <IoStatsChartOutline />,
     subRoutes: [
       {
         path: "/userdashboard/trading-chart",
@@ -181,11 +184,11 @@ const routes = [
     icon: <FiVideo />,
   },
 
-  {
-    path: "/logout",
-    name: "Logout",
-    icon: <BiLogOutCircle />,
-  },
+  // {
+  //   path: "/logout",
+  //   name: "Logout",
+  //   icon: <BiLogOutCircle />,
+  // },
 ];
 
 function UserSidebar(props) {
@@ -491,6 +494,11 @@ function UserSidebar(props) {
     width = "350px";
   }
 
+  const logout = () => {
+    localStorage.clear();
+    navigate("/user-login");
+  };
+
   return (
     <>
       <div className="user-subscription-modal">
@@ -783,7 +791,11 @@ function UserSidebar(props) {
                   >
                     <div className="admin-icon">{route.icon}</div>
                     <motion.div className="admin_link_text">
-                      {route.name}
+                      {isOpen && (
+                        <motion.div className="link_text">
+                          {isSmallDevice ? null : route.name}
+                        </motion.div>
+                      )}
                     </motion.div>
                   </a>
                 );
@@ -815,7 +827,7 @@ function UserSidebar(props) {
             onClick={showSubscriptionModal}
             style={{ cursor: "pointer" }}
           >
-            <MdSubscriptions
+            <MdOutlineSubscriptions
               style={{
                 fontSize: "25px",
                 marginLeft: "15px",
@@ -825,14 +837,43 @@ function UserSidebar(props) {
             {isOpen ? (
               <div
                 style={{
-                  marginLeft: "3px",
+                  marginLeft: "5px",
                   fontWeight: "600",
                   marginRight: "10px",
                   marginTop: "10px",
-                  color: "#000"
+                  color: "#000",
                 }}
               >
                 Subscription
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+
+          <div
+            className="d-flex"
+            onClick={logout}
+            style={{ cursor: "pointer" }}
+          >
+            <CiLogout
+              style={{
+                fontSize: "25px",
+                marginLeft: "15px",
+                marginTop: "10px",
+              }}
+            />
+            {isOpen ? (
+              <div
+                style={{
+                  marginLeft: "5px",
+                  fontWeight: "600",
+                  marginRight: "10px",
+                  marginTop: "10px",
+                  color: "#000",
+                }}
+              >
+                Logout
               </div>
             ) : (
               ""

@@ -27,6 +27,7 @@ function Logout() {
             localStorage.removeItem('userType');
             localStorage.removeItem('refferal');
             localStorage.removeItem('userfname');
+            localStorage.clear();
             navigate('/user-login');
         }).catch((error) => {
             navigate('/');

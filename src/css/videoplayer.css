@@ -179,6 +179,15 @@
     border: none;
     font-size:small;
 }
+.replies-list{
+    margin-left: 1rem;
+}
+
+.repl-button-container{
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
 
 @media only  screen and (max-width: 1024px){
     .modal-box{
@@ -194,18 +203,11 @@
     }
 }
 
-@media only screen and (max-width: 425px){
+@media only screen and (max-width: 600px){
     .subtitle{
         flex-direction: column;
+        justify-content: flex-start;
+    align-items: baseline;
     }
 }
 
-.replies-list{
-    margin-left: 1rem;
-}
-
-.repl-button-container{
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-}

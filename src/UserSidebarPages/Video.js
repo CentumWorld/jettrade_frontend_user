@@ -18,11 +18,9 @@ const Video = () => {
   const [perticularvideoId, setPerticularVideoId] = useState("");
   const [dislike, setDislike] = useState("");
 
-  
   useEffect(() => {
     getApiVideos();
   }, []);
-
 
   const getApiVideos = () => {
     setSpin(true);
@@ -32,12 +30,15 @@ const Video = () => {
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
-      .get(`${apiurl}`+"/user/users/user-fetch-all-videos", config)
+      .get(`${apiurl}` + "/user/users/user-fetch-all-videos", config)
       .then((response) => {
         setVideos(response.data.videos);
         console.log("Response -> ", response.data.videos);
-
-        // setComments(response.data.videos);
+        setSelectedVideo(response.data.videos[0].videoOne);
+        setTitle(response.data.videos[0].title);
+        setLike(response.data.videos[0].likes);
+        setPerticularVideoId(response.data.videos[0]._id);
+        setDislike(response.data.videos[0].dislikes);
         setVideosLength(response.data.videos.length);
         setSpin(false);
       })
@@ -51,16 +52,15 @@ const Video = () => {
     setPerticularVideoId(id);
     setDislike(dislike);
 
-    // Find the selected video by its id from the videos array
+    console.log(videos, "..............");
+    const selectedVideoItem = videos.find((video) => video._id === id);
 
-    console.log(videos, "..............")
-    const selectedVideoItem = videos.find(video => video._id === id);
-
-    
     // Check if the selected video is found
     if (selectedVideoItem) {
       // Extract the comments for the selected video
-      const selectedVideoComments = selectedVideoItem.comments.map(comment => comment.text);
+      const selectedVideoComments = selectedVideoItem.comments.map(
+        (comment) => comment.text
+      );
       console.log("Comments for selected video:", selectedVideoComments);
     }
   };

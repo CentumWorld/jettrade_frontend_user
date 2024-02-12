@@ -13,6 +13,7 @@ import { MdClose } from "react-icons/md";
 import axios from "axios";
 import { message } from "antd";
 import baseUrl from "../baseUrl";
+import { Box, CircularProgress } from "@mui/material";
 
 const apiurl = baseUrl.apiUrl;
 
@@ -23,7 +24,7 @@ const VideoPlayer = ({
   perticularvideoId,
   dislike,
 }) => {
-  console.log(liked);
+  console.log(perticularvideoId);
   const [isLiked, setIsLiked] = useState(liked);
   const [isDisliked, setIsDisliked] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,8 +38,8 @@ const VideoPlayer = ({
   const [replyText, setReplyText] = useState("");
   const [activeReplyIndex, setActiveReplyIndex] = useState(null);
   const [views, setViews] = useState(0);
+  const [spin, setSpin] = useState(true);
 
-  console.log(perticularvideoId);
   useEffect(() => {
     setLikeCount(liked);
     setDisLikeCount(dislike);
@@ -147,12 +148,15 @@ const VideoPlayer = ({
     axios
       .post(`${apiurl}` + "/user/users/interact_with_video", data, config)
       .then((res) => {
+        console.log(res.data.video)
         setViews(res.data.video.views);
+        setLikeCount(res.data.video.likes);
       })
       .catch((err) => console.log(err.message));
   };
 
   const handleClickLike = () => {
+    setSpin(false);
     setIsLiked((prev) => !prev);
     console.log("liked and videoIo -> ", isLiked, perticularvideoId);
     setLikeBackGroundColor((prev) => !prev);
@@ -171,6 +175,7 @@ const VideoPlayer = ({
           const updatedLikeCount = res.data.video.likes;
           setLikeCount(updatedLikeCount);
           // setIsLiked(!isLiked);
+          setSpin(true);
         })
         .catch((err) => {
           console.log(err.response.data.message);
@@ -192,6 +197,7 @@ const VideoPlayer = ({
           setLikeCount(updatedLikeCount);
           setIsLiked(!isLiked);
           callApiToLikeOrNot(perticularvideoId);
+          setSpin(true);
         })
         .catch((err) => {
           console.log(err.response.data.message);
@@ -261,10 +267,6 @@ const VideoPlayer = ({
         config
       )
       .then((response) => {
-        // const result = response.data.video.comments;
-        // const finalResult = result.map((item) => item.text);
-        // console.log(finalResult, "///");
-        // setComments(finalResult)
         setNewComment("");
         setComments(response.data.video.comments);
       })
@@ -286,7 +288,7 @@ const VideoPlayer = ({
     const replyData = {
       videoId: perticularvideoId,
       action: "comment",
-      replyTo: parentComment._id, // Use the comment's _id (commentId)
+      replyTo: parentComment._id,
       comments: replyText,
     };
 
@@ -320,6 +322,7 @@ const VideoPlayer = ({
     height: "100%",
     objectFit: "cover",
     zIndex: 1,
+    borderRadius:"10px"
   };
 
   const handleCancelHandler = (event) => {
@@ -327,47 +330,35 @@ const VideoPlayer = ({
     setNewComment("");
   };
 
-  
-
   return (
     <>
       <div style={videoPlayerStyle} className="video-container">
-        <video style={videoStyle} src={videoUrl} controls />
+        <video style={videoStyle} src={videoUrl} controls autoPlay />
         <div className="subtitle">
           <div className="title-and-views">
             <h2>{title}</h2>
-            <p className="views">
-              {views}
-              &nbsp; Views
-            </p>
           </div>
           <div className="like-section">
-            <div className="like-button-section">
-              {likeBackGroundColor ? (
-                <button className="like-button" onClick={handleClickLike}>
-                  <AiTwotoneLike fontSize={20} />
-                  <span>{likeCount}</span>
-                </button>
-              ) : (
-                <button className="like-button" onClick={handleClickLike}>
-                  <AiOutlineLike fontSize={20} />
-                  <span>{likeCount}</span>
-                </button>
-              )}
-            </div>
-            <div className="disLike-button-section">
-              {dislikeBackGroundColor ? (
-                <button className="like-button" onClick={handleClickDisLike}>
-                  <AiTwotoneDislike fontSize={20} />
-                  <span>{disLikeCount}</span>
-                </button>
-              ) : (
-                <button className="like-button" onClick={handleClickDisLike}>
-                  <AiOutlineDislike fontSize={20} />
-                  <span>{disLikeCount}</span>
-                </button>
-              )}
-            </div>
+            {spin ? (
+              <div className="like-button-section">
+                {likeBackGroundColor ? (
+                  <button className="like-button" onClick={handleClickLike}>
+                    <AiTwotoneLike fontSize={20} />
+                    <span>{likeCount}</span>
+                  </button>
+                ) : (
+                  <button className="like-button" onClick={handleClickLike}>
+                    <AiOutlineLike fontSize={20} />
+                    <span>{likeCount}</span>
+                  </button>
+                )}
+              </div>
+            ) : (
+              <Box sx={{ display: "flex" }}>
+                <CircularProgress size={20}/>
+              </Box>
+            )}
+
             <div>
               <button className="like-button" onClick={openModal}>
                 <FaShare />

@@ -614,7 +614,7 @@ function UserSidebar(props) {
                     fontSize: "16px",
                   }}
                 >
-                  Expity Date :
+                  Expiry Date :
                 </Col>
                 <Col
                   span={12}
@@ -721,7 +721,7 @@ function UserSidebar(props) {
           <div className="dashboard-title">
             <div className="top_section">
               {isOpen && (
-                <h1 className="logo" style={{ color: "#5e72e4" }}>
+                <h1 className="logo">
                   {userName}
                 </h1>
               )}

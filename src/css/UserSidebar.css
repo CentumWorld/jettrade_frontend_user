@@ -35,10 +35,20 @@
     position: relative;
     padding: 15px 10px;
 }
-.logo{
-    font-size: 24px;
-    line-height: 0;
-}
+
+.logo {
+    font-family: "italic", sans-serif;
+    font-size: 24px; 
+    font-weight: bold; 
+    padding: 10px; 
+    color: gray; 
+  }
+  
+  .logo:hover {
+    color: #007bff; 
+    transition: color 0.3s ease-in-out; 
+  }
+  
 .icon{
     font-size: 20px;
 }

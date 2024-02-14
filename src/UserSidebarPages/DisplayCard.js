@@ -843,7 +843,7 @@ const DisplayCard = () => {
         <div
           className="card1"
           style={{
-            backgroundImage: `url(${card})`,
+            backgroundImage: `url(${card1})`,
             backgroundSize: "cover",
             backgroundPosition: "center bottom",
           }}
@@ -853,7 +853,7 @@ const DisplayCard = () => {
         <div
           className="card1"
           style={{
-            backgroundImage: `url(${card1})`,
+            backgroundImage: `url(${card})`,
             backgroundSize: "cover",
             backgroundPosition: "center bottom",
           }}
@@ -861,7 +861,7 @@ const DisplayCard = () => {
           <TrialProgressiveBar
             percent={progressiveBarData}
             style={{
-              backgroundImage: `url(${card})`,
+              backgroundImage: `url(${card1})`,
               backgroundSize: "cover",
               backgroundPosition: "center bottom",
             }}
@@ -870,7 +870,7 @@ const DisplayCard = () => {
         <div
           className="card1"
           style={{
-            backgroundImage: `url(${card})`,
+            backgroundImage: `url(${card1})`,
             backgroundSize: "cover",
             backgroundPosition: "center bottom",
           }}
@@ -985,7 +985,7 @@ const DisplayCard = () => {
         <div
           className="card1"
           style={{
-            backgroundImage: `url(${card})`,
+            backgroundImage: `url(${card1})`,
             backgroundSize: "cover",
             backgroundPosition: "center bottom",
             display: "flex",
@@ -1015,7 +1015,7 @@ const DisplayCard = () => {
         <div
           className="card1"
           style={{
-            backgroundImage: `url(${card1})`,
+            backgroundImage: `url(${card})`,
             backgroundSize: "cover",
             backgroundPosition: "center bottom",
           }}
@@ -1030,12 +1030,12 @@ const DisplayCard = () => {
         <div
           className="card1"
           style={{
-            backgroundImage: `url(${card})`,
+            backgroundImage: `url(${card1})`,
             backgroundSize: "cover",
             backgroundPosition: "center bottom",
           }}
         >
-          <div className="todays-trade-small-card" style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+          <div className="todays-trade-small-card" style={{display:"flex",flexDirection:"column"}}>
             <h6>Today's trade</h6>
             <span style={{ color: "yellow" }}>
               <FaRupeeSign />

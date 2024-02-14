@@ -19,6 +19,8 @@ import baseUrl from "../baseUrl";
 import RunningProgressiveBar from "./RunningProgressiveBar";
 import TrialProgressiveBar from "./TrialProgressiveBar";
 import ExpiredProgressiveBar from "./ExpiredProgressiveBar";
+import card from "../img/JTF.gif";
+import card1 from "../img/JTF1.gif";
 
 const apiurl = baseUrl.apiUrl;
 
@@ -742,7 +744,17 @@ const DisplayCard = () => {
       )}
 
       <div className="card1-container">
-        <div className="card1">
+        <div
+          className="card1"
+          style={{
+            backgroundImage: `url(${card})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
           <div className="d-flex">
             <h6>User ID </h6>&nbsp; : &nbsp;
             <span style={{ color: "yellow" }}>{userDetails.userid}</span>
@@ -758,7 +770,14 @@ const DisplayCard = () => {
           </div>
         </div>
 
-        <div className="card1">
+        <div
+          className="card1"
+          style={{
+            backgroundImage: `url(${card1})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+          }}
+        >
           <div className="subscription-card">
             <h6>Subscription</h6>
           </div>
@@ -798,7 +817,14 @@ const DisplayCard = () => {
           </div>
         </div>
 
-        <div className="card1">
+        <div
+          className="card1"
+          style={{
+            backgroundImage: `url(${card})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+          }}
+        >
           <div className="live-chat">
             <h6>CENTUMO Swap</h6>
           </div>
@@ -814,13 +840,41 @@ const DisplayCard = () => {
           </div>
         </div>
 
-        <div className="card1">
+        <div
+          className="card1"
+          style={{
+            backgroundImage: `url(${card})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+          }}
+        >
           <RunningProgressiveBar percent={progressiveBarData} />
         </div>
-        <div className="card1">
-          <TrialProgressiveBar percent={progressiveBarData} />
+        <div
+          className="card1"
+          style={{
+            backgroundImage: `url(${card1})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+          }}
+        >
+          <TrialProgressiveBar
+            percent={progressiveBarData}
+            style={{
+              backgroundImage: `url(${card})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center bottom",
+            }}
+          />
         </div>
-        <div className="card1">
+        <div
+          className="card1"
+          style={{
+            backgroundImage: `url(${card})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+          }}
+        >
           <ExpiredProgressiveBar percent={progressiveBarData} />
         </div>
 
@@ -850,7 +904,17 @@ const DisplayCard = () => {
             </span>
           </div>
         </div> */}
-        <div className="card1">
+        <div
+          className="card1"
+          style={{
+            backgroundImage: `url(${card})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
           <div className="trading_chart">
             <h6>Trading Chart</h6>
           </div>
@@ -863,7 +927,17 @@ const DisplayCard = () => {
             </span>
           </div>
         </div>
-        <div className="card1">
+        <div
+          className="card1"
+          style={{
+            backgroundImage: `url(${card1})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
           <div className="live-chat">
             <h6>Chart and Data</h6>
           </div>
@@ -878,7 +952,17 @@ const DisplayCard = () => {
           </div>
         </div>
 
-        <div className="card1">
+        <div
+          className="card1"
+          style={{
+            backgroundImage: `url(${card})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
           <div className="create-wallet">
             <h6>Wallet</h6>
           </div>
@@ -898,7 +982,17 @@ const DisplayCard = () => {
           </div>
         </div>
 
-        <div className="card1">
+        <div
+          className="card1"
+          style={{
+            backgroundImage: `url(${card})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
           <div className="Withdrawal">
             <h6>Withdrawal</h6>
           </div>
@@ -918,21 +1012,31 @@ const DisplayCard = () => {
             </div>
           </div>
         </div>
-        <div className="card1">
-          <div className="total-trade-small-card">
+        <div
+          className="card1"
+          style={{
+            backgroundImage: `url(${card1})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+          }}
+        >
+          <div className="total-trade-small-card" style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
             <h6>Total Trade</h6>
-          </div>
-          <div className="d-flex">
             <span style={{ color: "yellow" }}>
               <FaRupeeSign /> 0.00
             </span>
           </div>
         </div>
-        <div className="card1">
-          <div className="todays-trade-small-card">
+        <div
+          className="card1"
+          style={{
+            backgroundImage: `url(${card})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+          }}
+        >
+          <div className="todays-trade-small-card" style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
             <h6>Today's trade</h6>
-          </div>
-          <div className="d-flex">
             <span style={{ color: "yellow" }}>
               <FaRupeeSign />
               0.00

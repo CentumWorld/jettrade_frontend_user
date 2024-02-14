@@ -1,106 +1,117 @@
-.card1-container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+.custom-alert-container {
+  position: relative;
 }
-.card1{
-    width: 300px;
-    height: 100px;
-    background: #3b03d8;
-    color: #fff;
-    border-radius: 20px;
-    margin-right: 20px;
-    box-shadow: -15px 10px 10px rgba(154, 154, 155, 0.3);
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #cccccc; 
+
+.blink-button {
+  position: absolute;
+  right: 30px;
+}
+
+.card1-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.card1 {
+  width: 350px;
+  height: 150px;
+  background: #3b03d8;
+  color: #fff;
+  border-radius: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
 }
 .subscription-card {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
-.wallet{
-    display: flex;
-    justify-content: center;
+.wallet {
+  display: flex;
+  justify-content: center;
 }
 .custom-input::placeholder {
-  color:grey ; /* Change the color to your desired color */
+  color: grey; /* Change the color to your desired color */
 }
-.trading_chart{
-    display: flex;
-    justify-content: center;
+.trading_chart {
+  display: flex;
+  justify-content: center;
 }
-.trading_chart_view{
-    display: flex;
-    justify-content: center;
+.trading_chart_view {
+  display: flex;
+  justify-content: center;
 }
-.live-chat,.my-team,.my-team-view{
-    display: flex;
-    justify-content: center;
+.live-chat,
+.my-team,
+.my-team-view {
+  display: flex;
+  justify-content: center;
 }
-.live-chat-join,.Withdrawal,.total-trade-small-card,.todays-trade-small-card,.create-wallet{
-    display: flex;
-    justify-content: center;
+.live-chat-join,
+.Withdrawal,
+.total-trade-small-card,
+.todays-trade-small-card,
+.create-wallet {
+  display: flex;
+  justify-content: center;
 }
 /* .Withdrawal{
     display: flex;
     justify-content: center;
 } */
-.money-box{
-    width: 150px;
-    height: 40px;
-    cursor: pointer;
-    background: green;
-    color: #fff;
-    margin-right: 10px;
-    border: 2px solid #735fa8;
-    text-align: center;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.money-box {
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  background: green;
+  color: #fff;
+  margin-right: 10px;
+  border: 2px solid #735fa8;
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /* BlinkButton.css */
 .blink-button {
-    padding: 5px;
-    font-size: 16px;
-  }
-  
-  @keyframes blink-animation {
-    0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  
-  .blink {
-    animation: blink-animation 1s infinite;
-  }
-  
-  .custom-alert-container {
-   border-radius: 5px;
-   font-family: 'Calibri';
-   margin-bottom: 10px;
-  }
-  .custom-alert-container .ant-alert-description {
-    color: #cf4409; /* Change the color to your desired value */
-  }
+  padding: 5px;
+  font-size: 16px;
+}
 
-  @media only screen and (max-width:425px){
-    .custom-alert-container{
-      width: auto;
-    }
+@keyframes blink-animation {
+  0% {
+    opacity: 1;
   }
-  
-  
-  
-  
-  
-  
-  
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink {
+  animation: blink-animation 1s infinite;
+}
+
+.custom-alert-container {
+  border-radius: 5px;
+  font-family: "Calibri";
+  margin-bottom: 10px;
+}
+.custom-alert-container .ant-alert-description {
+  color: #cf4409; /* Change the color to your desired value */
+}
+
+@media only screen and (max-width: 425px) {
+  .custom-alert-container {
+    width: auto;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .blink-button {
+    top:50px
+  }
+}

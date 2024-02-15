@@ -20,7 +20,6 @@ import RunningProgressiveBar from "./RunningProgressiveBar";
 import TrialProgressiveBar from "./TrialProgressiveBar";
 import ExpiredProgressiveBar from "./ExpiredProgressiveBar";
 import card from "../img/JTF.gif";
-import card1 from "../img/JTF1.gif";
 
 const apiurl = baseUrl.apiUrl;
 

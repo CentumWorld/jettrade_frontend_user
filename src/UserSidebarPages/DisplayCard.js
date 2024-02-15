@@ -773,7 +773,7 @@ const DisplayCard = () => {
         <div
           className="card1"
           style={{
-            backgroundImage: `url(${card1})`,
+            backgroundImage: `url(${card})`,
             backgroundSize: "cover",
             backgroundPosition: "center bottom",
           }}
@@ -843,7 +843,7 @@ const DisplayCard = () => {
         <div
           className="card1"
           style={{
-            backgroundImage: `url(${card1})`,
+            backgroundImage: `url(${card})`,
             backgroundSize: "cover",
             backgroundPosition: "center bottom",
           }}
@@ -861,7 +861,7 @@ const DisplayCard = () => {
           <TrialProgressiveBar
             percent={progressiveBarData}
             style={{
-              backgroundImage: `url(${card1})`,
+              backgroundImage: `url(${card})`,
               backgroundSize: "cover",
               backgroundPosition: "center bottom",
             }}
@@ -870,7 +870,7 @@ const DisplayCard = () => {
         <div
           className="card1"
           style={{
-            backgroundImage: `url(${card1})`,
+            backgroundImage: `url(${card})`,
             backgroundSize: "cover",
             backgroundPosition: "center bottom",
           }}
@@ -930,7 +930,7 @@ const DisplayCard = () => {
         <div
           className="card1"
           style={{
-            backgroundImage: `url(${card1})`,
+            backgroundImage: `url(${card})`,
             backgroundSize: "cover",
             backgroundPosition: "center bottom",
             display: "flex",
@@ -985,7 +985,7 @@ const DisplayCard = () => {
         <div
           className="card1"
           style={{
-            backgroundImage: `url(${card1})`,
+            backgroundImage: `url(${card})`,
             backgroundSize: "cover",
             backgroundPosition: "center bottom",
             display: "flex",
@@ -1030,7 +1030,7 @@ const DisplayCard = () => {
         <div
           className="card1"
           style={{
-            backgroundImage: `url(${card1})`,
+            backgroundImage: `url(${card})`,
             backgroundSize: "cover",
             backgroundPosition: "center bottom",
           }}

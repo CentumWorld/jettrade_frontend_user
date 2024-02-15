@@ -725,7 +725,7 @@ const DisplayCard = () => {
                   border: "none",
                   borderRadius: "10px",
                   width: "100px",
-                  height: "40px",
+                  height: "38px",
                   color: "white",
                   fontFamily: "Calibri",
                   fontWeight: "600",

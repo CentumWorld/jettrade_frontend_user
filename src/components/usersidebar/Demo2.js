@@ -17,7 +17,6 @@ function AdminLogin() {
     })
     const handleInputs = e => {
         setAdmin({ ...admin, [e.target.name]: e.target.value })
-        console.log(e.target.value)
     }
 
     const adminLogin = (e) => {
@@ -34,7 +33,6 @@ function AdminLogin() {
                 navigate('/admindashboard');
 
             }).catch((error) => {
-                console.log('Not login');
                 if (error.response.status === 422) {
                     toast.warning("Please Fill all Details!",{
                         autoClose:2000,

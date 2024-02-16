@@ -52,7 +52,6 @@ const RefferalPayout = () => {
 
   const requestRefferalPayout = (e) => {
     e.preventDefault();
-    console.log(amount);
     const token = localStorage.getItem("token");
     const data = {
       userid: localStorage.getItem("userid"),
@@ -120,7 +119,6 @@ const RefferalPayout = () => {
     let data = {
       userid: localStorage.getItem("userid"),
     };
-    console.log(data, token);
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
@@ -134,7 +132,6 @@ const RefferalPayout = () => {
         const length = res.data.walletHistory.length;
         const lastData = res.data.walletHistory[length - 1];
         const lastDate = res.data.walletHistory[length - 1].date;
-        console.log(lastDate);
         const formattedDate = new Date(lastDate).toLocaleDateString();
         const parts = formattedDate.split("/");
         const month = parts[0];
@@ -146,7 +143,7 @@ const RefferalPayout = () => {
         setRequestDetails(res.data.walletHistory);
       })
       .catch((err) => {
-        console.log(err.response.data.message);
+        
       });
   };
 
@@ -167,14 +164,12 @@ const RefferalPayout = () => {
         config
       )
       .then((res) => {
-        console.log(res.data);
         setApprovedDetails(res.data.userWithdrawalApprove);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  //data ---------
   const requestColumns = [
     {
       title: "User ID",
@@ -243,10 +238,8 @@ const RefferalPayout = () => {
 
   const handleDropdownChange = (value) => {
     setSelectedOption(value);
-    // Reset referral ID when changing options
   };
 
-  console.log(lastDate);
 
   const callApiToUserAllData = () => {
     let data = {
@@ -287,7 +280,6 @@ const RefferalPayout = () => {
     axios
       .post(`${apiurl}` + "/user/users/fetch-Wallet-History", data, config)
       .then((res) => {
-        console.log(res.data);
         setApprovedDetails(res.data.walletHistory);
       })
       .catch((err) => {
@@ -299,7 +291,6 @@ const RefferalPayout = () => {
     setBankModal(true);
   };
   const submitBankDetails = (values) => {
-    console.log(values);
     let data = {
       accountHolderName: values.holder,
       accountNumber: values.account,
@@ -322,12 +313,11 @@ const RefferalPayout = () => {
         setBankModal(false);
       })
       .catch((err) => {
-        console.log(err.response.data.message);
+        
       });
   };
 
   const submitUpiId = (values) => {
-    console.log(values);
     let token = localStorage.getItem("token");
     const config = {
       headers: {
@@ -345,12 +335,9 @@ const RefferalPayout = () => {
         setBankModal(false);
       })
       .catch((err) => {
-        console.log(err.response.data.message);
       });
   };
   const handleTabChange = useCallback((activeKey) => {
-    // Call your function or perform any other actions here
-    console.log(`Tab changed to: ${activeKey}`);
     if (activeKey === "1") {
       fetchRefferalRequest();
     } else if (activeKey === "2") {
@@ -377,12 +364,11 @@ const RefferalPayout = () => {
         config
       )
       .then((res) => {
-        console.log(res.data);
         setUserBankDetails(res.data.userBankDetails);
         setUserUpiDetails(res.data.userUpiId);
       })
       .catch((err) => {
-        console.log(err.response.data.message);
+        
       });
   };
 

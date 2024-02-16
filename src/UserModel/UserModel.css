@@ -8,11 +8,8 @@
     z-index: 10;
     width: 250px;
     height: 80vh;
-    /* background: whitesmoke; */
     background: #fff;
     display: flex;
-    /* align-items: center;
-    justify-content: center; */
     padding-top: 30px;
     border-radius: 20px;
     position: relative;

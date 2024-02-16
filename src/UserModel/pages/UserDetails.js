@@ -48,24 +48,17 @@ const UserDetails = () => {
     Id_no: "",
     dob: null,
   });
-  //state for hadle image
   const [image, setImage] = useState({
     placeholder: profile,
     file: null,
   });
-  // edit modal
   const editModal = () => {
     setIsEditModalVisible(true);
   };
-
-  // const handleOk = () => {
-  //   setIsEditModalVisible(false);
-  // };
-
   const handleCancel = () => {
     setIsEditModalVisible(false);
   };
-  // ---------
+ 
 
   useEffect(() => {
     setUserType(localStorage.getItem("userType"));
@@ -74,7 +67,6 @@ const UserDetails = () => {
     fetchUserDetailsForEdit();
   }, []);
 
-  // function for upload profile
   const uploadProfile = (event) => {
     const token = localStorage.getItem("token");
     setLoading(true);
@@ -84,7 +76,7 @@ const UserDetails = () => {
     formData.append("userid", localStorage.getItem("userid"));
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`, // Set the 'Authorization' header with the token
+        Authorization: `Bearer ${token}`,
       },
     };
 
@@ -99,17 +91,13 @@ const UserDetails = () => {
       .catch((err) => {});
   };
 
-  //function for image change
   const handleProfileImageChange = (e) => {
-    //e.preventDefault();
-
     document.getElementById("file-input").click();
 
     if (
       e.target.files[0].type === "image/png" ||
       e.target.files[0].type === "image/jpeg"
     ) {
-      //preview shoe
       const reader = new FileReader();
       reader.onloadend = () => {
         setImage({
@@ -118,8 +106,6 @@ const UserDetails = () => {
         });
       };
       reader.readAsDataURL(e.target.files[0]);
-
-      //uploadProfile(e.target.files[0]);
     } else {
       toast.error("Invalid File !! ");
       image.file = null;
@@ -133,7 +119,7 @@ const UserDetails = () => {
     };
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`, // Set the 'Authorization' header with the token
+        Authorization: `Bearer ${token}`,
       },
     };
     try {
@@ -142,7 +128,6 @@ const UserDetails = () => {
         config
       );
       if (response) {
-        //setUser(response.data.result);
         setUser({
           userid: response.data.result.userid,
           fname: response.data.result.fname,
@@ -153,7 +138,6 @@ const UserDetails = () => {
           status: response.data.result.status,
           refferal: response.data.result.refferal_id,
         });
-        //fetchUserProfile();
       }
     } catch (error) {
       
@@ -168,7 +152,7 @@ const UserDetails = () => {
     };
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`, // Set the 'Authorization' header with the token
+        Authorization: `Bearer ${token}`,
       },
     };
     try {
@@ -178,7 +162,6 @@ const UserDetails = () => {
       );
       setImage({
         placeholder: response.data.result[0].imageUrl,
-        //file: e.target.files[0]
       });
     } catch (error) {
       
@@ -193,7 +176,7 @@ const UserDetails = () => {
     };
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`, // Set the 'Authorization' header with the token
+        Authorization: `Bearer ${token}`,
       },
     };
     axios.post(`${apiurl}`+"/user/users/edit-user-details", data, config)
@@ -212,7 +195,6 @@ const UserDetails = () => {
             gender: result.data.result[0].gender,
           });
         }
-        // if (userType === "otherCountry") {
           else{
           setEditUserData({
             fname: result.data.result[0].fname,
@@ -251,7 +233,6 @@ const UserDetails = () => {
       dob: date,
     }));
   };
-  // save edit value
   const editModalSubmit = (e) => {
     e.preventDefault();
     if (userType === "indian") {
@@ -270,7 +251,7 @@ const UserDetails = () => {
       const token = localStorage.getItem("token");
       const config = {
         headers: {
-          Authorization: `Bearer ${token}`, // Set the 'Authorization' header with the token
+          Authorization: `Bearer ${token}`,
         },
       };
       axios.post(`${apiurl}`+"/user/users/save-user-edited-details", data, config)
@@ -297,7 +278,7 @@ const UserDetails = () => {
       const token = localStorage.getItem("token");
       const config = {
         headers: {
-          Authorization: `Bearer ${token}`, // Set the 'Authorization' header with the token
+          Authorization: `Bearer ${token}`,
         },
       };
 
@@ -359,7 +340,6 @@ const UserDetails = () => {
                   </div>
                   <div className="user_head_data">
                     <h6>{user.phone}</h6>
-                    {/* <span><NavLink to={''}>change</NavLink></span> */}
                   </div>
                 </div>
               </div>
@@ -412,7 +392,6 @@ const UserDetails = () => {
                         <span style={{ color: "green" }}>Verified</span>
                       )}
                     </h6>
-                    {/* <span><NavLink to={''}>Get Verified</NavLink></span> */}
                   </div>
                 </div>
               </div>
@@ -429,7 +408,6 @@ const UserDetails = () => {
                     >
                       <h6>{user.refferal}</h6>
                     </Link>
-                    {/* <button onClick={handleInviteClick}><h6>{user.refferal}</h6></button> */}
                   </div>
                 </div>
               </div>
@@ -460,7 +438,6 @@ const UserDetails = () => {
         </div>
       </div>
       <ToastContainer />
-      {/* modal */}
       <div>
         <Modal
           title={
@@ -475,7 +452,6 @@ const UserDetails = () => {
               Submit
             </Button>,
           ]}
-          //footer={null}
         >
           <div className="edit-container">
             <div>

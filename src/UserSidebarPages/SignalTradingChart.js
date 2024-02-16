@@ -32,7 +32,6 @@ const SignalTradingChart = () => {
   }, []);
 
   useEffect(() => {
-    // Filter the cryptocurrencies based on the search query
     const filterCryptocurrencies = () => {
       window.tvWidget && window.tvWidget.onready(() => {
         window.tvWidget.activeChart().executeActionById('filter', {
@@ -41,7 +40,7 @@ const SignalTradingChart = () => {
       });
     };
 
-    filterCryptocurrencies(); // Call the filter function when searchQuery changes
+    filterCryptocurrencies();
   }, [searchQuery]);
 
   return (

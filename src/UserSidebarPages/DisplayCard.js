@@ -114,13 +114,12 @@ const DisplayCard = () => {
     callApiProgressiveBar();
     const blinkInterval = setInterval(() => {
       setBlinking((prevBlinking) => !prevBlinking);
-    }, 1000); // Adjust the blinking speed here (e.g., 1000ms = 1 second)
+    }, 1000);
 
     return () => {
       clearInterval(blinkInterval);
     };
   }, []);
-  // modal for my team
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -133,7 +132,6 @@ const DisplayCard = () => {
     setIsModalVisible(false);
   };
 
-  //  Add money to wallet
   const isAddMoneyToWalletModal = () => {
     setIsAddMoneyToWalletModalVisible(true);
   };
@@ -142,7 +140,6 @@ const DisplayCard = () => {
     setIsAddMoneyToWalletModalVisible(false);
   };
 
-  // modal for withdraw money from trading wallet
   const showUserWithdrawalFromTradingWallet = () => {
     setIsUserWithdrawalFromTradingWalletVisible(true);
   };
@@ -155,7 +152,6 @@ const DisplayCard = () => {
   };
 
   const share = (url) => {
-    // navigate('/user-registration/:inviteCode')
 
     localStorage.removeItem("login");
     localStorage.removeItem("token");
@@ -216,7 +212,6 @@ const DisplayCard = () => {
         const differenceInMilliseconds = currentDate - originalDate;
         const differenceInDays =
           differenceInMilliseconds / (1000 * 60 * 60 * 24);
-        console.log(differenceInDays);
         if (differenceInDays >= 30) {
           monthExpiry();
         }
@@ -226,8 +221,6 @@ const DisplayCard = () => {
           dateOfJoining
         ).toLocaleDateString();
 
-        console.log(res.data.result.doj);
-
         // -------------------------------------------
         const givenDateString = res.data.result.doj;
         const givenDate = new Date(givenDateString);
@@ -236,12 +229,8 @@ const DisplayCard = () => {
         const month = String(givenDate.getMonth() + 1).padStart(2, "0"); // Month is zero-based
         const year = givenDate.getFullYear();
         const resultDateString = `${day}-${month}-${year}`;
-        console.log("Original Date:", givenDateString);
-        console.log("Date after adding 5 days:", resultDateString);
         setExpireDate(resultDateString);
         // -------------------------------------------
-
-        console.log(res.data.result.trialDate);
         const trialFormateDate = new Date(
           res.data.result.trialDate
         ).toLocaleDateString();
@@ -301,7 +290,6 @@ const DisplayCard = () => {
     axios
       .post(`${apiurl}` + "/user/users/user-total-withdrawal", data, config)
       .then((res) => {
-        //console.log(res.data.walletAmount)
         if (res.data.data === 0) {
           setTotalWithdrawal(0);
         } else {
@@ -321,8 +309,6 @@ const DisplayCard = () => {
   const viewTradingChart = () => {
     navigate("/userdashboard/trading-chart");
   };
-
-  // callApiToUserTotalWithdrawalFromTradingWallet
 
   const callApiToUserTotalWithdrawalFromTradingWallet = () => {
     const token = localStorage.getItem("token");
@@ -375,8 +361,6 @@ const DisplayCard = () => {
     axios
       .post(`${apiurl}` + "/user/users/user-my-team", data, config)
       .then((res) => {
-        console.log(res.data.teamMembers);
-        //setRefferalTeam(res.data.teamMembers);
       })
       .catch((error) => {
         console.log(error.response);
@@ -401,18 +385,14 @@ const DisplayCard = () => {
       order_id: data.id,
 
       handler: function (response) {
-        console.log(response, "26");
         axios
           .post(`${apiurl}` + "/user/users/verify-payment", {
             response: response,
           })
           .then((res) => {
-            console.log(res.data, "37");
-            // message.success(res.data.message)
             userPaymetSuccessStatus(money);
           })
           .catch((err) => {
-            console.log(err);
             message.warning("Payment Failed");
           });
       },
@@ -425,7 +405,6 @@ const DisplayCard = () => {
     if (money < 500) {
       alert("Minimum amount should be INR 500.00");
     } else {
-      console.log(money);
       const data = {
         amount: money,
         order_id: "0d0254888555666",
@@ -435,7 +414,6 @@ const DisplayCard = () => {
       axios
         .post(`${apiurl}` + "/user/users/user-create-payment", data)
         .then((res) => {
-          console.log(res.data, "29");
           handleOpenRazorpay(res.data.data);
         })
         .catch((err) => {
@@ -445,7 +423,6 @@ const DisplayCard = () => {
   };
 
   const userPaymetSuccessStatus = (amount) => {
-    console.log(amount);
     const token = localStorage.getItem("token");
     const data = {
       userid: localStorage.getItem("userid"),
@@ -475,7 +452,6 @@ const DisplayCard = () => {
   };
 
   const blockUser = (trialFormateDate) => {
-    console.log(trialFormateDate);
     if (subscription == 0 && subscriptionStatus.payment === false) {
       const dateString = trialFormateDate;
 
@@ -502,11 +478,7 @@ const DisplayCard = () => {
       const dbDate2 = new Date(formattedDateString);
       const systemDate = new Date();
 
-      console.log(dbDate2, systemDate);
       const dayDifferent = subtractTwoDate(dbDate2, systemDate);
-      console.log(typeof dayDifferent, "hello 384");
-
-      console.log(dbDate1);
 
       // ---------------------Testing purpose-----------------------------
       const today = new Date();
@@ -524,13 +496,10 @@ const DisplayCard = () => {
       const options = { year: "numeric", month: "short", day: "numeric" };
       const expireOn = inputDate.toLocaleDateString(undefined, options);
       setExpireDate(expireOn);
-      console.log(formattedDate2); // Output: "2023-07-22"
       // ----------------------------------------------------------
-      console.log(systemDate);
 
       const timeDiff = systemDate.getTime() - dbDate1.getTime();
       const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-      console.log(daysDiff);
       if (dayDifferent < 5) {
         const token = localStorage.getItem("token");
         const data = {
@@ -545,7 +514,7 @@ const DisplayCard = () => {
         axios
           .post(`${apiurl}` + "/user/users/update-day-count", data, config)
           .then((res) => {
-            console.log(res.data.message);
+            
           })
           .catch((error) => {
             console.log(error);
@@ -564,7 +533,6 @@ const DisplayCard = () => {
         axios
           .post(`${apiurl}` + "/user/users/update-expire", data, config)
           .then((res) => {
-            console.log(res.data.message);
             navigate("/logout");
           })
           .error((error) => {
@@ -584,7 +552,6 @@ const DisplayCard = () => {
       order_id: data.id,
 
       handler: function (response) {
-        console.log(response, "26");
         axios
           .post(
             `${apiurl}` + "/user/users/verify-payment",
@@ -599,7 +566,6 @@ const DisplayCard = () => {
             userPaymetSuccessStatus1();
           })
           .catch((err) => {
-            console.log(err);
             message.warning("Payment Failed");
           });
       },
@@ -609,7 +575,6 @@ const DisplayCard = () => {
   };
 
   const doPayment = (amount) => {
-    console.log(amount);
     const data = {
       amount: amount,
       order_id: "0d0254888555666",
@@ -687,7 +652,6 @@ const DisplayCard = () => {
         config
       )
       .then((res) => {
-        console.log(res.data);
         setProgressiveBarData({
           totalCount: res.data.totalCount,
           runningCount: res.data.runningCount,
@@ -823,33 +787,6 @@ const DisplayCard = () => {
         <div className="card1">
           <ExpiredProgressiveBar percent={progressiveBarData} />
         </div>
-
-        {/* <div className="card1">
-          <div className="live-chat">
-            <h6>Invite friends</h6>
-          </div>
-          <div className="live-chat-join">
-            <span
-              onClick={share1}
-              style={{ color: "yellow", cursor: "pointer" }}
-            >
-              Share
-            </span>
-          </div>
-        </div> */}
-        {/* <div className="card1">
-          <div className="my-team">
-            <h6>My Team</h6>
-          </div>
-          <div className="my-team-view">
-            <span
-              style={{ color: "yellow", cursor: "pointer" }}
-              onClick={showModal}
-            >
-              View
-            </span>
-          </div>
-        </div> */}
         <div className="card1">
           <div className="trading_chart">
             <h6>Trading Chart</h6>

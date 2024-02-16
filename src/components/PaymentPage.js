@@ -28,7 +28,6 @@ function PaymentPage() {
       order_id: data.id,
 
       handler: function (response) {
-        console.log(response, "26");
         axios
           .post(
             `${apiurl}`+"/user/users/verify-payment",
@@ -41,11 +40,9 @@ function PaymentPage() {
             }
           )
           .then((res) => {
-            console.log(res, "///////");
             userPaymetSuccessStatus();
           })
           .catch((err) => {
-            console.log(err);
             message.warning("Payment Failed");
           });
       },
@@ -71,7 +68,6 @@ function PaymentPage() {
         handleOpenRazorpay(res.data.data);
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 
@@ -116,7 +112,6 @@ function PaymentPage() {
       })
       .then((res) => {
         localStorage.setItem("login", true);
-        console.log(res.data, "kju");
         message.success(res.data.message);
         navigate("/userdashboard");
       })

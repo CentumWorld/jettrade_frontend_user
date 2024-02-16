@@ -17,10 +17,8 @@ function UserLogin() {
         userid: "", password: ""
     })
     const [hide, setHide] = useState(true);
-    console.log(hide);
     const handleInputs = e => {
         setUser({ ...user, [e.target.name]: e.target.value })
-        console.log(e.target.value)
     }
 
     const userLogin = (e) => {
@@ -37,7 +35,6 @@ function UserLogin() {
                 navigate('/userdashboard');
 
             }).catch((error) => {
-                console.log('Not login');
                 if (error.response.status === 422) {
                     toast.warning("Please Fill all Details!", {
                         autoClose: 2000,

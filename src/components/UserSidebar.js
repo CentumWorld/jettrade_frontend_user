@@ -217,7 +217,7 @@ function UserSidebar(props) {
   const openModal = () => {
     setShowModal(true);
   };
-  console.log(showModal);
+  
 
   const toggle = () => setIsOpen(!isOpen);
 
@@ -227,28 +227,18 @@ function UserSidebar(props) {
     callApiToFetchNotificationStatus();
   }, []);
 
-  // // renewelOnClick
-  // const renewelOnClick = () => {
-  //     console.log('ji')
-  //     props.onPaymentButtonClick();
-  // }
-
   const clickOnBell = () => {
     setOpenNotificationModal(true);
     callApiToFetchAllNotification();
     setNotificationFalse();
   };
 
-  //handle all notification
   const handleOk = () => {
     setOpenNotificationModal(false);
   };
 
-  // callApiToFetchAllNotification
   const callApiToFetchAllNotification = () => {
     const token = localStorage.getItem("token");
-    console.log(token, ";;;;;;;");
-
     const userid = localStorage.getItem("userid");
     const data = { userid };
     const config = {
@@ -260,23 +250,18 @@ function UserSidebar(props) {
     axios
       .post(`${apiurl}` + "/user/users/fetch-user-notification", data, config)
       .then((result) => {
-        console.log(result.data.allNotitfication);
         setAllNotification(result.data.allNotitfication);
         setAllTraderNotification(result.data.allTraderNotification);
         setParticularTraderNotification(result.data.particularTrader);
-        console.log(result.data.allTraderNotification);
-        console.log(result.data.particularTrader);
       })
       .catch((err) => {
-        console.log(err);
+       
       });
   };
-  //call api to fetch user data
   const callApiToFetchUserData = () => {
     const userid = localStorage.getItem("user");
     const token = localStorage.getItem("token");
 
-    console.log(token, "297");
     const data = {
       _id: userid,
     };
@@ -289,10 +274,7 @@ function UserSidebar(props) {
     axios
       .post(`${apiurl}` + "/user/fetch-user-details-userside", data, config)
       .then((res) => {
-        console.log(res, "res");
         setSubscriptionDiv(res.data.result.paymentCount);
-
-        console.log(res.data.result.doj);
 
         const originalDate = new Date(res.data.result.doj);
         // Add 30 days
@@ -340,7 +322,7 @@ function UserSidebar(props) {
         setNotification(res.data.isNotification);
       })
       .catch((error) => {
-        console.log(error);
+        
       });
   };
 
@@ -397,7 +379,6 @@ function UserSidebar(props) {
     axios
       .post(`${apiurl}` + "/user/users/user-create-payment", data)
       .then((res) => {
-        console.log(res.data, "29");
         handleOpenRazorpay(res.data.data);
       })
       .catch((err) => {
@@ -415,14 +396,11 @@ function UserSidebar(props) {
       order_id: data.id,
 
       handler: function (response) {
-        console.log(response, "26");
         axios
           .post(`${apiurl}` + "/user/users/verify-payment", {
             response: response,
           })
           .then((res) => {
-            // console.log(res, "37");
-            // message.success(res.data.message)
             userPaymetSuccessStatus();
           })
           .catch((err) => {
@@ -732,9 +710,6 @@ function UserSidebar(props) {
                   {showModal ? <UserModal setShowModal={setShowModal} /> : null}
                 </div>
               )}
-              {/* <div className='notification'>
-                            {isOpen && <BsBellFill onClick={clickOnBell} style={{ cursor: 'pointer' }} />}
-                        </div> */}
               <div className="notification">
                 <Badge count={notification}>
                   {isOpen && (
@@ -777,7 +752,6 @@ function UserSidebar(props) {
                 );
               }
               if (route.externalLink) {
-                // For the "CENTUMO Swap" link, open in a new tab
                 return (
                   <a
                     onClick={toggle}
@@ -786,8 +760,8 @@ function UserSidebar(props) {
                     className={
                       isOpen ? "user_sidebar_link" : "user_sidebar_link_small"
                     }
-                    target="_blank" // This will open "CENTUMO Swap" in a new tab
-                    rel="noopener noreferrer" // Recommended for security
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <div className="admin-icon">{route.icon}</div>
                     <motion.div className="admin_link_text">

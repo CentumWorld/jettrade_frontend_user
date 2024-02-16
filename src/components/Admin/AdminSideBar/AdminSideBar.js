@@ -123,11 +123,6 @@ const routes = [
 
 function AdminSideBar() {
     const [isOpen, setIsOpen] = useState(false);
-    // const [showModal, setShowModal] = useState(false);
-    // const openModal = () => {
-    //     setShowModal(true);
-    // };
-    // console.log(showModal);
 
     const toggle = () => setIsOpen(!isOpen);
     return (
@@ -135,8 +130,6 @@ function AdminSideBar() {
             <motion.div animate={{ width: isOpen ? '350px' : '50px' }} className='admin-sidebar'>
                 <div className="admin-top-section">
                     {isOpen && <h1 className='admin_logo'>Admin</h1>}
-
-                    {/* <h1 className="">Badal</h1> */}
                     <div className="admin-bars">
                         <FaBars onClick={toggle} />
                     </div>

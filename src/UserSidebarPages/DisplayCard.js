@@ -688,7 +688,7 @@ const DisplayCard = () => {
                   backgroundColor: "#0d6efd",
                   border: "none",
                   borderRadius: "10px",
-                  width: "100px",
+                  width: "90px",
                   height: "38px",
                   color: "white",
                   fontFamily: "Calibri",

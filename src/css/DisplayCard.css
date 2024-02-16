@@ -4,7 +4,8 @@
 
 .blink-button {
   position: absolute;
-  right: 30px;
+  right: 8px;
+  top:35px;
 }
 
 .card1-container {

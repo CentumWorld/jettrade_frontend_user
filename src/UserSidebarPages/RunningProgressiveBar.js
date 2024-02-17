@@ -7,7 +7,7 @@ const RunningProgressiveBar = ({ percent }) => {
     return (
         <>
             <div className='progress-container'>
-                <div style={{ textAlign: 'center', fontWeight: '500' }}>
+                <div style={{ textAlign: 'center', fontWeight: '500',fontFamily:'Roboto' }}>
                     <p>Runing stage</p>
                     <p>{percent.runningCount}/{percent.totalCount} Traders</p>
                 </div>

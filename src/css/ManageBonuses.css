@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family:Roboto;
 }
 .bonuses_main_container{
     display: flex;
@@ -29,7 +30,7 @@
     color: black;
 }
 .bonuses_para p{
-    font-size: 16px;
+    font-size: 18px;
     margin-bottom: 40px;
     color: black;
 }
@@ -37,8 +38,9 @@
     margin-top: 40px;
 }
 .deposit_bonus_data p{
-    font-size: 16px;
+    font-size: 18px;
     color: rgb(156, 153, 153);
+    font-family:Roboto;
 }
 .active_canceled_bonus_para p{
     font-size: 16px;
@@ -50,7 +52,13 @@
 .deposite_bonuses_tab_heading {
     display: flex;
     justify-content: space-around;
-    color: rgb(156, 153, 153);
+    /* color: rgb(156, 153, 153); */
+
+}
+.deposite_bonuses_tab_heading span {
+    font-family:Roboto;
+    font-size:18px;
+    color:#000;
 }
 .active_canceled_bonuses_tab_heading{
     display: flex;

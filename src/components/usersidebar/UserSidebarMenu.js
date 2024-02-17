@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaAngleDown } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import "../../css/UserSidebarMenu.css";
 
 function UserSidebarMenu({ route, isOpen, toggleSidebar }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

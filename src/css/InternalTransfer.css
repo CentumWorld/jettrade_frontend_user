@@ -30,11 +30,13 @@
     font-weight: bold;
     font-size: 20px;
     color: black;
+    font-family:Roboto;
 }
 .user_internal_transfer_para p{
-    font-size: 14px;
+    font-size: 16px;
     color: #bebebe;
     margin-bottom: 40px;
+    font-family:Roboto;
 
 }
 .internal_transfer_from select{
@@ -58,6 +60,7 @@
 }
 .transfer_amount_heading h2{
   font-size: 20px;
+  font-family:Roboto;
 
 }
 .internal_transfer_amount_from{
@@ -75,11 +78,13 @@
 .internal_transfer_amount_from label{
     font-weight: bold;
     color: #858484;
+    font-family:Roboto;
 }
 
 .internal_transfer_pin label{
     font-weight: bold;
     color: #616060;
+    font-family:Roboto;
 }
 .forget_internal_transfer_pin{
     margin-left: 10px;

@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family:Roboto;
 }
 .real_account{
     display: flex;
@@ -32,7 +33,7 @@
     font-weight: 700;
     color: black;
 }
-p{
+.real_account_card p{
     color: black;
 }
 .account_type_btn_real button{

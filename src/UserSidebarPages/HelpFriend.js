@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../css/HelpFriend.css";
 import axios from "axios";
-import { Input, Button, message } from "antd";
-import { FaRupeeSign } from "react-icons/fa";
+import { Input, message } from "antd";
 import baseUrl from "../baseUrl";
 
 const apiurl = baseUrl.apiUrl;
@@ -80,7 +79,7 @@ const HelpFriend = () => {
           <div className="help-friend-content">
             <form onSubmit={handleTransfer}>
               {/* Friend's Username */}
-              <label>Friend's User Id:</label>
+              <label>Friend's User Id</label>
               <br />
               <Input
                 // style={{width:'300px'}}
@@ -92,7 +91,7 @@ const HelpFriend = () => {
 
               <br />
               {/* Amount */}
-              <label> Amount: </label>
+              <label> Amount </label>
               <br />
 
               <Input

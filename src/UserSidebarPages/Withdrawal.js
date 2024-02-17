@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../css/Withdrawal.css";
 import {useNavigate} from 'react-router-dom'
 import btc from "../img/Deposit account coin type/btc.png";
@@ -8,17 +8,13 @@ import lite from "../img/Deposit account coin type/litecoin.svg";
 import nt from "../img/Deposit account coin type/nt.png";
 import skrill from "../img/Deposit account coin type/skrill.png";
 import usdte from "../img/Deposit account coin type/usdte.svg";
-import usdtt from "../img/Deposit account coin type/usdtt.svg";
 import wallet from "../img/wallet_46876-34835925.png";
 import bank from "../img/bank.png";
 import UPI from "../img/upi.png";
 
 const Withdrawal = () => {
   const navigate = useNavigate();
-  //     const [changeDivState, setChangeDivState] = useState('');
-  //     const changeDiv = (data) => {
-  //     setChangeDivState(data);
-  //   }
+ 
 
   const withdrawalAmount = () =>{
     navigate('/userdashboard/wallet-withdrawal')
@@ -28,7 +24,7 @@ const Withdrawal = () => {
       <div className="withdraw_container">
         <div className="withdraw_card">
           <div className="withdraw_heading">
-            <h5>Payment methods</h5>
+            <h5>Payment Methods</h5>
           </div>
 
           <div className="withdraw_account_type ">

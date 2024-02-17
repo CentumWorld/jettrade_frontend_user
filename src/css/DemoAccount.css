@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family:Roboto;
 }
 .demo_account{
     display: flex;
@@ -19,6 +20,9 @@
     padding: 30px;
     overflow-y: scroll;
 
+}
+.demo_account_card p {
+    color:#000;
 }
 .demo_account_card::-webkit-scrollbar{
     display: none;

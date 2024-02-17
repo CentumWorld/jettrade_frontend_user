@@ -6,11 +6,9 @@ import { FaRupeeSign, FaHandHoldingUsd } from "react-icons/fa";
 import { BsWallet2 } from "react-icons/bs";
 import CountdownTimer from "./CountdownTimer";
 import {
-  Button,
   Modal,
   Dropdown,
   Menu,
-  Select,
   Input,
   message,
   Alert,
@@ -727,7 +725,7 @@ const DisplayCard = () => {
                   width: "90px",
                   height: "38px",
                   color: "white",
-                  fontFamily: "Calibri",
+                  fontFamily: "Roboto",
                   fontWeight: "600",
                 }}
                 onClick={() => doPayment(3500)}
@@ -754,12 +752,12 @@ const DisplayCard = () => {
             justifyContent: "center",
           }}
         >
-          <div className="d-flex">
+          <div className="d-flex card-title">
             <h6>User ID </h6>&nbsp; : &nbsp;
-            <span style={{ color: "yellow" }}>{userDetails.userid}</span>
+            <span style={{ color: "yellow", }}>{userDetails.userid}</span>
           </div>
           <div
-            className="d-flex"
+            className="d-flex card-title"
             onClick={() => share(`/user-registration/${userDetails.refferal}`)}
           >
             <h6>Referral ID</h6> &nbsp; : &nbsp;{" "}
@@ -780,14 +778,14 @@ const DisplayCard = () => {
           <div className="subscription-card">
             <h6>Subscription</h6>
           </div>
-          <div className="d-flex">
+          <div className="d-flex card-title">
             <h6>Status :</h6> &nbsp;&nbsp;{" "}
             <span
               style={{
                 color: subscriptionStatus.payment ? "yellow" : "red",
-                fontWeight: 500,
-                fontFamily: "Calibri",
-                fontSize: "16px",
+                // fontWeight: 500,
+                // fontSize: "16px
+                // fontFamily:'Roboto',
               }}
             >
               {!subscriptionStatus.payment && subscriptionStatus.count === 0
@@ -799,14 +797,13 @@ const DisplayCard = () => {
                 : ""}
             </span>
           </div>
-          <div className="d-flex">
+          <div className="d-flex card-title">
             <h6>Expiry :</h6>&nbsp; &nbsp;{" "}
             <span
               style={{
                 color: "yellow",
-                fontWeight: 500,
-                fontFamily: "Calibri",
-                fontSize: "16px",
+                // fontWeight: 500,
+                // fontSize: "16px",
               }}
             >
               {subscriptionStatus.payment
@@ -832,7 +829,7 @@ const DisplayCard = () => {
               href="https://centumo.centumworld.com/#/exchange/quick"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "yellow", cursor: "pointer" }}
+              style={{ color: "yellow", cursor: "pointer",fontFamily:'Roboto' }}
             >
               Click me
             </a>
@@ -919,7 +916,7 @@ const DisplayCard = () => {
           </div>
           <div className="trading_chart_view">
             <span
-              style={{ color: "yellow", cursor: "pointer" }}
+              style={{ color: "yellow", cursor: "pointer",fontFamily:'Roboto' }}
               onClick={viewTradingChart}
             >
               view
@@ -965,7 +962,7 @@ const DisplayCard = () => {
           <div className="create-wallet">
             <h6>Wallet</h6>
           </div>
-          <div className="d-flex">
+          <div className="d-flex card-title">
             <h6>Add Money :</h6>&nbsp;&nbsp;{" "}
             <span
               style={{ color: "yellow", cursor: "pointer" }}
@@ -975,7 +972,7 @@ const DisplayCard = () => {
               &nbsp;&nbsp;Cash
             </span>
           </div>
-          <div className="d-flex">
+          <div className="d-flex card-title">
             <h6>Balance :</h6> &nbsp;&nbsp;{" "}
             <span style={{ color: "yellow" }}>{tradingWallet}</span>
           </div>
@@ -996,11 +993,11 @@ const DisplayCard = () => {
             <h6>Withdrawal</h6>
           </div>
           <div className="withdrawal-view" onClick={walletWithdrawal}>
-            <div className="d-flex" style={{ color: "white" }}>
+            <div className="d-flex card-title" style={{ color: "white" }}>
               <h6>Amount : </h6> &nbsp;&nbsp;
               <span style={{ color: "yellow" }}>{totalTradingWallet}</span>
             </div>
-            <div className="d-flex">
+            <div className="d-flex card-title">
               <h6>Withdraw :</h6> &nbsp;&nbsp;{" "}
               <span
                 style={{ color: "yellow", cursor: "pointer" }}

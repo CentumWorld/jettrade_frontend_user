@@ -180,6 +180,7 @@ const RefferalPayout = () => {
       title: "User ID",
       dataIndex: "userid",
       key: "id",
+      className: "custom-heading",
     },
     {
       title: "Amount",
@@ -190,17 +191,20 @@ const RefferalPayout = () => {
           style: "currency",
           currency: "INR",
         }).format(text),
+        className: "custom-heading",
     },
     {
       title: "Bank/UPI",
       dataIndex: "paymentBy",
       key: "paymentBy",
+      className: "custom-heading",
     },
     {
       title: "Withdraw Date",
       dataIndex: "requestDate",
       key: "requestDate",
       render: (text) => moment(text).format("DD/MM/YY HH:mm:ss"),
+      className: "custom-heading",
     },
   ];
 
@@ -209,6 +213,7 @@ const RefferalPayout = () => {
       title: "User ID",
       dataIndex: "userid",
       key: "userid",
+      className: "custom-heading",
     },
     {
       title: "Wallet Amount",
@@ -219,12 +224,14 @@ const RefferalPayout = () => {
           style: "currency",
           currency: "INR",
         }).format(text),
+        className: "custom-heading",
     },
     {
       title: "Date",
       dataIndex: "date",
       key: "date",
       render: (text) => moment(text).format("DD/MM/YY HH:mm:ss"),
+      className: "custom-heading",
     },
   ];
   // ----------withdraw refferal payout modal -------------
@@ -391,26 +398,31 @@ const RefferalPayout = () => {
       title: "Holder name",
       dataIndex: "accountHolderName",
       key: "accountHolderName",
+      className: "custom-heading",
     },
     {
       title: "Bank name",
       dataIndex: "bankName",
       key: "bankName",
+      className: "custom-heading",
     },
     {
       title: "Branch name",
       dataIndex: "branchName",
       key: "branchName",
+      className: "custom-heading",
     },
     {
       title: "Account no",
       dataIndex: "accountNumber",
       key: "accountNumber",
+      className: "custom-heading",
     },
     {
       title: "IFSC Code",
       dataIndex: "ifscCode",
       key: "ifscCode",
+      className: "custom-heading",
     },
   ];
   const upiDetails = [
@@ -418,11 +430,13 @@ const RefferalPayout = () => {
       title: "User ID",
       dataIndex: "userId",
       key: "userId",
+      className: "custom-heading",
     },
     {
       title: "UPI ID",
       dataIndex: "upiId",
       key: "upiId",
+      className: "custom-heading",
     },
   ];
 
@@ -438,7 +452,7 @@ const RefferalPayout = () => {
   return (
     <>
       <div className="reffer-container">
-        <div className="withdralwal-header d-flex justify-content-between">
+        <div className="withdralwal-header ">
           <p>Withdrawal</p>
           <button
             style={{
@@ -504,15 +518,15 @@ const RefferalPayout = () => {
 
           <br />
         </div>
-        <Tabs defaultActiveKey="1" onChange={handleTabChange}>
+        <Tabs defaultActiveKey="1" onChange={handleTabChange} className="custom-tabs">
           <TabPane tab="Withdrawal" key="1">
             <div style={{ overflow: "auto", maxHeight: "250px" }}>
-              <Table columns={requestColumns} dataSource={requestDetails} />
+              <Table className="custom-table" columns={requestColumns} dataSource={requestDetails} />
             </div>
           </TabPane>
           <TabPane tab="Deposite" key="2">
             <div style={{ overflow: "auto", maxHeight: "250px" }}>
-              <Table columns={approvedColumns} dataSource={approvedDetails} />
+              <Table className="custom-table" columns={approvedColumns} dataSource={approvedDetails} />
             </div>
           </TabPane>
           <TabPane tab="Bank Details" key="3">
@@ -524,10 +538,10 @@ const RefferalPayout = () => {
                 justifyContent: "space-between",
               }}
             >
-              <Table columns={bankDetails} dataSource={userBankDetails} />
+              <Table className="custom-table" columns={bankDetails} dataSource={userBankDetails} />
               &nbsp;
               <div className="upi-div">
-                <Table columns={upiDetails} dataSource={userUpiDetails} />
+                <Table className="custom-table" columns={upiDetails} dataSource={userUpiDetails} />
               </div>
             </div>
           </TabPane>

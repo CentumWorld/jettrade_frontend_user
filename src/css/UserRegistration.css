@@ -1,3 +1,6 @@
+* {
+    font-family:Roboto;
+}
 .registration-page {
     display: flex;
     align-items: center;
@@ -67,14 +70,14 @@
 
 .registration-body p {
     text-align: center;
-    font-family: Calibri;
+    /* font-family: Calibri; */
     font-weight: 600;
     color: #fff;
 }
 
 .registration-body h4 {
     text-align: center;
-    font-family: Calibri;
+    /* font-family: Calibri; */
     color: #fff;
 }
 
@@ -82,7 +85,7 @@
     text-align: start;
     margin-bottom: 0px;
     font-weight: 600;
-    font-family: Calibri;
+    /* font-family: Calibri; */
 }
 
 .gender-dob {
@@ -140,7 +143,7 @@
     text-align: start;
     margin-bottom: 0px;
     font-weight: 600;
-    font-family: Calibri;
+    /* font-family: Calibri; */
 }
 
 .custom-placeholder-input::placeholder {
@@ -153,7 +156,7 @@
 
 .submit-footer p {
     font-weight: 500;
-    font-family: Calibri;
+    /* font-family: Calibri; */
 }
 
 .submit-footer button {

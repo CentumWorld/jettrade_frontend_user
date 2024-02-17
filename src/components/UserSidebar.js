@@ -7,7 +7,7 @@ import { BsBellFill, BsMinecart } from "react-icons/bs";
 import {GiMining} from "react-icons/gi";
 import { RxCountdownTimer } from "react-icons/rx";
 import { TfiMenuAlt } from "react-icons/tfi";
-import {FcNeutralTrading} from "react-icons/fc";
+// import {FcNeutralTrading} from "react-icons/fc";
 import { CiLogout } from "react-icons/ci";
 import { RxDashboard } from "react-icons/rx";
 import { AiOutlineSetting, AiFillBank, AiOutlineSwap } from "react-icons/ai";
@@ -121,7 +121,7 @@ const routes = [
   {
     path: "/userdashboard",
     name: "Trading accounts",
-    icon: <FcNeutralTrading />,
+    icon: <TfiMenuAlt />,
     subRoutes: [
       {
         path: "/userdashboard/accountlist",

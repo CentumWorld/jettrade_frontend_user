@@ -41,7 +41,6 @@ function PaymentPage() {
             }
           )
           .then((res) => {
-            console.log(res, "///////");
             userPaymetSuccessStatus();
           })
           .catch((err) => {
@@ -175,7 +174,7 @@ function PaymentPage() {
               <strong>
                 <mark>NOTE:-</mark>
               </strong>
-              Service/Software usage charge <strong>JETTRADE FX</strong>
+              Service/Software usage charge 
             </p>
           </div>
         </div>

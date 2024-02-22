@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Navbar() {
   // ==========================================
-
+  const [isExpanded, setIsExpanded] = useState(false);
   const classes = useStyles();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -147,6 +147,10 @@ function Navbar() {
     }
   };
 
+  const handleToggle = () => {
+    setIsExpanded(!isExpanded)
+  }
+
   return (
     <>
       <nav id="navbar_container" className="navbar navbar-box navbar-expand-lg navbar-light bg-light">
@@ -165,14 +169,18 @@ function Navbar() {
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent"
-                aria-expanded="false"
+                onClick={handleToggle}
+                aria-expanded={isExpanded?"true":"false"}
                 aria-label="Toggle navigation"
               >
                 <span className="navbar-toggler-icon" />
               </button>
             </div>
           </div>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div  className={`collapse navbar-collapse ${
+            isExpanded ? "show" : ""
+          }`}
+          id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <RenderMenu />
             </ul>

@@ -7,7 +7,6 @@ import baseUrl from "../baseUrl";
 const apiurl = baseUrl.apiUrl;
 
 const HelpFriend = () => {
-  // State variables to store form inputs
   const [toUser, setToUser] = useState("");
   const [amount, setAmount] = useState("");
   const [wallet, setWalletAmount] = useState(0);
@@ -78,11 +77,9 @@ const HelpFriend = () => {
         <div className="help-friend-body">
           <div className="help-friend-content">
             <form onSubmit={handleTransfer}>
-              {/* Friend's Username */}
-              <label>Friend's User Id</label>
+              <label>Friend's User Id:</label>
               <br />
               <Input
-                // style={{width:'300px'}}
                 type="text"
                 value={toUser}
                 onChange={(e) => setToUser(e.target.value)}
@@ -90,12 +87,10 @@ const HelpFriend = () => {
               />
 
               <br />
-              {/* Amount */}
-              <label> Amount </label>
+              <label> Amount: </label>
               <br />
 
               <Input
-                //  style={{width:'300px'}}
                 type="number"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}

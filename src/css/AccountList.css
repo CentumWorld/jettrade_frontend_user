@@ -2,7 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
 
 .accounts_main_container {
@@ -97,7 +97,7 @@
     font-size: 16px;
 }
 .create-account-table thead tr th {
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
 .type-rate  {
     width:52px;

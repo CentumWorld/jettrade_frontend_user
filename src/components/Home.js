@@ -8,7 +8,6 @@ function Home() {
     <>
       <div className="home_container">
         <div className="home_heading1">
-          {/* <MoveStuffAround/> */}
           <div className="forex-ticker d-block">
             <p>
               ETHUSDT see forex chart{" "}

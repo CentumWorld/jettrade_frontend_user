@@ -81,46 +81,37 @@ function UserRegistration() {
   const [spin, setSpin] = useState(false);
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
-
-  //console.log(userData)
   const userInputs = (e) => {
     e.preventDefault();
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
-
-  //handle front aadhar image function
   const handleClickAadharFrontImage = (e) => {
     if (
       e.target.files[0].type === "image/png" ||
       e.target.files[0].type === "image/jpeg"
     ) {
-      //preview shoe
       setAadharImage({ file: e.target.files[0] });
     } else {
       message.error("Invalid File !! ");
       aadharImage.file = null;
     }
   };
-  //hadle back aadhar image function
   const handleClickAadharBackImage = (e) => {
     if (
       e.target.files[0].type === "image/png" ||
       e.target.files[0].type === "image/jpeg"
     ) {
-      //preview shoe
       setAadharBackImage({ file: e.target.files[0] });
     } else {
       message.error("Invalid File !! ");
       aadharBackImage.file = null;
     }
   };
-  //hadle pan card image function
   const handleClickPanCardImage = (e) => {
     if (
       e.target.files[0].type === "image/png" ||
       e.target.files[0].type === "image/jpeg"
     ) {
-      //preview shoe
       setPanImage({ file: e.target.files[0] });
     } else {
       message.error("Invalid File !! ");
@@ -128,13 +119,11 @@ function UserRegistration() {
     }
   };
 
-  // foregien card
   const handleClickForeignCard = (e) => {
     if (
       e.target.files[0].type === "image/png" ||
       e.target.files[0].type === "image/jpeg"
     ) {
-      //preview shoe
       setForegienCard({ file1: e.target.files[0] });
     } else {
       message.error("Invalid File !! ");
@@ -146,7 +135,6 @@ function UserRegistration() {
     e.preventDefault();
     setUserData({ ...userData, pan_no: e.target.value });
     let panLength = e.target.value;
-    console.log(userData.pan_no);
     if (panLength.length === 10) {
       setPanError(false);
     } else {
@@ -169,13 +157,11 @@ function UserRegistration() {
     setChecked(checked);
     if (checked === false) {
       setUserData({ ...userData, userid: "", password: "" });
-      //setUserData({...userData, password:''})
     }
   };
   const submit = async (e) => {
     setSpin(true);
     e.preventDefault();
-    console.log(userData, foregienCard);
     const formData = new FormData();
     formData.append("fname", userData.fname);
     formData.append("lname", userData.lname);
@@ -186,7 +172,6 @@ function UserRegistration() {
     formData.append("dob", userData.dob);
 
     formData.append("reffered_id", userData.invite_code);
-    console.log(formData, "44");
     if (userData.userid === undefined && userData.password === undefined) {
       formData.append("password", "");
       formData.append("userid", "");
@@ -209,12 +194,9 @@ function UserRegistration() {
       try {
         const res = await axios.post(`${apiurl}`+"/user/registration", formData);
         message.success("Registration successful");
-        // console.log(res.data, "224");
         localStorage.setItem("token", res.data.token);
 
         dispatch({ type: "USER", payload: true });
-
-        // localStorage.setItem("login", true);
         userData.userid = "";
         userData.password = "";
 
@@ -239,13 +221,10 @@ function UserRegistration() {
           formData
         );
         message.success("Registration successful");
-        console.log(res.data, "224");
         localStorage.setItem("password", res.data.password);
         localStorage.setItem("token", res.data.token);
 
         dispatch({ type: "USER", payload: true });
-
-        // localStorage.setItem("login", true);
         userData.userid = "";
         userData.password = "";
 
@@ -256,7 +235,6 @@ function UserRegistration() {
         localStorage.setItem("userType", res.data.userType);
 
         navigate("/userid-and-password-save");
-        console.log(res.data);
         setSpin(false);
       } catch (error) {
         message.warning(error.response.data.message);
@@ -264,8 +242,6 @@ function UserRegistration() {
       }
     }
   };
-
-  //date of birth
   const handleDateOfBirthChange = (date, dateString) => {
     setUserData((userData) => ({
       ...userData,
@@ -273,17 +249,15 @@ function UserRegistration() {
     }));
   };
 
-  // -----------------
-
   const [selectedOption, setSelectedOption] = useState("referral");
   const [referralId, setReferralId] = useState("");
-  const officialId = "admin@123"; // Replace with your official ID
+  const officialId = "memberofficial1235125";
   const [countryCode, setCountryCode] = useState("");
 
   const handleDropdownChange = (value) => {
     setSelectedOption(value);
     setReferralId("");
-    setUserData({ ...userData, invite_code: officialId }); // Reset referral ID when changing options
+    setUserData({ ...userData, invite_code: officialId });
   };
 
   const hadleRefferalId = (value) => {
@@ -307,19 +281,16 @@ function UserRegistration() {
     setUserData({ ...userData, phone: value });
   };
 
-  // valid email
   const validateEmail = (rule, value, callback) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!value || emailRegex.test(value)) {
-      callback(); // Make sure callback is a function
+      callback();
     } else {
       callback("Please enter a valid email");
     }
   };
 
-  //valid strong password
   const calculatePasswordStrength = (password) => {
-    // Define your password strength criteria
     const length = password.length;
     const hasUppercase = /[A-Z]/.test(password);
     const hasLowercase = /[a-z]/.test(password);
@@ -328,7 +299,6 @@ function UserRegistration() {
       password
     );
 
-    // Assign a score based on the criteria
     let score = 0;
     if (length >= 8) score++;
     if (hasUppercase) score++;
@@ -341,7 +311,6 @@ function UserRegistration() {
 
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
-    //setPassword(newPassword);
     setUserData({ ...userData, password: newPassword });
 
     const strength = calculatePasswordStrength(newPassword);
@@ -390,7 +359,6 @@ function UserRegistration() {
           <p>Sign up with credentials</p>
           <div className="form-content">
             <form>
-              {/* dorpdown and input box for refferal */}
 
               <div className="d-flex">
                 <Select value={selectedOption} onChange={handleDropdownChange}>
@@ -424,7 +392,6 @@ function UserRegistration() {
                       value={referralId}
                       name="invite_code"
                       onChange={(e) => hadleRefferalId(e.target.value)}
-                      //onChange={hadleRefferalId}
 
                       placeholder="Enter referral ID"
                       style={{ marginBottom: "10px" }}
@@ -432,13 +399,10 @@ function UserRegistration() {
                   </div>
                 )}
               </div>
-              {/* --------------------- */}
-              {/* andt firt name */}
               <div className="input_label">
                 <p>First Name</p>
                 <Input
                   className="custom-placeholder-input"
-                  //prefix={<UserOutlined />}
                   placeholder=" Enter first name"
                   name="fname"
                   value={userData.fname}
@@ -450,7 +414,6 @@ function UserRegistration() {
                 <p>Last Name</p>
                 <Input
                   className="custom-placeholder-input"
-                  //prefix={<UserOutlined />}
                   placeholder="Enter last name"
                   name="lname"
                   value={userData.lname}
@@ -458,8 +421,6 @@ function UserRegistration() {
                   style={{ marginBottom: "10px" }}
                 />
               </div>
-
-              {/* antd email input */}
               <div className="input_label">
                 <p>Email</p>
                 <Input
@@ -494,7 +455,6 @@ function UserRegistration() {
                 <p>Address</p>
                 <Input
                   className="custom-placeholder-input"
-                  //prefix={<FaAddressCard />}
                   placeholder="Enter Address"
                   name="address"
                   value={userData.address}
@@ -534,7 +494,6 @@ function UserRegistration() {
                   />
                 </div>
               </div>
-              {/* ------------------------------------ */}
               {countryCode === "91" ? (
                 <>
                   <div className="input_label">
@@ -555,7 +514,6 @@ function UserRegistration() {
                       <Input
                         placeholder="Aadhar Front Image"
                         type="file"
-                        //style={{ display: 'none' }}
                         onChange={handleClickAadharFrontImage}
                       />
                     </div>
@@ -567,7 +525,6 @@ function UserRegistration() {
                       <Input
                         placeholder="Aadhar back Image"
                         type="file"
-                        //style={{ display: 'none' }}
                         onChange={handleClickAadharBackImage}
                       />
                     </div>
@@ -582,7 +539,6 @@ function UserRegistration() {
                       name="pan_no"
                       onChange={userInputs}
                       style={{ marginBottom: "10px" }}
-                      //style={{ width: '500px', height: '40px' , marginBottom: '10px' }}
                     />
                   </div>
 
@@ -592,7 +548,6 @@ function UserRegistration() {
                       <Input
                         placeholder="Pan card"
                         type="file"
-                        //style={{ display: 'none' }}
                         onChange={handleClickPanCardImage}
                       />
                     </div>
@@ -617,7 +572,6 @@ function UserRegistration() {
                       <Input
                         placeholder="Upload ID Card"
                         type="file"
-                        //style={{ display: 'none' }}
                         onChange={handleClickForeignCard}
                       />
                     </div>
@@ -625,7 +579,6 @@ function UserRegistration() {
                 </>
               )}
 
-              {/* ---------------- */}
               <div
                 style={{
                   display: "flex",
@@ -658,7 +611,6 @@ function UserRegistration() {
                   <Input.Password
                     className="custom-placeholder-input"
                     placeholder="Enter your password"
-                    //type="password"
                     value={userData.password}
                     name="password"
                     onChange={handlePasswordChange}
@@ -671,8 +623,6 @@ function UserRegistration() {
               ) : (
                 ""
               )}
-              {/* ----------------- */}
-
               <div className="submit-footer">
                 <button type="submit" onClick={submit} className="register-Btn">
                   {spin ? <Spin style={{ color: "white" }} /> : "Register"}
@@ -686,7 +636,7 @@ function UserRegistration() {
                 </button>
                 <p style={{ float: "right", color: "white" }}>
                   <NavLink to="/user-login" style={{ color: "white" }}>
-                    Already registered Login
+                    Already registered Login 
                   </NavLink>
                 </p>
               </div>

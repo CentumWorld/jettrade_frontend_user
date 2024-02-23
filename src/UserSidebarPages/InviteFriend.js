@@ -41,7 +41,6 @@ const InviteFriend = () => {
     window.open(url, "_blank");
   };
   const handleShareInstagram = () => {
-    // Replace the 'your-message-here' text with your custom message
     const link = "http://trader.jettradefx.in/user-registration";
     const message = `Join us with invite code: ${inviteCode}  #referralprogram #invitefriends\n`;
     const url = `https://www.instagram.com/share?url=${encodeURIComponent(
@@ -58,7 +57,6 @@ const InviteFriend = () => {
     window.open(url, "_blank");
   };
   const handleShareEmail = () => {
-    // Implement Email sharing here
     const link = "http://trader.jettradefx.in/user-registration";
     const subject = "Join us with my referral link";
     const body = `Join us with invite code: ${inviteCode}\n\n${link}`;

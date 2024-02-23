@@ -4,10 +4,9 @@ import "../../css/ResetPassword.css";
 const ResetPassword = () => {
   const [selectDiv, setSelectDiv] = useState("");
 
-  function onChangeValue(event) {
-    setSelectDiv(event.target.value);
-    console.log(event.target.value);
-  }
+function onChangeValue(event) {
+  setSelectDiv(event.target.value);
+}
   return (
     <>
       <div className="reset_password">

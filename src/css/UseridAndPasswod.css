@@ -4,7 +4,6 @@
     justify-content: center;
     width: 100%;
     height: 93vh;
-    /* background-color:rgb(240,239,240); */
     background: url('/src/img/reg-bg1.jpg') no-repeat;
     background-size: cover;
     background-position: center;
@@ -15,7 +14,6 @@
     height: 45%;
     border-radius: 20px;
     padding: 15px;
-    /* background: #fff; */
     overflow: scroll;
     background: transparent;
     backdrop-filter: blur(15px);
@@ -23,14 +21,14 @@
 }
 .userid-password-container h4 {
     text-align: center;
-    font-family: Calibri;
+    font-family:'Roboto',sans-serif;
     font-weight: 600;
     color: #fff;
 }
 
 .userid-password-container p {
     text-align: center;
-    font-family: Calibri;
+    font-family: 'Roboto',sans-serif;
     color: #fff;
 }
 .userid-and-password{

@@ -81,7 +81,6 @@ function App() {
     }
   }, [location.pathname]);
 
-  // =====================================
   const isTokenExpired1 = (token) => {
     if (!token) {
       // Token not available, consider it as expired
@@ -95,7 +94,6 @@ function App() {
         logoutUser();
       }
     } catch (error) {
-      // Error occurred, consider token as expired
       logoutUser();
     }
   }
@@ -109,11 +107,10 @@ function App() {
     localStorage.removeItem('userType');
     localStorage.removeItem('refferal');
     localStorage.removeItem('userfname');
-
+    localStorage.clear();
     // Redirect to logout page
     navigate('/logout');
   };
-  // =====================================
 
   return (
     <>
@@ -127,17 +124,13 @@ function App() {
             <Routes>
               <Route path='/' element={islogin ? <UserDashboard/>:<Home />} />
               <Route path="/chart" element={<FullForexTicker />} />
-              {/* <Route  path='/admindashboard' element={islogin === 'true'?<AdminDashboard/>:<Route path='/' element={<Home/>}/>}/> */}
-
               <Route path='/paymentpage' element={<PaymentPage />} />
-              {/* <Route path='/admindashboard' element={<Protected Component = {AdminDashboard}/>}></Route> */}
               <Route path='/user-registration' element={<UserRegistration />}></Route>
 
               <Route path="/user-registration/:inviteCode" element={<UserRegistration />} />
               <Route path='/user-login' element={<Userlogin1 />}></Route>
               <Route path='/userid-and-password-save' element={<UseridAndPasswordSave/>}></Route>
 
-              {/* <Route  path='/userdashboard' element={isloginUser === 'true'?<UserDashboard/>:<Home />}/> */}
               <Route path='/userdashboard' element={<Protected Component={UserDashboard} />}>
                 <Route path='dashboard' element={<DisplayCard />} />
                 <Route path='cryptocurrency-market' element={<SignalTradingChart />} />
@@ -148,7 +141,6 @@ function App() {
                 <Route path='cross-rates' element={<CrossRate />} />
                 <Route path='market-data' element={<MarketData />} />
                 <Route path='trading-chart' element={<UserFirstChartPage />} />
-                {/* <Route path='dashboard' element={<UserFirstChartPage/>} /> */}
                 <Route path='new-deposit' element={<NewDeposite />} />
                 <Route path='withdraw' element={<Withdrawal />} />
                 <Route path='transfer' element={<InternalTransfer />} />

@@ -1,3 +1,7 @@
+
+*{
+  font-family:'Roboto',sans-serif;
+}
 .custom-alert-container {
   position: relative;
 }
@@ -35,7 +39,7 @@
 .total-trade-small-card,
 .todays-trade-small-card h6,
 span {
-  font-family: Roboto;
+  font-family: 'Roboto',sans-serif;
   font-size: 16px;
   font-weight: 500;
 }
@@ -114,7 +118,7 @@ span {
 
 .custom-alert-container {
   border-radius: 5px;
-  font-family: "Calibri";
+  font-family:'Roboto',sans-serif;
   margin-bottom: 10px;
 }
 .custom-alert-container .ant-alert-description {

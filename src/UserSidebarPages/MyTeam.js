@@ -25,7 +25,6 @@ const MyTeam = () => {
         axios.post(`${apiurl}`+'/user/users/user-my-team', data, config)
         .then((res)=>{
             setMyTeam(res.data.teamMembers)
-            //console.log(res.data.teamMembers)
         })
         .catch(err=>{
             console.log(err)
@@ -43,7 +42,6 @@ const MyTeam = () => {
             dataIndex: 'referralAmount',
             key: 'referralAmount',
             render: (amount) => {
-              // Format the amount with two decimal places
               const formattedAmount = parseFloat(amount).toFixed(2);
               return <span>₹{formattedAmount}</span>;
             },
@@ -69,9 +67,7 @@ const MyTeam = () => {
                 dataIndex: 'joininigDate',
                 key: 'joininigDate',
                 render: (joininigDate) => {
-                  // Format the date using moment.js
                   const formattedDate = moment(joininigDate).format('YYYY-MM-DD HH:mm');
-    
                   return <span>{formattedDate}</span>;
                 },
               },

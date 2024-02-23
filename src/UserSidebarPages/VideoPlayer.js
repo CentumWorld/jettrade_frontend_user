@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {
-  AiOutlineDislike,
   AiOutlineLike,
-  AiTwotoneDislike,
 } from "react-icons/ai";
 import { AiTwotoneLike } from "react-icons/ai";
 import { BiChevronDown, BiComment } from "react-icons/bi";
 import "../css/videoplayer.css";
-import { toast } from "react-toastify";
 import { FaShare } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import axios from "axios";
-import { message } from "antd";
 import baseUrl from "../baseUrl";
 import { Box, CircularProgress } from "@mui/material";
 
@@ -24,7 +20,6 @@ const VideoPlayer = ({
   perticularvideoId,
   dislike,
 }) => {
-  console.log(perticularvideoId);
   const [isLiked, setIsLiked] = useState(liked);
   const [isDisliked, setIsDisliked] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -94,7 +89,7 @@ const VideoPlayer = ({
           setIsDisliked(!dislike);
         })
         .catch((err) => {
-          console.log(err.response.data.message);
+          
         });
     } else {
       let data = {
@@ -114,7 +109,6 @@ const VideoPlayer = ({
           callApiToDislikeOrNot(perticularvideoId);
         })
         .catch((err) => {
-          console.log(err.response.data.message);
         });
     }
   };
@@ -133,7 +127,7 @@ const VideoPlayer = ({
       .then((res) => {
         setComments(res.data.video.comments);
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => {});
   };
 
   const fetchViewsData = (id) => {
@@ -148,17 +142,15 @@ const VideoPlayer = ({
     axios
       .post(`${apiurl}` + "/user/users/interact_with_video", data, config)
       .then((res) => {
-        console.log(res.data.video)
         setViews(res.data.video.views);
         setLikeCount(res.data.video.likes);
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => {});
   };
 
   const handleClickLike = () => {
     setSpin(false);
     setIsLiked((prev) => !prev);
-    console.log("liked and videoIo -> ", isLiked, perticularvideoId);
     setLikeBackGroundColor((prev) => !prev);
     if (likeBackGroundColor) {
       let data = {
@@ -174,11 +166,9 @@ const VideoPlayer = ({
         .then((res) => {
           const updatedLikeCount = res.data.video.likes;
           setLikeCount(updatedLikeCount);
-          // setIsLiked(!isLiked);
           setSpin(true);
         })
         .catch((err) => {
-          console.log(err.response.data.message);
         });
     } else {
       let data = {
@@ -192,7 +182,6 @@ const VideoPlayer = ({
       axios
         .post(`${apiurl}` + "/user/users/interact_with_video", data, config)
         .then((res) => {
-          console.log(res.data);
           const updatedLikeCount = res.data.video.likes;
           setLikeCount(updatedLikeCount);
           setIsLiked(!isLiked);
@@ -200,7 +189,6 @@ const VideoPlayer = ({
           setSpin(true);
         })
         .catch((err) => {
-          console.log(err.response.data.message);
         });
     }
   };
@@ -220,7 +208,6 @@ const VideoPlayer = ({
         setLikeBackGroundColor(res.data.like.likeType);
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 
@@ -236,11 +223,9 @@ const VideoPlayer = ({
     axios
       .post(`${apiurl}` + "/user/fetch-user-one-video-dislike", data, config)
       .then((res) => {
-        console.log(res.data.dislike.disLikeType);
         setDislikeBackGroundColor(res.data.dislike.disLikeType);
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 
@@ -271,7 +256,6 @@ const VideoPlayer = ({
         setComments(response.data.video.comments);
       })
       .catch((error) => {
-        console.error(error.message);
       });
   };
 
@@ -305,7 +289,6 @@ const VideoPlayer = ({
         setActiveReplyIndex(null);
       })
       .catch((error) => {
-        console.error(error.message);
       });
   };
 
@@ -403,7 +386,6 @@ const VideoPlayer = ({
                     <p className="reply-to">
                       Replying to: <strong>{comment.userName}</strong>
                     </p>
-                    {/* <p className="reply-username">You are replying as: <strong>{user.userName}</strong></p> */}
 
                     <input
                       type="text"

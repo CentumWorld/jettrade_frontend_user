@@ -14,8 +14,6 @@ import UPI from "../img/upi.png";
 
 const Withdrawal = () => {
   const navigate = useNavigate();
- 
-
   const withdrawalAmount = () =>{
     navigate('/userdashboard/wallet-withdrawal')
   }
@@ -28,7 +26,6 @@ const Withdrawal = () => {
           </div>
 
           <div className="withdraw_account_type ">
-            {/* <div className='deposite_coin_account_one row'> */}
             <div className="withdraw_coin_card">
               <span>
                 <img src={btc} alt="" width="200px" height="60px" />
@@ -46,9 +43,6 @@ const Withdrawal = () => {
               </span>
               <span className="ms"> Ethereum</span>
             </div>
-            {/* </div> */}
-
-            {/* <div className='deposite_coin_account_two row'> */}
             <div className="withdraw_coin_card">
               <div className="lite-coin">
                 <span>
@@ -67,8 +61,6 @@ const Withdrawal = () => {
                 <img src={skrill} alt="" width="180px" height="50px" />
               </span>
             </div>
-            {/* </div> */}
-            {/* <div className='deposit_coin_account_three  row'> */}
             <div className="withdraw_coin_card">
               <span>
                 <img src={usdte} alt="" width="80px" height="40px" />
@@ -94,7 +86,6 @@ const Withdrawal = () => {
               </span>
               <span>UPI</span>
             </div>
-            {/* </div> */}
           </div>
         </div>
       </div>

@@ -20,10 +20,7 @@ const Userlogin1 = () => {
   const [hide, setHide] = useState(true);
   const handleInputs = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
-  // Remeber me
-
   const [rememberMe, setRememberMe] = useState(false);
   const handleRememberMeChange = (event) => {
     setRememberMe(event.target.checked);
@@ -31,20 +28,14 @@ const Userlogin1 = () => {
 
   useEffect(() => {
     const storeUserID = localStorage.getItem("userid");
-    console.log(storeUserID, "ytgygy");
     const storedPassword = localStorage.getItem("password");
-    console.log(storedPassword, "uygygjugyu");
-
     const storedRememberMe = localStorage.getItem("rememberMe");
 
     if (storedRememberMe === "true") {
       setUser({ userid: storeUserID, password: storedPassword });
-      //   setMember({password:storedPassword});
       setRememberMe(true);
     }
   }, []);
-
-  //   -------------
 
   const userLogin = (e) => {
     e.preventDefault();
@@ -53,7 +44,6 @@ const Userlogin1 = () => {
       localStorage.setItem("password", user.password);
       localStorage.setItem("rememberMe", true);
     } else {
-      // If "Remember Me" is unchecked, remove the stored login information
       localStorage.removeItem("userid");
       localStorage.removeItem("password");
       localStorage.removeItem("rememberMe");
@@ -69,7 +59,6 @@ const Userlogin1 = () => {
           localStorage.setItem("login", true);
           user.userid = "";
           user.password = "";
-          console.log(response.data.userLogin);
           localStorage.setItem("user", response.data.userLogin._id);
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("userid", response.data.userLogin.userid);
@@ -85,7 +74,6 @@ const Userlogin1 = () => {
         }
       })
       .catch((error) => {
-        console.log("Not login");
         if (error.response.status === 422) {
           message.warning("Please Fill all Details!", {
             autoClose: 2000,
@@ -173,16 +161,6 @@ const Userlogin1 = () => {
               </div>
             </div>
           </form>
-
-          {/* <div className='row'>
-                        <div className='col'>
-                            <div className='login-with-otp'>
-                                <NavLink to='/' >
-                                Or, Login with OTP
-                                </NavLink>
-                            </div>
-                        </div>
-                    </div> */}
 
           <div className="row">
             <div className="home-signup col">

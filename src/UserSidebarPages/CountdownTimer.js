@@ -11,11 +11,8 @@ const CountdownTimer = () => {
       setTimeLeft(timeLeft);
     };
 
-    // Start the countdown when the component mounts
     updateCountdown();
     const timer = setInterval(updateCountdown, 1000);
-
-    // Clean up the interval when the component unmounts
     return () => clearInterval(timer);
   }, [targetDate]);
 

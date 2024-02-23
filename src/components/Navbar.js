@@ -3,20 +3,13 @@ import "../css/Navbar.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 import { UseParamContext } from "./UserRegistration";
-//import UserRegistration from './UserRegistration';
-//import AdminLogin from './AdminLogin';
 import UserForgetPassword from "./UserForgetPassword";
 import Button from "react-bootstrap/Button";
 import { Dropdown, Menu } from "antd";
 
 import logo from "./../img/logo1.png";
 
-// ==================================================
-
 import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import IconButton from "@material-ui/core/IconButton";
-import { FiSettings } from "react-icons/fi";
 import { RiLogoutBoxLine } from "react-icons/ri";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,8 +23,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
 }));
-
-// =====================================================
 
 function Navbar() {
   // ==========================================
@@ -49,8 +40,6 @@ function Navbar() {
 
     setIsDrawerOpen(open);
   };
-
-  // ==============================================
   const inviteCode = useContext(UseParamContext);
 
   const { state, dispatch } = useContext(UserContext);
@@ -68,18 +57,12 @@ function Navbar() {
 
   const openAdminLoginFuction = () => setAdminShow(true);
   const pull_addmin = (data) => setAdminShow(data);
-
-  //react metarial drop down
   const navigate = useNavigate();
   const handleMenuClick = (e) => {
-    console.log(e.key);
     if (e.key === "login") {
-      //openUserLoginFuction();
       navigate("/user-login");
     }
     if (e.key === "signup") {
-      //console.log("hii");
-      // <NavLink to="/user-registration">Sign Up</NavLink>
       navigate("/user-registration");
     }
     if (e.key === "forget") {
@@ -98,7 +81,6 @@ function Navbar() {
       <Menu.Item key="payment">Payment</Menu.Item>
     </Menu>
   );
-  // -------------------------------------------
 
   const RenderMenu = () => {
     if (login && !inviteCode) {
@@ -126,16 +108,7 @@ function Navbar() {
     } else {
       return (
         <>
-          {/* <li className="nav-item">
-                       
-                        <Button variant=" btn rounded btn-outline-primary rounded-pill" onClick={openAdminLoginFuction}>
-                            Admin
-                        </Button>
-                    </li>&nbsp;&nbsp; */}
           <li className="nav-item">
-            {/* <Button variant=" btn rounded btn-outline-primary rounded-pill" onClick={openUserLoginFuction}>
-                            User
-                        </Button> */}
             <Dropdown overlay={menu} trigger={["click"]}>
               <Button variant=" btn rounded btn-outline-primary rounded-pill">
                 User
@@ -186,11 +159,6 @@ function Navbar() {
             </ul>
           </div>
         </div>
-        {/* {userShow ?
-                    <UserLogin func={pull_data} /> : ''
-
-                } */}
-
         {passwordModal ? <UserForgetPassword forgfunc={forgetdata} /> : ""}
       </nav>
     </>

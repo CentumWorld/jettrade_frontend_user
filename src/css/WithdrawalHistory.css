@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family:'Roboto',sans-serif;
 }
 .withdrawal_main_container{
     display: flex;
@@ -27,24 +28,12 @@
     font-size: 20px;
     font-weight: bold;
     color: black;
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
-/* .select_status{
-    height: 55px;
-    width: 300px;
-    background:#fff;
-    border-radius: 10px;
-    border: solid 1px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    font-size: 20px;
-    border-color: rgb(204, 201, 201);
-} */
+
 .withdrawal_history_para p {
     color:#000;
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
     font-size:18px;
 }
 .withdrawal_select_status{
@@ -55,7 +44,7 @@
     width: 300px;
     border-radius: 10px;
     border-style:rgb(218, 213, 213);
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
 .withdrawal_select_timeframe{
     margin-bottom: 20px;
@@ -65,7 +54,7 @@
     width: 300px;
     border-radius: 10px;
     border-style:rgb(218, 213, 213);
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
 .withdrawal_select_account{
     margin-bottom: 40px;
@@ -75,7 +64,7 @@
     width: 300px;
     border-radius: 10px;
     border-style:rgb(218, 213, 213);
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
 .withdrawal_filter_button button{
     width: 160px;
@@ -92,10 +81,10 @@
 }
 
 .Withdrawal_history_list {
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
 .withdrawal_filter_button button {
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
 
 /* media query */

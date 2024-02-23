@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family:'Roboto',sans-serif;
 }
 .deposite_main_container{
     display: flex;
@@ -11,9 +12,6 @@
     height:80vh;
    
 }
-/* .deposite_main_container::-webkit-scrollbar{
-    display: hidden;
-} */
 
 .deposite_card{
     width: 80%;
@@ -27,12 +25,12 @@
     font-size: 20px;
     font-weight: bold;
     color: black;
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
 .depo_history_para p{
     font-size: 18px;
     color: black;
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
 /* .select_status{
     height: 55px;
@@ -55,7 +53,7 @@
     width: 300px;
     border-radius: 10px;
     border-style:rgb(218, 213, 213);
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
 .select_timeframe{
     margin-bottom: 20px;
@@ -82,14 +80,14 @@
     font-size: 16px;
     background: #0d6efd;
     margin-bottom: 20px;
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
 .deposite_history_record{
     display: flex;
     justify-content: space-between;
 }
 .history_list{
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
 
 /* media query */

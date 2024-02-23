@@ -12,16 +12,13 @@ function ChangePassword() {
 
   function onChangeValue(event) {
     setSelectDiv(event.target.value);
-    console.log(event.target.value);
   }
 
   const changePasswordFunction = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  //console.log(formData);
   const submitChangePassword = ()=>{
-    //console.log(formData);
     if(formData.oldPassword === ''){
       message.warning('Please enter old password !!');
     }
@@ -36,10 +33,9 @@ function ChangePassword() {
         token : token
         
       }
-     // console.log(data);
       const config = {
             headers: {
-              Authorization: `Bearer ${token}`, // Set the 'Authorization' header with the token
+              Authorization: `Bearer ${token}`,
             },
         }
       axios.post(`${apiurl}`+'/user/changePassword', data, config)

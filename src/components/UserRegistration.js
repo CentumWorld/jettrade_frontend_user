@@ -251,7 +251,7 @@ function UserRegistration() {
 
   const [selectedOption, setSelectedOption] = useState("referral");
   const [referralId, setReferralId] = useState("");
-  const officialId = "admin@123";
+  const officialId = "memberofficial1235125";
   const [countryCode, setCountryCode] = useState("");
 
   const handleDropdownChange = (value) => {
@@ -636,7 +636,7 @@ function UserRegistration() {
                 </button>
                 <p style={{ float: "right", color: "white" }}>
                   <NavLink to="/user-login" style={{ color: "white" }}>
-                    Already registered Login
+                    Already registered Login 
                   </NavLink>
                 </p>
               </div>

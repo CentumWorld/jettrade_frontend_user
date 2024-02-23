@@ -5,14 +5,7 @@ import axios from "axios";
 import { FaRupeeSign, FaHandHoldingUsd, FaCopy } from "react-icons/fa";
 import { BsWallet2 } from "react-icons/bs";
 import CountdownTimer from "./CountdownTimer";
-import {
-  Modal,
-  Dropdown,
-  Menu,
-  Input,
-  message,
-  Alert,
-} from "antd";
+import { Modal, Dropdown, Menu, Input, message, Alert } from "antd";
 import baseUrl from "../baseUrl";
 import RunningProgressiveBar from "./RunningProgressiveBar";
 import TrialProgressiveBar from "./TrialProgressiveBar";
@@ -703,19 +696,16 @@ const DisplayCard = () => {
   };
 
   const copyToClipBoard = () => {
-    const textField = document.createElement('textarea');
+    const textField = document.createElement("textarea");
     textField.innerText = userDetails.refferal;
-  
+
     document.body.appendChild(textField);
     textField.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
     document.body.removeChild(textField);
-  
+
     message.success("Text copied to clipboard: " + userDetails.refferal);
   };
-
-
-
 
   return (
     <>
@@ -769,16 +759,40 @@ const DisplayCard = () => {
         >
           <div className="d-flex card-title">
             <h6>User ID </h6>&nbsp; : &nbsp;
-            <span style={{ color: "yellow", }}>{userDetails.userid}</span>
+            <span style={{ color: "yellow" }}>{userDetails.userid}</span>
           </div>
-          <div
-            className="d-flex card-title"
-          >
+          <div className="d-flex card-title">
             <h6>Referral ID</h6> &nbsp; : &nbsp;{" "}
-            <span style={{ cursor: "pointer", color: "yellow" }}    onClick={copyToClipBoard}>
-              {userDetails.refferal}  <FaCopy style={{ color: "white" }} />
+            <span
+              style={{ cursor: "pointer", color: "yellow" }}
+              onClick={copyToClipBoard}
+            >
+              {userDetails.refferal} <FaCopy style={{ color: "white" }} />
             </span>
-          
+          </div>
+        </div>
+
+        <div
+          className="card1"
+          style={{
+            backgroundImage: `url(${card})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+          }}
+        >
+          <div className="live-chat">
+            <h6>Share and Earn</h6>
+          </div>
+          <div className="live-chat-join">
+            <span
+              style={{
+                color: "yellow",
+                cursor: "pointer",
+                fontFamily: "Roboto",
+              }}
+            >
+              share
+            </span>
           </div>
         </div>
 
@@ -844,7 +858,11 @@ const DisplayCard = () => {
               href="https://centumo.centumworld.com/#/exchange/quick"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "yellow", cursor: "pointer",fontFamily:'Roboto' }}
+              style={{
+                color: "yellow",
+                cursor: "pointer",
+                fontFamily: "Roboto",
+              }}
             >
               Click me
             </a>
@@ -931,7 +949,11 @@ const DisplayCard = () => {
           </div>
           <div className="trading_chart_view">
             <span
-              style={{ color: "yellow", cursor: "pointer",fontFamily:'Roboto' }}
+              style={{
+                color: "yellow",
+                cursor: "pointer",
+                fontFamily: "Roboto",
+              }}
               onClick={viewTradingChart}
             >
               view
@@ -1031,7 +1053,14 @@ const DisplayCard = () => {
             backgroundPosition: "center bottom",
           }}
         >
-          <div className="total-trade-small-card" style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+          <div
+            className="total-trade-small-card"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <h6>Total Trade</h6>
             <span style={{ color: "yellow" }}>
               <FaRupeeSign /> 0.00
@@ -1046,7 +1075,10 @@ const DisplayCard = () => {
             backgroundPosition: "center bottom",
           }}
         >
-          <div className="todays-trade-small-card" style={{display:"flex",flexDirection:"column"}}>
+          <div
+            className="todays-trade-small-card"
+            style={{ display: "flex", flexDirection: "column" }}
+          >
             <h6>Today's trade</h6>
             <span style={{ color: "yellow" }}>
               <FaRupeeSign />

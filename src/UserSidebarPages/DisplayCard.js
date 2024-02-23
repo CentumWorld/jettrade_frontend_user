@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/DisplayCard.css";
 import axios from "axios";
-import { FaRupeeSign, FaHandHoldingUsd } from "react-icons/fa";
+import { FaRupeeSign, FaHandHoldingUsd, FaCopy } from "react-icons/fa";
 import { BsWallet2 } from "react-icons/bs";
 import CountdownTimer from "./CountdownTimer";
 import {
@@ -702,6 +702,21 @@ const DisplayCard = () => {
       });
   };
 
+  const copyToClipBoard = () => {
+    const textField = document.createElement('textarea');
+    textField.innerText = userDetails.refferal;
+  
+    document.body.appendChild(textField);
+    textField.select();
+    document.execCommand('copy');
+    document.body.removeChild(textField);
+  
+    message.success("Text copied to clipboard: " + userDetails.refferal);
+  };
+
+
+
+
   return (
     <>
       {subscriptionStatus.payment === false && subscription === 0 ? (
@@ -758,12 +773,12 @@ const DisplayCard = () => {
           </div>
           <div
             className="d-flex card-title"
-            onClick={() => share(`/user-registration/${userDetails.refferal}`)}
           >
             <h6>Referral ID</h6> &nbsp; : &nbsp;{" "}
-            <span style={{ cursor: "pointer", color: "yellow" }}>
-              {userDetails.refferal}
+            <span style={{ cursor: "pointer", color: "yellow" }}    onClick={copyToClipBoard}>
+              {userDetails.refferal}  <FaCopy style={{ color: "white" }} />
             </span>
+          
           </div>
         </div>
 

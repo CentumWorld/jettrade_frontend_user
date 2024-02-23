@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
 .payment_container{
     height: 100vh;
@@ -45,7 +45,7 @@
 }
 .payment-userid-input::placeholder {
     font-size: 14px;
-    font-family: Calibri;
+    font-family:'Roboto',sans-serif;
     font-style: italic;
     color: #808080;
     font-weight: 100;

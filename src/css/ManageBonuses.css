@@ -2,7 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
 .bonuses_main_container{
     display: flex;
@@ -40,7 +40,7 @@
 .deposit_bonus_data p{
     font-size: 18px;
     color: rgb(156, 153, 153);
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
 .active_canceled_bonus_para p{
     font-size: 16px;
@@ -56,7 +56,7 @@
 
 }
 .deposite_bonuses_tab_heading span {
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
     font-size:18px;
     color:#000;
 }

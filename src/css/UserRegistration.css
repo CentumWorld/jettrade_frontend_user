@@ -1,53 +1,51 @@
 * {
-    font-family:Roboto;
+  font-family: "Roboto", sans-serif;
 }
 .registration-page {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 90vh;
-    /* background-color:rgb(240,239,240); */
-    background: url('/src/img/reg-bg1.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
-    /* animation: animationBg 5s linear infinite; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 90vh;
+  background: url("/src/img/reg-bg1.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
-.register-Btn{
-    background-color: blue;
-    padding: 3px;
-    border: 1px solid white;
-    border-radius: 5px;
-    color: white;
-    font-size: 1rem;
+.register-Btn {
+  background-color: blue;
+  padding: 3px;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
 }
 
-.register-Btn:hover{
-    background-color: blue;
-    padding: 3px;
-    border: 1px solid cyan;
-    border-radius: 5px;
-    color: white;
-    font-size: 1rem;
+.register-Btn:hover {
+  background-color: blue;
+  padding: 3px;
+  border: 1px solid cyan;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
 }
 
-.home-Btn{
-    background-color: green;
-    padding: 3px;
-    border: 1px solid white;
-    border-radius: 5px;
-    color: white;
-    font-size: 1rem;
+.home-Btn {
+  background-color: green;
+  padding: 3px;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
 }
 
-.home-Btn:hover{
-    background-color: green;
-    padding: 3px;
-    border: 1px solid cyan;
-    border-radius: 5px;
-    color: white;
-    font-size: 1rem;
+.home-Btn:hover {
+  background-color: green;
+  padding: 3px;
+  border: 1px solid cyan;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
 }
 
 /* @keyframes animationBg {
@@ -56,149 +54,138 @@
     }
 } */
 .registration-body {
-    width: 45%;
-    height: 90%;
-    border-radius: 20px;
-    padding: 15px;
-    /* background: #fff; */
-    overflow: scroll;
-    background: transparent;
-    backdrop-filter: blur(15px);
-    border: 2px solid rgba(255, 255, 255, .5);
-
+  width: 45%;
+  height: 90%;
+  border-radius: 20px;
+  padding: 15px;
+  overflow: scroll;
+  background: transparent;
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .registration-body p {
-    text-align: center;
-    /* font-family: Calibri; */
-    font-weight: 600;
-    color: #fff;
+  text-align: center;
+  font-weight: 600;
+  color: #fff;
 }
 
 .registration-body h4 {
-    text-align: center;
-    /* font-family: Calibri; */
-    color: #fff;
+  text-align: center;
+  color: #fff;
 }
 
 .input_label p {
-    text-align: start;
-    margin-bottom: 0px;
-    font-weight: 600;
-    /* font-family: Calibri; */
+  text-align: start;
+  margin-bottom: 0px;
+  font-weight: 600;
 }
 
 .gender-dob {
-
-    display: flex;
-    justify-content: space-between;
-
+  display: flex;
+  justify-content: space-between;
 }
 
 .gender-dob-section p {
-    text-align: start;
-    margin-bottom: 0px;
+  text-align: start;
+  margin-bottom: 0px;
 }
 
 .custom-datepicker .ant-picker-input input::placeholder {
-    color: #808080;
+  color: #808080;
 }
 
 .aadhar-front {
-    line-height: 0px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  line-height: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .aadhar-front p {
-    text-align: start;
+  text-align: start;
 }
 
 .aadhar_upload {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .aadhar-back {
-    line-height: 0px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  line-height: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .aadhar-back p {
-    text-align: start;
+  text-align: start;
 }
 
 .Pan_card {
-    line-height: 0px;
+  line-height: 0px;
 }
 
 .pan_card p {
-    text-align: start;
-    margin-bottom: 0px;
+  text-align: start;
+  margin-bottom: 0px;
 }
 
 .password-input p {
-    text-align: start;
-    margin-bottom: 0px;
-    font-weight: 600;
-    /* font-family: Calibri; */
+  text-align: start;
+  margin-bottom: 0px;
+  font-weight: 600;
 }
 
 .custom-placeholder-input::placeholder {
-    color: #808080;
+  color: #808080;
 }
 
 .submit-footer {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 .submit-footer p {
-    font-weight: 500;
-    /* font-family: Calibri; */
+  font-weight: 500;
 }
 
 .submit-footer button {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .form-content form {
-    /* border: 1px solid black; */
-    border-radius: 5px;
-    padding: 10px;
-    /* background: linear-gradient(red,blue); */
+  border-radius: 5px;
+  padding: 10px;
+  /* background: linear-gradient(red,blue); */
 }
 
-@media only screen and (min-width: 768px) and (max-width:1024px) {
-    .registration-body {
-        width: 70%
-    }
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .registration-body {
+    width: 70%;
+  }
 }
 
 @media only screen and (max-width: 768px) {
-    .registration-body {
-        width: 70%
-    }
+  .registration-body {
+    width: 70%;
+  }
 }
 
 @media only screen and (max-width: 576px) {
-    .registration-body {
-        width: fit-content;
+  .registration-body {
+    width: fit-content;
+  }
 
-    }
-
-    /* .aadhar_upload{
+  /* .aadhar_upload{
         display: block;
         width: auto;
          
     } */
-    /* .aadhar_front_mobile {
+  /* .aadhar_front_mobile {
         margin-bottom: 10px;
     }  */
-    .submit-footer button {
-        width: 100%;
-        margin-bottom: 10px;
-        margin-left: 0px;
-    }
+  .submit-footer button {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-left: 0px;
+  }
 }

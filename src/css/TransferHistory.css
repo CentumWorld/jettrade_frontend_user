@@ -2,7 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
 
 .transfer_history_para{
@@ -86,9 +86,7 @@
     justify-content: space-between;
     color: black;
 }
-/* .history_list{
-    margin-right:10px ;
-} */
+
 
 /* media query */
 @media only screen and (max-width: 576px){

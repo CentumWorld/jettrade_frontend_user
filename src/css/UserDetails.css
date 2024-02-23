@@ -1,5 +1,5 @@
 *{
-    font-family:Roboto;
+    font-family:'Roboto',sans-serif;
 }
 .user_details {
     display: flex;
@@ -34,7 +34,6 @@
     font-size: 20px;
     font-weight: 700;
     color:#000;
-    /* font-family: ; */
 }
 .user_main_heading Button {
     color:#fff;
@@ -131,12 +130,12 @@
 
     .user_main_heading p {
         font-size: 16px;
-        font-family: Calibri;
+        font-family:'Roboto',sans-serif;
     }
 
     .user_main_heading_paragraph p {
         font-size: 14px;
-        font-family: Calibri;
+        font-family:'Roboto',sans-serif;
     }
 
     .user_head h6 {

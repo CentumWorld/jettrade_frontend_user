@@ -774,11 +774,10 @@ function UserSidebar(props) {
               <div
                 style={{
                   marginLeft: "5px",
-                  fontWeight: "600",
+                  fontWeight: "500",
                   marginRight: "10px",
                   marginTop: "10px",
-                  color: "#545151",
-                  fontFamily: "Roboto",
+                  color: "black",
                 }}
               >
                 Subscription
@@ -804,11 +803,10 @@ function UserSidebar(props) {
               <div
                 style={{
                   marginLeft: "5px",
-                  fontWeight: "600",
+                  fontWeight: "500",
                   marginRight: "10px",
                   marginTop: "10px",
-                  color: "#545151",
-                  fontFamily: "Roboto",
+                  color: "black",
                 }}
               >
                 Logout

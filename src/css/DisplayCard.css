@@ -5,7 +5,7 @@
 .blink-button {
   position: absolute;
   right: 8px;
-  top:35px;
+  top: 35px;
 }
 
 .card1-container {
@@ -23,7 +23,21 @@
   margin-right: 20px;
   margin-bottom: 20px;
   padding: 10px;
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+}
+.card-title,
+.subscription-card,
+.live-chat,
+.trading_chart,
+.create-wallet,
+.Withdrawal,
+.total-trade-small-card,
+.todays-trade-small-card h6,
+span {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
 }
 .subscription-card {
   display: flex;
@@ -114,6 +128,6 @@
 }
 @media only screen and (max-width: 768px) {
   .blink-button {
-    top:45px
+    top: 45px;
   }
 }

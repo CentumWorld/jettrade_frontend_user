@@ -1,3 +1,6 @@
+*{
+    font-family:Roboto;
+}
 .user_details {
     display: flex;
     align-items: center;
@@ -30,18 +33,21 @@
 .user_main_heading p {
     font-size: 20px;
     font-weight: 700;
-    font-family: Calibri;
+    color:#000;
+    /* font-family: ; */
+}
+.user_main_heading Button {
+    color:#fff;
 }
 
 .user_main_heading_paragraph p {
-    font-size: 16px;
+    font-size: 18px;
     color: rgb(134, 133, 133);
-    font-family: Calibri;
 }
 
 .user_head {
     color: rgb(197, 195, 195);
-    font-family: Calibri;
+    
 }
 
 .row_content {
@@ -52,7 +58,6 @@
 
 .user_head_data h6 {
     margin-right: 2px;
-    font-family: Calibri;
     color:black;
 }
 

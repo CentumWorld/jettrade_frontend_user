@@ -2,13 +2,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family:Roboto;
 }
 .main-container{
     position: sticky;
     top: 70px;
 }
 .userSidebar{
-   /* background: rgb(241, 239, 239);  */
    background: #fff;
    color: rgb(37, 35, 35);
    height: 90vh;
@@ -37,7 +37,7 @@
 }
 
 .logo {
-    font-family: "italic", sans-serif;
+    font-family:Roboto;
     font-size: 24px; 
     font-weight: bold; 
     padding: 10px; 
@@ -94,7 +94,7 @@
   .subscription-plan-title .ant-modal-title {
     color:blueviolet; 
     font-weight: 600;
-    font-family: Calibri;
+    font-family: Roboto;
     font-size: 20px;
     font-style: italic;/* Change the color as desired */
   }
@@ -108,11 +108,9 @@
     font-size: 16px;
     margin: 10px 20px;
     font-weight: 600;
+    font-family:Roboto;
 }
-/* .deposit_button button{
-    justify-content: center;
-    align-items: center;
-} */
+
 .user_sidebar_link{
     display: flex;
     color: rgb(34, 31, 31);
@@ -121,10 +119,12 @@
     font-size: 16px;
     font-weight: 500;
     align-items: center;
-    /* font-family: 'Times New Roman', Times, serif; */
+    color:#000;
 
 }
-a{
+
+ a{
+    color:#000;
     text-decoration: none;
 }
 
@@ -142,7 +142,6 @@ a{
     padding: 10px 15px;
     font-size: 16px;
     font-weight: 500;
-    /* font-family: 'Times New Roman', Times, serif; */
 }
 .user_sidebar_link_small:hover{
     border-right: 2px solid #3b03d8;
@@ -160,7 +159,6 @@ a{
     padding: 10px 15px;
     font-size: 16px;
     font-weight: 500;
-    /* font-family: 'Times New Roman', Times, serif; */
     justify-content: space-between;
 }
 .menu_item{

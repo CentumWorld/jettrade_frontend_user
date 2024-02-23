@@ -1,43 +1,26 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/UserSidebar.css";
 import { motion } from "framer-motion";
-import {
-  MdDashboard,
-  MdSend,
-  MdNightsStay,
-  MdOutlineSubscriptions,
-} from "react-icons/md";
-import {
-  FaMoneyBillWaveAlt,
-  FaBars,
-  FaUserPlus,
-  FaShare,
-} from "react-icons/fa";
+import { MdSend, MdOutlineSubscriptions } from "react-icons/md";
+import { FaMoneyBillWaveAlt, FaBars,FaChartLine } from "react-icons/fa";
 import { BsBellFill, BsMinecart } from "react-icons/bs";
+import {GiMining} from "react-icons/gi";
 import { RxCountdownTimer } from "react-icons/rx";
-import { TfiMenuAlt, TfiGift } from "react-icons/tfi";
+import { TfiMenuAlt } from "react-icons/tfi";
+// import {FcNeutralTrading} from "react-icons/fc";
 import { CiLogout } from "react-icons/ci";
 import { RxDashboard } from "react-icons/rx";
-import {
-  AiOutlineSetting,
-  AiFillBank,
-  AiOutlineAreaChart,
-  AiOutlineSwap,
-} from "react-icons/ai";
-import { FcBarChart } from "react-icons/fc";
+import { AiOutlineSetting, AiFillBank, AiOutlineSwap } from "react-icons/ai";
 import { FiVideo } from "react-icons/fi";
 import { FaHandHoldingUsd } from "react-icons/fa";
 import { GrTransaction } from "react-icons/gr";
 import { NavLink } from "react-router-dom";
 import UserSidebarMenu from "./usersidebar/UserSidebarMenu";
 import { UserModal } from "../UserModel/UserModal";
-import { Modal, Row, Col, Button, message, Switch, Badge } from "antd";
-import { FcNeutralTrading } from "react-icons/fc";
-import { FcUpRight } from "react-icons/fc";
+import { Modal, Row, Col, Button, message, Badge } from "antd";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import baseUrl from "../baseUrl";
-import { BiLogOutCircle } from "react-icons/bi";
 import { IoStatsChartOutline } from "react-icons/io5";
 
 const apiurl = baseUrl.apiUrl;
@@ -58,14 +41,14 @@ const routes = [
   {
     path: "https://centumworldrig.com/",
     name: "CENTUMO RIG",
-    icon: <BsMinecart />,
+    icon: <GiMining />,
     externalLink: true,
     target: "_blank",
   },
   {
     path: "/userdashboard",
     name: "Chart and Data",
-    icon: <IoStatsChartOutline />,
+    icon: <FaChartLine />,
     subRoutes: [
       {
         path: "/userdashboard/trading-chart",
@@ -162,41 +145,24 @@ const routes = [
       },
     ],
   },
-  // {
-  //   path: "/userdashboard/invite",
-  //   name: "Invite a friend",
-  //   icon: <FaUserPlus />,
-  // },
+
   {
     path: "/userdashboard/wallet-withdrawal",
     name: "Transaction",
     icon: <GrTransaction />,
   },
-  // {
-  //   path: "/userdashboard/my-team",
-  //   name: "Referral Payout",
-  //   icon: <FaShare />,
-  // },
 
   {
     path: "/userdashboard/video",
     name: "Video",
     icon: <FiVideo />,
   },
-
-  // {
-  //   path: "/logout",
-  //   name: "Logout",
-  //   icon: <BiLogOutCircle />,
-  // },
 ];
 
 function UserSidebar(props) {
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
-
   const [isOpen, setIsOpen] = useState(false);
-  const [isComponentOpen, setIsComponentOpen] = useState(false);
   const [subcriptionDiv, setSubscriptionDiv] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [openNotificationModal, setOpenNotificationModal] = useState(false);
@@ -480,7 +446,7 @@ function UserSidebar(props) {
   return (
     <>
       <div className="user-subscription-modal">
-        <Modal
+        <Modal 
           title="Subscription plan"
           className="subscription-plan-title"
           open={isSubscriptionModal}
@@ -495,7 +461,7 @@ function UserSidebar(props) {
                   span={12}
                   style={{
                     fontWeight: 600,
-                    fontFamily: "Calibri",
+                    fontFamily: "Roboto",
                     fontSize: "16px",
                   }}
                 >
@@ -506,7 +472,7 @@ function UserSidebar(props) {
                   style={{
                     color: "#5e72e4",
                     fontWeight: 500,
-                    fontFamily: "Calibri",
+                    fontFamily: "Roboto",
                     fontSize: "16px",
                   }}
                 >
@@ -518,7 +484,7 @@ function UserSidebar(props) {
                   span={12}
                   style={{
                     fontWeight: 600,
-                    fontFamily: "Calibri",
+                    fontFamily: "Roboto",
                     fontSize: "16px",
                   }}
                 >
@@ -528,8 +494,8 @@ function UserSidebar(props) {
                   span={12}
                   style={{
                     color: "#5e72e4",
-                    fontWeight: 500,
-                    fontFamily: "Calibri",
+                    fontWeight: 700,
+                    fontFamily: "Roboto",
                     fontSize: "16px",
                   }}
                 >
@@ -542,7 +508,7 @@ function UserSidebar(props) {
                   span={12}
                   style={{
                     fontWeight: 600,
-                    fontFamily: "Calibri",
+                    fontFamily: "Roboto",
                     fontSize: "16px",
                   }}
                 >
@@ -553,7 +519,7 @@ function UserSidebar(props) {
                   style={{
                     color: paymentCountSubscription.payment ? "green" : "red",
                     fontWeight: 500,
-                    fontFamily: "Calibri",
+                    fontFamily: "Roboto",
                     fontSize: "16px",
                   }}
                 >
@@ -565,7 +531,7 @@ function UserSidebar(props) {
                   span={12}
                   style={{
                     fontWeight: 600,
-                    fontFamily: "Calibri",
+                    fontFamily: "Roboto",
                     fontSize: "16px",
                   }}
                 >
@@ -576,7 +542,7 @@ function UserSidebar(props) {
                   style={{
                     color: "#5e72e4",
                     fontWeight: 500,
-                    fontFamily: "Calibri",
+                    fontFamily: "Roboto",
                     fontSize: "16px",
                   }}
                 >
@@ -588,7 +554,7 @@ function UserSidebar(props) {
                   span={12}
                   style={{
                     fontWeight: 600,
-                    fontFamily: "Calibri",
+                    fontFamily: "Roboto",
                     fontSize: "16px",
                   }}
                 >
@@ -599,7 +565,7 @@ function UserSidebar(props) {
                   style={{
                     color: "#5e72e4",
                     fontWeight: 500,
-                    fontFamily: "Calibri",
+                    fontFamily: "Roboto",
                     fontSize: "16px",
                   }}
                 >
@@ -698,11 +664,7 @@ function UserSidebar(props) {
         <motion.div animate={{ width: width }} className="userSidebar">
           <div className="dashboard-title">
             <div className="top_section">
-              {isOpen && (
-                <h1 className="logo">
-                  {userName}
-                </h1>
-              )}
+              {isOpen && <h1 className="logo">{userName}</h1>}
 
               {isOpen && (
                 <div className="setting">
@@ -815,7 +777,8 @@ function UserSidebar(props) {
                   fontWeight: "600",
                   marginRight: "10px",
                   marginTop: "10px",
-                  color: "#000",
+                  color: "#545151",
+                  fontFamily: "Roboto",
                 }}
               >
                 Subscription
@@ -844,7 +807,8 @@ function UserSidebar(props) {
                   fontWeight: "600",
                   marginRight: "10px",
                   marginTop: "10px",
-                  color: "#000",
+                  color: "#545151",
+                  fontFamily: "Roboto",
                 }}
               >
                 Logout

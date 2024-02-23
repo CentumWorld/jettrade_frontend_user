@@ -1,81 +1,86 @@
-.help-friend-container{
-    width: 100%;
-    height: 80vh;
-    border-radius: 8px;
+.help-friend-container {
+  width: 100%;
+  height: 80vh;
+  border-radius: 8px;
 }
-.help-friend-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 80px;
-    background: #0d0258;
-    border-radius:8px;
-    text-align: center;
-    padding: 10px;
+.help-friend-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  background: #0d0258;
+  border-radius: 8px;
+  text-align: center;
+  padding: 10px;
 }
-.help-friend-header p{
-    text-align: center;
-    color: antiquewhite;
-    font-weight: 600;
-    font-size: 24px;
-    font-family: Calibri;
+.help-friend-header p {
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 20px;
+  font-family: Roboto;
 }
-.help-friend-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
+.help-friend-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
 }
-.help-friend-content{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   width: 50%;
-   height: 30vh;
-   background: #cce9f2;
-   border-radius: 20px;
-   box-shadow: 1px 10px 10px #0d0258;
+.help-friend-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 40vh;
+  background: #cce9f2;
+  border-radius: 20px;
+  box-shadow: 1px 10px 10px #0d0258;
+}
+.help-friend-content label {
+    font-family:Roboto;
+}
+.help-friend-content button {
+   width: -webkit-fill-available;
+   font-family:Roboto;
 }
 
-.user-wallet{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width: 100px;
-    height: 40px;
-    background: yellow;
-    border: 1px solid #0d0258;
-    border-radius: 5px;
-    align-content:center;
-    color:black;
-    
+.user-wallet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 40px;
+  background: yellow;
+  border: 1px solid #0d0258;
+  border-radius: 5px;
+  align-content: center;
+  color: black;
 }
 
 .button-style {
-    width:100px;
-    height:30px;
-    background-color:#4393f4;
-    margin-top:15px;
-    color:white;
-    border:none;
-    border-radius:5px;
+  width: 100px;
+  height: 30px;
+  background-color: #4393f4;
+  margin-top: 15px;
+  color: white;
+  border: none;
+  border-radius: 5px;
 }
 
-@media only screen and (max-width: 576px){
-    .help-friend-content{
-       width: 95%;
-       height: 40vh;
-       color:black;
-    }
-    .help-friend-header p{
-        text-align: center;
-        color: antiquewhite;
-        font-weight: 400;
-        font-size: 16px;
-    }
-    .user-wallet{
-        height:50px ;
-    }
-    
+@media only screen and (max-width: 576px) {
+  .help-friend-content {
+    width: 95%;
+    height: 40vh;
+    color: black;
+  }
+  .help-friend-header p {
+    text-align: center;
+    color: antiquewhite;
+    font-weight: 400;
+    font-size: 16px;
+  }
+  .user-wallet {
+    height: 50px;
+  }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../css/Withdrawal.css";
 import {useNavigate} from 'react-router-dom'
 import btc from "../img/Deposit account coin type/btc.png";
@@ -22,7 +22,7 @@ const Withdrawal = () => {
       <div className="withdraw_container">
         <div className="withdraw_card">
           <div className="withdraw_heading">
-            <h5>Payment methods</h5>
+            <h5>Payment Methods</h5>
           </div>
 
           <div className="withdraw_account_type ">

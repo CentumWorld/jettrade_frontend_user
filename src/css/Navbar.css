@@ -40,6 +40,20 @@ form label {
 .logo-img{
     width: 100px;
     height:35px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 1rem;
+
+}
+
+.navbar-toggler{
+    position: absolute;
+
+    top: 0;
+    right: 0;
+    margin: 1rem 1rem 0 0;
 }
 
 /* .navbar-brand {
@@ -58,6 +72,7 @@ form label {
     .small-sidebar {
         display: none;
     }
+ 
 }
 
 @media only screen and (max-width:998px) {
@@ -71,11 +86,15 @@ form label {
 }
 
 @media only screen and (max-width: 365px) {
-    .logo-img{
-        display: none;
-    }
+
     .navbar-brand{
         display: flex;
         align-items: center;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .logo-img{
+        display: none;
     }
 }

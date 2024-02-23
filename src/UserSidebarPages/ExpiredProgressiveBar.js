@@ -6,7 +6,7 @@ const ExpiredProgressiveBar = ({percent}) => {
     const progressColor = '#FF0000'
     return (
         <div className='progress-container'>
-            <div style={{ textAlign: 'center', fontWeight: '500' }}>
+            <div style={{ textAlign: 'center', fontWeight: '500',fontFamily:'Roboto' }}>
                 <p>Expired stage</p>
                 <p>{percent.expiredStage}/{percent.totalCount} Traders</p>
             </div>

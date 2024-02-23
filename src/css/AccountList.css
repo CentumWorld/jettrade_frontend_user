@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family:Roboto;
 }
 
 .accounts_main_container {
@@ -23,8 +24,9 @@
 }
 
 
-.accounts_para{
+.accounts_para p{
     color: black;
+    font-size:18px;
 }
 
 .accounts_heading p {
@@ -93,6 +95,17 @@
 .close_data p {
     color: rgb(156, 153, 153);
     font-size: 16px;
+}
+.create-account-table thead tr th {
+    font-family:Roboto;
+}
+.type-rate  {
+    width:52px;
+    height:26px;
+    border-radius:15px;
+}
+.type-rate span {
+    color:#fff;
 }
 
 /* media query */

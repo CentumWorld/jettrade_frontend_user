@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import '../../css/ChangePassword.css';
 import { Input, message } from 'antd';
 import axios from 'axios';

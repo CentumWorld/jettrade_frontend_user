@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import "../../css/UserDetails.css";
 import profile from "../../img/user_profile.png";
 import axios from "axios";
@@ -304,7 +304,7 @@ const UserDetails = () => {
                 <p>Personal information</p>
                 <Button
                   type="primary"
-                  style={{ borderRadius: "12px" }}
+                  style={{ borderRadius: "12px",color:'#fff' }}
                   onClick={editModal}
                 >
                   Edit Details
@@ -441,7 +441,7 @@ const UserDetails = () => {
       <div>
         <Modal
           title={
-            <span style={{ color: "#5e72e4", fontFamily: "Calibri" }}>
+            <span style={{ color: "#1677ff", fontFamily: "Roboto",fontWeight:700 }}>
               EDIT INFORMATION
             </span>
           }
@@ -455,7 +455,7 @@ const UserDetails = () => {
         >
           <div className="edit-container">
             <div>
-              <Row style={{ marginBottom: "5px" }}>
+              <Row style={{ marginBottom: "5px",fontFamily:'Roboto' }}>
                 <Col span={12}>First Name :</Col>
                 <Col span={12}>
                   <Input
@@ -468,7 +468,7 @@ const UserDetails = () => {
               </Row>
             </div>
             <div>
-              <Row style={{ marginBottom: "5px" }}>
+              <Row style={{ marginBottom: "5px",fontFamily:'Roboto' }}>
                 <Col span={12}>Last Name :</Col>
                 <Col span={12}>
                   <Input
@@ -481,7 +481,7 @@ const UserDetails = () => {
               </Row>
             </div>
             <div>
-              <Row style={{ marginBottom: "5px" }}>
+              <Row style={{ marginBottom: "5px",fontFamily:'Roboto' }}>
                 <Col span={12}>Phone:</Col>
                 <Col span={12}>
                   <Input
@@ -494,7 +494,7 @@ const UserDetails = () => {
               </Row>
             </div>
             <div>
-              <Row style={{ marginBottom: "5px" }}>
+              <Row style={{ marginBottom: "5px",fontFamily:'Roboto' }}>
                 <Col span={12}>Address :</Col>
                 <Col span={12}>
                   <Input
@@ -509,7 +509,7 @@ const UserDetails = () => {
             {userType === "indian" ? (
               <>
                 <div>
-                  <Row style={{ marginBottom: "5px" }}>
+                  <Row style={{ marginBottom: "5px",fontFamily:'Roboto' }}>
                     <Col span={12}>Aadhar No. :</Col>
                     <Col span={12}>
                       <Input
@@ -522,7 +522,7 @@ const UserDetails = () => {
                   </Row>
                 </div>
                 <div>
-                  <Row style={{ marginBottom: "5px" }}>
+                  <Row style={{ marginBottom: "5px",fontFamily:'Roboto' }}>
                     <Col span={12}>Pan No. :</Col>
                     <Col span={12}>
                       <Input
@@ -538,7 +538,7 @@ const UserDetails = () => {
             ) : (
               <>
                 <div>
-                  <Row style={{ marginBottom: "5px" }}>
+                  <Row style={{ marginBottom: "5px",fontFamily:'Roboto' }}>
                     <Col span={12}>ID No. :</Col>
                     <Col span={12}>
                       <Input
@@ -553,7 +553,7 @@ const UserDetails = () => {
               </>
             )}
             <div>
-              <Row style={{ marginBottom: "5px" }}>
+              <Row style={{ marginBottom: "5px",fontFamily:'Roboto' }}>
                 <Col span={12}>Gender :</Col>
                 <Col span={12}>
                   <Select
@@ -570,7 +570,7 @@ const UserDetails = () => {
               </Row>
             </div>
             <div>
-              <Row style={{ marginBottom: "5px" }}>
+              <Row style={{ marginBottom: "5px",fontFamily:'Roboto' }}>
                 <Col span={12}>Date of Birth :</Col>
                 <Col span={12}>
                   <DatePicker

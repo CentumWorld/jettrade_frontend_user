@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family:Roboto;
 }
 .profile_verification{
     display: flex;
@@ -40,7 +41,7 @@
     text-align: left;
     color: rgb(156, 157, 158);
     font-size: 16px;
-    font-family: ' Calibri';
+    /* font-family: ' Calibri'; */
     line-height: 20px;
 }
 .selectWrapper{
@@ -99,7 +100,7 @@
 }
 .aadhar_front_heading p , span{
     font-size: 14px;
-    color: #99999b;
+    /* color: #99999b; */
 }
 .verification_submit_button{
     float: right;
@@ -156,12 +157,6 @@
     font-weight: 600;
 }
 
-/* media query */
-/* @media only screen and (max-width:1024px){
-    .verification_file_area{
-        display: block;
-    }
-} */
 @media only screen and (max-width: 960px) {
     .verification_card{
         width:100%;

@@ -6,7 +6,7 @@ const TrialProgressiveBar = ({percent}) => {
     const progressColor = '#F6BE00'
     return (
         <div className='progress-container'>
-            <div style={{ textAlign: 'center', fontWeight: '500' }}>
+            <div style={{ textAlign: 'center', fontWeight: '500',fontFamily:'Roboto' }}>
                 <p>Trial stage</p>
                 <p>{percent.trialStage}/{percent.totalCount} Traders</p>
             </div>

@@ -457,8 +457,8 @@ const RefferalPayout = () => {
 
         <div class="card-container">
           <div class="card">
-            <p>Total Amount</p>
-            <h6>Total Amount: {totalWallet}</h6>
+            <p>Total Wallet Amount</p>
+            <h6>Total Wallet Amount: {totalWallet}</h6>
           </div>
           <div class="card">
             <div className="d-flex justify-content-between wallet-heading">

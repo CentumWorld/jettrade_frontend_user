@@ -182,8 +182,8 @@ const UserDetails = () => {
     axios.post(`${apiurl}`+"/user/users/edit-user-details", data, config)
       .then((result) => {
         
-
-        if (userType === "indian") {
+        const usertype = localStorage.getItem("userType")
+        if (usertype === "indian") {
           setEditUserData({
             fname: result.data.result[0].fname,
             lname: result.data.result[0].lname,
@@ -214,6 +214,7 @@ const UserDetails = () => {
 
   const editInputChange = (e) => {
     const { name, value } = e.target;
+    console.log(value)
     setEditUserData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -227,10 +228,11 @@ const UserDetails = () => {
     }));
   };
 
-  const handleDobChange = (date) => {
+  const handleDobChange = (date, dateString) => {
+    console.log(editUserData.dob, date)
     setEditUserData((prevFormData) => ({
       ...prevFormData,
-      dob: date,
+      dob: dateString,
     }));
   };
   const editModalSubmit = (e) => {

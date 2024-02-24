@@ -11,10 +11,23 @@ import RunningProgressiveBar from "./RunningProgressiveBar";
 import TrialProgressiveBar from "./TrialProgressiveBar";
 import ExpiredProgressiveBar from "./ExpiredProgressiveBar";
 import card from "../img/JTF.gif";
+import ShareButtons from "../Sharebuttons";
 
 const apiurl = baseUrl.apiUrl;
 
 const DisplayCard = () => {
+  const [openSharModal, setOpenShareModal] = useState(false);
+  const shareUrl = "http://localhost:4000"; // Replace with your actual URL
+
+  const openModal = () => {
+    setOpenShareModal(true);
+  };
+
+  const handleClose = () => {
+    setOpenShareModal(false);
+  };
+
+
   const handleMenuClick = (e) => {
     if (e.key === "cryptocurrency-market") {
       navigate("/userdashboard/cryptocurrency-market");
@@ -144,7 +157,6 @@ const DisplayCard = () => {
   };
 
   const share = (url) => {
-
     localStorage.removeItem("login");
     localStorage.removeItem("token");
     localStorage.removeItem("userid");
@@ -352,8 +364,7 @@ const DisplayCard = () => {
     };
     axios
       .post(`${apiurl}` + "/user/users/user-my-team", data, config)
-      .then((res) => {
-      })
+      .then((res) => {})
       .catch((error) => {
         console.log(error.response);
       });
@@ -505,9 +516,7 @@ const DisplayCard = () => {
         };
         axios
           .post(`${apiurl}` + "/user/users/update-day-count", data, config)
-          .then((res) => {
-            
-          })
+          .then((res) => {})
           .catch((error) => {
             console.log(error);
           });
@@ -749,6 +758,7 @@ const DisplayCard = () => {
           </div>
           <div className="live-chat-join">
             <span
+              onClick={openModal}
               style={{
                 color: "yellow",
                 cursor: "pointer",
@@ -757,6 +767,11 @@ const DisplayCard = () => {
             >
               share
             </span>
+            <ShareButtons
+              openSharModal={openSharModal}
+              handleClose={handleClose}
+              referralID={userDetails.refferal}
+            />
           </div>
         </div>
 

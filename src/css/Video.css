@@ -1,6 +1,12 @@
 *{
   font-family:'Roboto',sans-serif;
 }
+
+.heading p {
+  font-size:18px;
+  color:#000;
+  font-weight:700;
+}
 .video-framing {
     display: flex;
     flex-wrap: wrap;

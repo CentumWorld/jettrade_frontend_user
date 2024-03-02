@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../css/Video.css";
 import Thumbnail from "./Thumbnail";
@@ -6,8 +7,10 @@ import VideoPlayer from "./VideoPlayer";
 import baseUrl from "../baseUrl";
 import { Spin } from "antd";
 import noVideoFound from "../img/no-video.jpg";
+import { BiArrowBack } from "react-icons/bi"
 const apiurl = baseUrl.apiUrl;
 const Video = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [videos, setVideos] = useState([]);
   const [videoLength, setVideosLength] = useState(0);
@@ -56,8 +59,15 @@ const Video = () => {
       );
     }
   };
+
+  const gotoDashboard = ()=>{
+    navigate('/userdashboard/dashboard')
+  }
   return (
     <>
+    <div className="heading">
+      <p> <BiArrowBack onClick={gotoDashboard} style={{cursor:'pointer'}}/>&nbsp;Videos</p>
+    </div>
       {!spin ? (
         <div className="video-framing">
           {videoLength > 0 ? (

@@ -1,6 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../css/Withdrawal.css";
-import {useNavigate} from 'react-router-dom'
 import btc from "../img/Deposit account coin type/btc.png";
 import doge from "../img/Deposit account coin type/doge.svg";
 import binpay from "../img/Deposit account coin type/binpay.svg";
@@ -11,18 +11,23 @@ import usdte from "../img/Deposit account coin type/usdte.svg";
 import wallet from "../img/wallet_46876-34835925.png";
 import bank from "../img/bank.png";
 import UPI from "../img/upi.png";
+import { BiArrowBack } from "react-icons/bi"
 
 const Withdrawal = () => {
   const navigate = useNavigate();
   const withdrawalAmount = () =>{
     navigate('/userdashboard/wallet-withdrawal')
   }
+
+  const gotoDashboard = ()=>{
+    navigate('/userdashboard/dashboard')
+  }
   return (
     <>
       <div className="withdraw_container">
         <div className="withdraw_card">
           <div className="withdraw_heading">
-            <h5>Payment Methods</h5>
+            <h5> <BiArrowBack onClick={gotoDashboard} style={{cursor:'pointer'}}/> &nbsp;Payment Methods</h5>
           </div>
 
           <div className="withdraw_account_type ">

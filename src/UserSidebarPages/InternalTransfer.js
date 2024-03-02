@@ -1,15 +1,22 @@
 import React from "react";
 import "../css/InternalTransfer.css";
 import PinInput from "react-pin-input";
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi"
+
 
 const InternalTransfer = () => {
+  const navigate = useNavigate();
+
+  const gotoDashboard = ()=>{
+    navigate('/userdashboard/dashboard')
+  }
   return (
     <>
       <div className="user_internal_transfer_main_container">
         <div className="user_internal_transfer_card">
           <div className="user_internal_transfer_heading">
-            <p>Internal transfer</p>
+            <p> <BiArrowBack onClick={gotoDashboard} style={{cursor:'pointer'}}/>&nbsp;Internal transfer</p>
           </div>
           <div className="user_internal_transfer_para">
             <p>

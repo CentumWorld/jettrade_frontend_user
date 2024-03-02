@@ -1,17 +1,23 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../css/DepositeHistory.css";
+import { BiArrowBack } from "react-icons/bi"
 
 const DepositeHistory = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const togle = () => {
     setOpen(!open);
   };
+  const gotoDashboard = ()=>{
+    navigate('/userdashboard/dashboard')
+  }
   return (
     <>
       <div className="deposite_main_container">
         <div className="deposite_card">
           <div className="deposite_heading">
-            <p>Deposit History</p>
+            <p> <BiArrowBack onClick={gotoDashboard} style={{cursor:'pointer'}}/>&nbsp;Deposit History</p>
           </div>
           <div className="depo_history_para">
             <p>

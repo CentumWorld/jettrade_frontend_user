@@ -1,11 +1,18 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi"
 import "../../css/ResetPassword.css";
 
 const ResetPassword = () => {
+  const navigate = useNavigate();
   const [selectDiv, setSelectDiv] = useState("");
 
 function onChangeValue(event) {
   setSelectDiv(event.target.value);
+}
+
+const gotoDashboard = ()=>{
+  navigate('/userdashboard/dashboard')
 }
   return (
     <>
@@ -13,7 +20,7 @@ function onChangeValue(event) {
         <div className="reset_password_card">
           <div className="row">
             <div className="reset_password_heading ">
-              <p>Password Management</p>
+              <p> <BiArrowBack onClick={gotoDashboard} style={{cursor:'pointer'}}/>&nbsp;Password Management</p>
             </div>
             <div className="reset_password_para">
               <p>

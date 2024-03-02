@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {  Link } from "react-router-dom";
+import {  Link ,useNavigate} from "react-router-dom";
 import "../../css/UserDetails.css";
 import profile from "../../img/user_profile.png";
 import axios from "axios";
@@ -16,6 +16,7 @@ import {
   Select,
   DatePicker,
 } from "antd";
+import { BiArrowBack } from "react-icons/bi"
 import baseUrl from '../../baseUrl';
 
 const apiurl = baseUrl.apiUrl
@@ -23,6 +24,7 @@ const apiurl = baseUrl.apiUrl
 const { Option } = Select;
 
 const UserDetails = () => {
+  const navigate = useNavigate();
   const [userType, setUserType] = useState("");
   const [loading, setLoading] = useState(false);
   const [isModalVisible, setIsEditModalVisible] = useState(false);
@@ -296,6 +298,11 @@ const UserDetails = () => {
     }
   };
 
+  // ------------
+  const gotoDashboard = ()=>{
+    navigate('/userdashboard/dashboard')
+  }
+
   return (
     <>
       <div className="user_details">
@@ -303,7 +310,7 @@ const UserDetails = () => {
           <div className="row">
             <div className="user_details_heading">
               <div className="user_main_heading">
-                <p>Personal information</p>
+                <p> <BiArrowBack onClick={gotoDashboard} style={{cursor:'pointer'}}/>&nbsp;Personal information</p>
                 <Button
                   type="primary"
                   style={{ borderRadius: "12px",color:'#fff' }}

@@ -10,6 +10,7 @@ import panCard from "../../img/sample-pan-card.jpg";
 import axios from "axios";
 import { message, Spin } from "antd";
 import { useNavigate } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi"
 import baseUrl from "../../baseUrl";
 
 const apiurl = baseUrl.apiUrl;
@@ -199,13 +200,17 @@ function ProfileVerification() {
       .catch((error) => {});
   };
 
+  const gotoDashboard = ()=>{
+    navigate('/userdashboard/dashboard')
+  }
+
   return (
     <>
       <div className="profile_verification">
         <div className="verification_card">
           <div className="row">
             <div className="verification_heading col-md-12">
-              <p>Change your document</p>
+              <p> <BiArrowBack onClick={gotoDashboard} style={{cursor:'pointer'}}/>&nbsp;Change your document</p>
             </div>
           </div>
           <div className="row">

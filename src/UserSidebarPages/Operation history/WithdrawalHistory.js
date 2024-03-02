@@ -1,17 +1,24 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../css/WithdrawalHistory.css";
+import { BiArrowBack } from "react-icons/bi"
 
 const WithdrawalHistory = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const togle = () => {
     setOpen(!open);
   };
+
+  const gotoDashboard = ()=>{
+    navigate('/userdashboard/dashboard')
+  }
   return (
     <>
       <div className="withdrawal_main_container">
         <div className="withdrawal_card">
           <div className="withdrawal_heading">
-            <p>Withdrawal History</p>
+            <p> <BiArrowBack onClick={gotoDashboard} style={{cursor:'pointer'}}/>&nbsp;Withdrawal History</p>
           </div>
           <div className="withdrawal_history_para">
             <p >

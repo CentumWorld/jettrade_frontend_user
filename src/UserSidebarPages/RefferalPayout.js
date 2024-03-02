@@ -14,6 +14,8 @@ import {
 } from "antd";
 import { FaRupeeSign } from "react-icons/fa";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi"
 import baseUrl from "../baseUrl";
 
 const apiurl = baseUrl.apiUrl;
@@ -22,6 +24,7 @@ const { TabPane } = Tabs;
 const { Option } = Select;
 
 const RefferalPayout = () => {
+  const navigate = useNavigate();
   const [payoutAmout, setPayOutAmount] = useState(0);
   const [amount, setAmount] = useState("");
   const [requestDetails, setRequestDetails] = useState([]);
@@ -435,11 +438,15 @@ const RefferalPayout = () => {
     setSelectedUpiId(e.target.value);
   };
 
+  const gotoDashboard = ()=>{
+    navigate('/userdashboard/dashboard')
+  }
+
   return (
     <>
       <div className="reffer-container">
         <div className="withdralwal-header ">
-          <p>Withdrawal</p>
+          <p>  <BiArrowBack onClick={gotoDashboard} style={{cursor:'pointer'}}/> &nbsp;Withdrawal</p>
           <button
             style={{
               backgroundColor: "#0d6efd",
@@ -462,7 +469,7 @@ const RefferalPayout = () => {
           </div>
           <div class="card">
             <div className="d-flex justify-content-between wallet-heading">
-              <p>Wallet Withdrawal</p>
+              <p>  <BiArrowBack onClick={gotoDashboard} style={{cursor:'pointer'}}/>Wallet Withdrawal</p>
               <button
                 style={{
                   backgroundColor: "#0d6efd",

@@ -1,23 +1,30 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../css/ManageBonuses.css";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
+import { BiArrowBack } from "react-icons/bi"
 
 const ManageBonuses = () => {
+  const navigate = useNavigate();
   const [value, setValue] = useState("1");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const gotoDashboard = ()=>{
+    navigate('/userdashboard/dashboard')
+  }
   return (
     <>
       <div className="bonuses_main_container">
         <div className="bonuses_card">
           <div className="bonuses_heading">
-            <p>Your deposit bonuses</p>
+            <p> <BiArrowBack onClick={gotoDashboard} style={{cursor:'pointer'}}/>&nbsp;Your deposit bonuses</p>
           </div>
           <div className="bonuses_para">
             <p>

@@ -26,9 +26,9 @@ import PhoneInput from "react-phone-input-2";
 
 import "react-phone-input-2/lib/bootstrap.css";
 import { UserContext } from "../App";
-import baseUrl from '../baseUrl';
+import baseUrl from "../baseUrl";
 
-const apiurl = baseUrl.apiUrl
+const apiurl = baseUrl.apiUrl;
 
 const { TextArea } = Input;
 
@@ -44,7 +44,6 @@ function UserRegistration() {
   const customDobSuffixIcon = <CalendarOutlined style={{ color: "#5e72e4" }} />;
   // -----------------------------
   const [phone, setPhone] = useState("");
-
 
   const [userData, setUserData] = useState({
     fname: "",
@@ -81,53 +80,72 @@ function UserRegistration() {
   const [spin, setSpin] = useState(false);
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
+  const [adharerror, setadharError] = useState("");
+  const [adharbackerror, setadharbackError] = useState("");
+  const [panerror, setpanError] = useState("");
+  const [iderror, setidError] = useState("");
+
   const userInputs = (e) => {
     e.preventDefault();
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
   const handleClickAadharFrontImage = (e) => {
-    if (
-      e.target.files[0].type === "image/png" ||
-      e.target.files[0].type === "image/jpeg"
-    ) {
-      setAadharImage({ file: e.target.files[0] });
-    } else {
-      message.error("Invalid File !! ");
-      aadharImage.file = null;
+    const selectedFile = e.target.files[0];
+
+    if (selectedFile) {
+      if (selectedFile.size >= 2 * 1024 * 1024) {
+        setadharError("File size is more than 2MB");
+        // Handle the case when the file size is more than 2MB
+        setAadharImage({ file: null });
+      } else {
+        setadharError("");
+        setAadharImage({ file: selectedFile });
+      }
     }
   };
   const handleClickAadharBackImage = (e) => {
-    if (
-      e.target.files[0].type === "image/png" ||
-      e.target.files[0].type === "image/jpeg"
-    ) {
-      setAadharBackImage({ file: e.target.files[0] });
-    } else {
-      message.error("Invalid File !! ");
-      aadharBackImage.file = null;
+    
+    const selectedFile = e.target.files[0];
+
+    if (selectedFile) {
+      if (selectedFile.size >= 2 * 1024 * 1024) {
+        setadharbackError("File size is more than 2MB");
+        // Handle the case when the file size is more than 2MB
+        setAadharBackImage({ file: null });
+      } else {
+        setadharbackError("");
+        setAadharBackImage({ file: selectedFile });
+      }
     }
   };
+
   const handleClickPanCardImage = (e) => {
-    if (
-      e.target.files[0].type === "image/png" ||
-      e.target.files[0].type === "image/jpeg"
-    ) {
-      setPanImage({ file: e.target.files[0] });
-    } else {
-      message.error("Invalid File !! ");
-      panImage.file = null;
+    const selectedFile = e.target.files[0];
+
+    if (selectedFile) {
+      if (selectedFile.size >= 2 * 1024 * 1024) {
+        setpanError("File size is more than 2MB");
+        // Handle the case when the file size is more than 2MB
+        setPanImage({ file: null });
+      } else {
+        setpanError("");
+        setPanImage({ file: selectedFile });
+      }
     }
   };
 
   const handleClickForeignCard = (e) => {
-    if (
-      e.target.files[0].type === "image/png" ||
-      e.target.files[0].type === "image/jpeg"
-    ) {
-      setForegienCard({ file1: e.target.files[0] });
-    } else {
-      message.error("Invalid File !! ");
-      foregienCard.file1 = null;
+    const selectedFile = e.target.files[0];
+
+    if (selectedFile) {
+      if (selectedFile.size >= 2 * 1024 * 1024) {
+        setidError("File size is more than 2MB");
+        // Handle the case when the file size is more than 2MB
+        setForegienCard({ file: null });
+      } else {
+        setidError("");
+        setForegienCard({ file: selectedFile });
+      }
     }
   };
 
@@ -192,7 +210,10 @@ function UserRegistration() {
 
     if (countryCode === "91") {
       try {
-        const res = await axios.post(`${apiurl}`+"/user/registration", formData);
+        const res = await axios.post(
+          `${apiurl}` + "/user/registration",
+          formData
+        );
         message.success("Registration successful");
         localStorage.setItem("token", res.data.token);
 
@@ -217,7 +238,8 @@ function UserRegistration() {
       }
     } else {
       try {
-        const res = await axios.post(`${apiurl}`+"/user/users/other-country-user-registration",
+        const res = await axios.post(
+          `${apiurl}` + "/user/users/other-country-user-registration",
           formData
         );
         message.success("Registration successful");
@@ -359,7 +381,6 @@ function UserRegistration() {
           <p>Sign up with credentials</p>
           <div className="form-content">
             <form>
-
               <div className="d-flex">
                 <Select value={selectedOption} onChange={handleDropdownChange}>
                   <Option value="official">Official ID</Option>
@@ -392,7 +413,6 @@ function UserRegistration() {
                       value={referralId}
                       name="invite_code"
                       onChange={(e) => hadleRefferalId(e.target.value)}
-
                       placeholder="Enter referral ID"
                       style={{ marginBottom: "10px" }}
                     />
@@ -483,14 +503,17 @@ function UserRegistration() {
                     </Radio>
                   </Radio.Group>
                 </div>
-                <div className="gender-dob-section"  style={{cursor:"pointer"}}>
+                <div
+                  className="gender-dob-section"
+                  style={{ cursor: "pointer" }}
+                >
                   <p>DOB</p>
                   <DatePicker
                     placeholder="Select a date"
                     className="custom-datepicker"
                     onChange={handleDateOfBirthChange}
                     style={{ marginBottom: "10px" }}
-                    suffixIcon={customDobSuffixIcon}                  
+                    suffixIcon={customDobSuffixIcon}
                   />
                 </div>
               </div>
@@ -503,6 +526,7 @@ function UserRegistration() {
                       placeholder="Enter Aadhar no."
                       type="text"
                       name="aadhar_no"
+                      maxLength="12"
                       onChange={userInputs}
                       style={{ marginBottom: "10px" }}
                     />
@@ -517,6 +541,11 @@ function UserRegistration() {
                         onChange={handleClickAadharFrontImage}
                       />
                     </div>
+                    {adharerror && (
+                      <p style={{ color: "red", marginTop: "0.7rem" }}>
+                        {adharerror}
+                      </p>
+                    )}
                   </div>
 
                   <div className="aadhar-back">
@@ -528,6 +557,11 @@ function UserRegistration() {
                         onChange={handleClickAadharBackImage}
                       />
                     </div>
+                    {adharbackerror && (
+                      <p style={{ color: "red", marginTop: "0.7rem" }}>
+                        {adharbackerror}
+                      </p>
+                    )}
                   </div>
 
                   <div className="input_label">
@@ -551,6 +585,11 @@ function UserRegistration() {
                         onChange={handleClickPanCardImage}
                       />
                     </div>
+                    {panerror && (
+                      <p style={{ color: "red"}}>
+                        {panerror}
+                      </p>
+                    )}
                   </div>
                 </>
               ) : (
@@ -575,6 +614,11 @@ function UserRegistration() {
                         onChange={handleClickForeignCard}
                       />
                     </div>
+                    {iderror && (
+                      <p style={{ color: "red"}}>
+                        {iderror}
+                      </p>
+                    )}
                   </div>
                 </>
               )}
@@ -636,7 +680,7 @@ function UserRegistration() {
                 </button>
                 <p style={{ float: "right", color: "white" }}>
                   <NavLink to="/user-login" style={{ color: "white" }}>
-                    Already registered Login 
+                    Already registered Login
                   </NavLink>
                 </p>
               </div>

@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi"
 import "../../css/DemoAccount.css";
 import { FaAngleDown } from "react-icons/fa";
 
 function DemoAccount() {
+
+  const navigate = useNavigate();
   const [accountType, setAccountType] = useState(true);
   const [metaFive, setMetaFive] = useState(false);
   const [metaFour, setMetaFour] = useState(false);
@@ -24,12 +28,16 @@ function DemoAccount() {
     setJetTrade(!jetTrade);
   };
 
+  const gotoDashboard = ()=>{
+    navigate('/userdashboard/dashboard')
+  }
+
   return (
     <>
       <div className="demo_account">
         <div className="demo_account_card">
           <div className="demo_account_details_heading">
-            <p>Setup account details</p>
+            <p> <BiArrowBack onClick={gotoDashboard} style={{cursor:'pointer'}}/>&nbsp;Setup account details</p>
           </div>
           <div className="demo_account_type_para">
             <p>Account type</p>

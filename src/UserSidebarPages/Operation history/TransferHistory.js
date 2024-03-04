@@ -1,17 +1,23 @@
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import '../../css/TransferHistory.css'
+import { BiArrowBack } from "react-icons/bi"
 
 const TransferHistory = () => {
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const togle = () => {
         setOpen(!open)
     }
+    const gotoDashboard = ()=>{
+        navigate('/userdashboard/dashboard')
+      }
     return (
         <>
             <div className='transfer_main_container'>
                 <div className='transfer_card'>
                     <div className='transfer_heading'>
-                        <p>Transfer History</p>
+                        <p> <BiArrowBack onClick={gotoDashboard} style={{cursor:'pointer'}}/>&nbsp;Transfer History</p>
                     </div>
                     <div className='transfer_history_para'>
                         <p>Here you can view all your transfers and their details.</p>

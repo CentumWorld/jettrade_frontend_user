@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "../css/HelpFriend.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { Input, message } from "antd";
+import { BiArrowBack } from "react-icons/bi"
 import baseUrl from "../baseUrl";
 
 const apiurl = baseUrl.apiUrl;
 
 const HelpFriend = () => {
+  const navigate = useNavigate();
   const [toUser, setToUser] = useState("");
   const [amount, setAmount] = useState("");
   const [wallet, setWalletAmount] = useState(0);
@@ -67,11 +70,15 @@ const HelpFriend = () => {
       });
   };
 
+  const gotoDashboard = ()=>{
+    navigate('/userdashboard/dashboard')
+  }
+
   return (
     <>
       <div className="help-friend-container">
         <div className="help-friend-header">
-          <p>Transfer wallet amount to your friend</p>
+          <p> <BiArrowBack onClick={gotoDashboard} style={{cursor:'pointer'}}/>&nbsp;Transfer wallet amount to your friend</p>
           <div className="user-wallet">{wallet}</div>
         </div>
         <div className="help-friend-body">

@@ -1,13 +1,19 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi"
 import '../../css/Monitoring.css'
 
 const Monitoring = () => {
+    const navigate = useNavigate();
+    const gotoDashboard = ()=>{
+        navigate('/userdashboard/dashboard')
+      }
     return (
         <>
             <div className='monitoring_main_container'>
                 <div className='monitoring_card'>
                     <div className='monitoring_heading'>
-                        <p>JETTRADE FX real Forex accounts monitoring system</p>
+                        <p> <BiArrowBack onClick={gotoDashboard} style={{cursor:'pointer'}}/>&nbsp;JETTRADE FX real Forex accounts monitoring system</p>
                     </div>
                     <div className='monitoring_para'>
                         <p>This is a list of already monitored accounts and those available for monitoring. Here you can also manage the monitoring.</p>

@@ -94,7 +94,8 @@
 
     .user_deatails_main_div {
         position: relative;
-
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
     }
 
     .user_profile {
@@ -109,7 +110,6 @@
 
     .user_details_content {
         position: absolute;
-        margin-top: 60%;
     }
 
     .user_card {

@@ -1,25 +1,31 @@
 import React, { useState } from "react";
 import "../../css/AccountList.css";
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { BiArrowBack } from "react-icons/bi"
 
 const AccountList = () => {
+  const navigate = useNavigate();
   const [value, setValue] = useState("1");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const gotoDashboard = ()=>{
+    navigate('/userdashboard/dashboard')
+  }
   return (
     <>
       <div className="accounts_main_container">
         <div className="accounts_card">
           <div className="accounts_heading">
-            <p>Your accounts</p>
+            <p> <BiArrowBack onClick={gotoDashboard} style={{cursor:'pointer'}}/>&nbsp;Your accounts</p>
           </div>
           <div className="accounts_para">
             <p>

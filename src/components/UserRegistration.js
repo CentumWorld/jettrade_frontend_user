@@ -533,11 +533,12 @@ function UserRegistration() {
                   </div>
 
                   <div className="aadhar-front">
-                    <p>Aadhar Front</p>
+                    <p>Aadhar Front(JPG/PNG)</p>
                     <div>
                       <Input
                         placeholder="Aadhar Front Image"
                         type="file"
+                        accept=".jpg, .jpeg, .png"
                         onChange={handleClickAadharFrontImage}
                       />
                     </div>
@@ -549,11 +550,12 @@ function UserRegistration() {
                   </div>
 
                   <div className="aadhar-back">
-                    <p>Aadhar Back</p>
+                    <p>Aadhar Back(JPG/PNG)</p>
                     <div>
                       <Input
                         placeholder="Aadhar back Image"
                         type="file"
+                        accept=".jpg, .jpeg, .png"
                         onChange={handleClickAadharBackImage}
                       />
                     </div>
@@ -577,11 +579,12 @@ function UserRegistration() {
                   </div>
 
                   <div className="pan_card">
-                    <p>Pan Card</p>
+                    <p>Pan Card(JPG/PNG)</p>
                     <div>
                       <Input
                         placeholder="Pan card"
                         type="file"
+                        accept=".jpg, .jpeg, .png"
                         onChange={handleClickPanCardImage}
                       />
                     </div>
@@ -606,11 +609,12 @@ function UserRegistration() {
                     />
                   </div>
                   <div className="pan_card">
-                    <p>ID Card</p>
+                    <p>ID Card(JPG/PNG)</p>
                     <div>
                       <Input
                         placeholder="Upload ID Card"
                         type="file"
+                        accept=".jpg, .jpeg, .png"
                         onChange={handleClickForeignCard}
                       />
                     </div>

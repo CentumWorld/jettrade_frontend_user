@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import '../../css/ChangePassword.css';
 import { Input, message } from 'antd';
 import axios from 'axios';
+import { BiArrowBack } from "react-icons/bi"
 import baseUrl from '../../baseUrl';
 
 const apiurl = baseUrl.apiUrl
 
 function ChangePassword() {
+  const navigate = useNavigate();
   const [selectDiv, setSelectDiv] = useState('');
   const [formData, setFormData] = useState({ oldPassword: '', newPassword: '' });
 
@@ -52,6 +55,10 @@ function ChangePassword() {
     }
 
   }
+
+  const gotoDashboard = ()=>{
+    navigate('/userdashboard/dashboard')
+  }
   return (
     <>
 
@@ -59,7 +66,7 @@ function ChangePassword() {
         <div className='change_password_card'>
           <div className='row'>
             <div className='change_password_heading '>
-              <p>Password Management</p>
+              <p> <BiArrowBack onClick={gotoDashboard} style={{cursor:'pointer'}}/>&nbsp;Password Management</p>
 
             </div>
             <div className='change_password_para'>

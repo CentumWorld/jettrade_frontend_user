@@ -454,8 +454,9 @@ const DisplayCard = () => {
       });
   };
 
-  const blockUser = (trialFormateDate) => {
-    if (subscription == 0 && subscriptionStatus.payment === false) {
+  const blockUser = (trialFormateDate, status) => {
+    console.log(subscription,status)
+    if (subscription == 0 && status === false) {
       const dateString = trialFormateDate;
 
       function subtractTwoDate(date2, systemDate) {

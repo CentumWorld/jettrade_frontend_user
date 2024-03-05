@@ -69,7 +69,8 @@
 }
 .payment-button button{
     width: 65%;
-    margin: 10px;
+    margin-bottom:10px;
+    margin-left: 60px;
 }
 .note-para{
     margin: 10px;

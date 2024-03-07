@@ -136,8 +136,6 @@ function UserRegistration() {
 
   const handleClickForeignCard = (e) => {
     const selectedFile = e.target.files[0];
-    console.log(selectedFile);
-    debugger;
 
     if (selectedFile) {
       if (selectedFile.size >= 2 * 1024 * 1024) {

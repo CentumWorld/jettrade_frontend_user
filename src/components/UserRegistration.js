@@ -136,6 +136,8 @@ function UserRegistration() {
 
   const handleClickForeignCard = (e) => {
     const selectedFile = e.target.files[0];
+    console.log(selectedFile);
+    debugger;
 
     if (selectedFile) {
       if (selectedFile.size >= 2 * 1024 * 1024) {
@@ -205,7 +207,7 @@ function UserRegistration() {
       formData.append("pan", userData.pan_no);
     } else {
       formData.append("Id_No", userData.foregien_id);
-      formData.append("ID_Card", foregienCard.file1);
+      formData.append("ID_Card", foregienCard.file);
     }
 
     if (countryCode === "91") {
@@ -600,12 +602,15 @@ function UserRegistration() {
                   <div className="input_label">
                     <p>ID Number</p>
                     <Input
+                  
                       className="custom-placeholder-input"
                       placeholder="Enter ID no."
                       type="text"
                       name="foregien_id"
+                      value={userData.foregien_id}
                       onChange={userInputs}
                       style={{ marginBottom: "10px" }}
+                
                     />
                   </div>
                   <div className="pan_card">

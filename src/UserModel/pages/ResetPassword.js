@@ -29,10 +29,10 @@ const gotoDashboard = ()=>{
               </p>
             </div>
           </div>
-          <div className="reset_password_label ">
+          {/* <div className="reset_password_label ">
             <p>Reset Password</p>
             <hr />
-          </div>
+          </div> */}
           <div className="select_password_type_info">
             <p>Select a password or PIN</p>
 
@@ -41,11 +41,6 @@ const gotoDashboard = ()=>{
                 <input type="radio" name="pin" value="FXPIN" />
                 &nbsp;
                 <label htmlFor="html">JettradeFX PIN </label>
-              </div>
-              <div onChange={onChangeValue}>
-                <input type="radio" name="pin" value="PERSONALPIN" />
-                &nbsp;
-                <label htmlFor="html">Personal area Pin</label>
               </div>
             </div>
           </div>

@@ -104,7 +104,6 @@ function UserRegistration() {
     }
   };
   const handleClickAadharBackImage = (e) => {
-    
     const selectedFile = e.target.files[0];
 
     if (selectedFile) {
@@ -273,17 +272,29 @@ function UserRegistration() {
 
   const [selectedOption, setSelectedOption] = useState("referral");
   const [referralId, setReferralId] = useState("");
+  const [franchisereferralId, setfranchiseReferralId] = useState("");
+  const [bmmreferralId, setbmmReferralId] = useState("");
   const officialId = "memberofficial1235125";
   const [countryCode, setCountryCode] = useState("");
 
   const handleDropdownChange = (value) => {
     setSelectedOption(value);
     setReferralId("");
+    setfranchiseReferralId("");
+    setbmmReferralId("");
     setUserData({ ...userData, invite_code: officialId });
   };
 
   const hadleRefferalId = (value) => {
     setReferralId(value);
+    setUserData({ ...userData, invite_code: value });
+  };
+  const hadleFranchiseRefferalId = (value) => {
+    setfranchiseReferralId(value);
+    setUserData({ ...userData, invite_code: value });
+  };
+  const hadleBmmRefferalId = (value) => {
+    setbmmReferralId(value);
     setUserData({ ...userData, invite_code: value });
   };
 
@@ -292,6 +303,8 @@ function UserRegistration() {
     if (reffer) {
       setUserData({ ...userData, invite_code: id.inviteCode });
       setReferralId(reffer);
+      setfranchiseReferralId(reffer);
+      setbmmReferralId(reffer);
     }
   }, []);
 
@@ -385,6 +398,8 @@ function UserRegistration() {
                 <Select value={selectedOption} onChange={handleDropdownChange}>
                   <Option value="official">Official ID</Option>
                   <Option value="referral"> Put Referral ID</Option>
+                  <Option value="bmm">BMM Referral ID</Option>
+                  <Option value="franchise">Franchise Referral ID</Option>
                 </Select>
 
                 {selectedOption === "official" && (
@@ -413,6 +428,36 @@ function UserRegistration() {
                       value={referralId}
                       name="invite_code"
                       onChange={(e) => hadleRefferalId(e.target.value)}
+                      placeholder="Enter referral ID"
+                      style={{ marginBottom: "10px" }}
+                    />
+                  </div>
+                )}
+
+                {selectedOption === "franchise" && (
+                  <div>
+                    <Input
+                      className="custom-placeholder-input"
+                      type="text"
+                      id="franhcise-id"
+                      value={franchisereferralId}
+                      name="invite_code"
+                      onChange={(e) => hadleFranchiseRefferalId(e.target.value)}
+                      placeholder="Enter referral ID"
+                      style={{ marginBottom: "10px" }}
+                    />
+                  </div>
+                )}
+
+                {selectedOption === "bmm" && (
+                  <div>
+                    <Input
+                      className="custom-placeholder-input"
+                      type="text"
+                      id="bmm-id"
+                      value={bmmreferralId}
+                      name="invite_code"
+                      onChange={(e) => hadleBmmRefferalId(e.target.value)}
                       placeholder="Enter referral ID"
                       style={{ marginBottom: "10px" }}
                     />
@@ -588,11 +633,7 @@ function UserRegistration() {
                         onChange={handleClickPanCardImage}
                       />
                     </div>
-                    {panerror && (
-                      <p style={{ color: "red"}}>
-                        {panerror}
-                      </p>
-                    )}
+                    {panerror && <p style={{ color: "red" }}>{panerror}</p>}
                   </div>
                 </>
               ) : (
@@ -600,7 +641,6 @@ function UserRegistration() {
                   <div className="input_label">
                     <p>ID Number</p>
                     <Input
-                  
                       className="custom-placeholder-input"
                       placeholder="Enter ID no."
                       type="text"
@@ -608,7 +648,6 @@ function UserRegistration() {
                       value={userData.foregien_id}
                       onChange={userInputs}
                       style={{ marginBottom: "10px" }}
-                
                     />
                   </div>
                   <div className="pan_card">
@@ -621,11 +660,7 @@ function UserRegistration() {
                         onChange={handleClickForeignCard}
                       />
                     </div>
-                    {iderror && (
-                      <p style={{ color: "red"}}>
-                        {iderror}
-                      </p>
-                    )}
+                    {iderror && <p style={{ color: "red" }}>{iderror}</p>}
                   </div>
                 </>
               )}

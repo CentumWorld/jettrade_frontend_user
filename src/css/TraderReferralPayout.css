@@ -1,0 +1,11 @@
+.referral-payout-container{
+
+}
+.payout-header{
+    background-color: #01015d;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius:10px;
+}

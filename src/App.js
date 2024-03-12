@@ -52,6 +52,7 @@ import Video from './UserSidebarPages/Video';
 import TraditionalCurrencyChart from './UserSidebarPages/TraditionalCurrencyChart';
 import HelpFriend from './UserSidebarPages/HelpFriend';
 import MyTeam from './UserSidebarPages/MyTeam';
+import TraderReferralPaout from './UserSidebarPages/TraderReferralPaout';
 
 
 
@@ -151,6 +152,7 @@ function App() {
                 <Route path='wallet-withdrawal' element={<RefferalPayout />} />
                 <Route path='my-team' element={<MyTeam/>}/>
                 <Route path='video' element={<Video/>}/>
+                <Route path='trader-referral' element={<TraderReferralPaout/>}/>
 
                 {/* Opertaion Hostory */}
 

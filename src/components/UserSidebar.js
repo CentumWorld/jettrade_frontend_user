@@ -8,6 +8,7 @@ import {GiMining} from "react-icons/gi";
 import { RxCountdownTimer } from "react-icons/rx";
 import { TfiMenuAlt } from "react-icons/tfi";
 // import {FcNeutralTrading} from "react-icons/fc";
+import { SiAmazonpay } from "react-icons/si";
 import { CiLogout } from "react-icons/ci";
 import { RxDashboard } from "react-icons/rx";
 import { AiOutlineSetting, AiFillBank, AiOutlineSwap } from "react-icons/ai";
@@ -84,67 +85,67 @@ const routes = [
       },
     ],
   },
-  {
-    path: "/userdashboard/withdraw",
-    name: "Withdrawal",
-    icon: <FaMoneyBillWaveAlt />,
-  },
-  {
-    path: "/userdashboard/transfer",
-    name: "Internal transfer",
-    icon: <MdSend />,
-  },
+  // {
+  //   path: "/userdashboard/withdraw",
+  //   name: "Withdrawal",
+  //   icon: <FaMoneyBillWaveAlt />,
+  // },
+  // {
+  //   path: "/userdashboard/transfer",
+  //   name: "Internal transfer",
+  //   icon: <MdSend />,
+  // },
   {
     path: "/userdashboard/help-friend",
     name: "Help Friends",
     icon: <FaHandHoldingUsd />,
   },
-  {
-    path: "/userdashboard",
-    name: "Operation history",
-    icon: <RxCountdownTimer />,
-    subRoutes: [
-      {
-        path: "/userdashboard/deposite",
-        name: "Deposit history",
-      },
-      {
-        path: "/userdashboard/withdrawlhistory",
-        name: "Withdrawal history",
-      },
-      {
-        path: "/userdashboard/transferhistory",
-        name: "Transfer history",
-      },
-    ],
-  },
-  {
-    path: "/userdashboard",
-    name: "Trading accounts",
-    icon: <TfiMenuAlt />,
-    subRoutes: [
-      {
-        path: "/userdashboard/accountlist",
-        name: "Account list",
-      },
-      {
-        path: "/userdashboard/managebonuses",
-        name: "Manage Bonuses",
-      },
-      {
-        path: "/userdashboard/monitoring",
-        name: "Monitoring",
-      },
-      {
-        path: "/userdashboard/real-account",
-        name: "Open real account",
-      },
-      {
-        path: "/userdashboard/demo-account",
-        name: "Open demo account",
-      },
-    ],
-  },
+  // {
+  //   path: "/userdashboard",
+  //   name: "Operation history",
+  //   icon: <RxCountdownTimer />,
+  //   subRoutes: [
+  //     {
+  //       path: "/userdashboard/deposite",
+  //       name: "Deposit history",
+  //     },
+  //     {
+  //       path: "/userdashboard/withdrawlhistory",
+  //       name: "Withdrawal history",
+  //     },
+  //     {
+  //       path: "/userdashboard/transferhistory",
+  //       name: "Transfer history",
+  //     },
+  //   ],
+  // },
+  // {
+  //   path: "/userdashboard",
+  //   name: "Trading accounts",
+  //   icon: <TfiMenuAlt />,
+  //   subRoutes: [
+  //     {
+  //       path: "/userdashboard/accountlist",
+  //       name: "Account list",
+  //     },
+  //     {
+  //       path: "/userdashboard/managebonuses",
+  //       name: "Manage Bonuses",
+  //     },
+  //     {
+  //       path: "/userdashboard/monitoring",
+  //       name: "Monitoring",
+  //     },
+  //     {
+  //       path: "/userdashboard/real-account",
+  //       name: "Open real account",
+  //     },
+  //     {
+  //       path: "/userdashboard/demo-account",
+  //       name: "Open demo account",
+  //     },
+  //   ],
+  // },
 
   {
     path: "/userdashboard/wallet-withdrawal",
@@ -156,6 +157,12 @@ const routes = [
     path: "/userdashboard/video",
     name: "Video",
     icon: <FiVideo />,
+  },
+
+  {
+    path: "/userdashboard/trader-referral",
+    name: "Referral Payout",
+    icon: <SiAmazonpay />,
   },
 ];
 
@@ -686,7 +693,7 @@ function UserSidebar(props) {
                 <FaBars onClick={toggle} />
               </div>
             </div>
-            {isOpen ? (
+            {/* {isOpen ? (
               <div className="deposit-btn">
                 <NavLink
                   to="/userdashboard/new-deposit"
@@ -699,7 +706,7 @@ function UserSidebar(props) {
               <NavLink to="/userdashboard/new-deposit" className="deposit_logo">
                 <AiFillBank />
               </NavLink>
-            )}
+            )} */}
           </div>
 
           <section className="routes">

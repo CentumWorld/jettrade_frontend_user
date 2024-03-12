@@ -681,6 +681,10 @@ const DisplayCard = () => {
     message.success("Text copied to clipboard: " + userDetails.refferal);
   };
 
+  const referralPayoutPage = () =>{
+    navigate('/userdashboard/trader-referral')
+  }
+
   return (
     <>
       {subscriptionStatus.payment === false && subscription === 0 ? (
@@ -1025,6 +1029,35 @@ const DisplayCard = () => {
             </div>
           </div>
         </div>
+        
+        <div
+          className="card1"
+          style={{
+            backgroundImage: `url(${card})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <div className="trading_chart">
+            <h6>Referral Payout</h6>
+          </div>
+          <div className="trading_chart_view">
+            <span
+              style={{
+                color: "yellow",
+                cursor: "pointer",
+                fontFamily: "Roboto",
+              }}
+              onClick={referralPayoutPage}
+            >
+              view
+            </span>
+          </div>
+        </div>
+
         <div
           className="card1"
           style={{
